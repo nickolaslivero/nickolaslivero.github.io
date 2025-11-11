@@ -9,7 +9,7 @@ Portfólio pessoal hospedado no GitHub Pages com Tailwind CSS e conteúdo em por
 
 ## Estrutura
 
-- `index.html`: página única com resumo profissional, habilidades, experiências, certificações e backlog para futuros projetos/TODOs.
+- `index.html`: página única (PT/EN) com resumo profissional, habilidades, experiências, certificações e backlog para futuros projetos/TODOs. A troca de idioma é feita via toggle (PT/EN) e persistida em `localStorage`.
 
 ## Desenvolvimento
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nickolas Livero — Software & AI Engineer</title>
-  <meta name="description" content="Portfólio de Nickolas Livero: soluções em Flutter, Python, IA aplicada e automação para SaaS, Web3 e integrações inteligentes.">
+  <meta name="description" content="Portfólio bilíngue de Nickolas Livero com foco em Flutter, Python, IA aplicada, automação e integrações Web3.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,25 +27,43 @@
     };
   </script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans">
+<body class="bg-slate-950 text-slate-100 font-sans" data-lang="pt">
   <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
     <div class="absolute inset-0 opacity-30 blur-3xl" aria-hidden="true">
       <div class="w-72 h-72 bg-brand/40 rounded-full absolute -top-12 -left-12"></div>
       <div class="w-80 h-80 bg-purple-500/30 rounded-full absolute bottom-0 right-0"></div>
     </div>
+    <div class="absolute right-6 top-6 flex flex-col items-end gap-2 text-xs text-slate-300">
+      <span class="uppercase tracking-[0.3em]">
+        <span data-lang="pt">Idioma</span>
+        <span data-lang="en" hidden>Language</span>
+      </span>
+      <div class="flex rounded-full border border-white/20 p-1 backdrop-blur">
+        <button data-lang-switch="pt" aria-pressed="true" class="rounded-full bg-white/90 px-4 py-1 text-xs font-semibold text-slate-900 transition">PT</button>
+        <button data-lang-switch="en" aria-pressed="false" class="rounded-full bg-white/10 px-4 py-1 text-xs font-semibold text-slate-100 transition">EN</button>
+      </div>
+    </div>
     <div class="relative mx-auto flex max-w-5xl flex-col gap-9 px-6 py-20 lg:flex-row lg:items-center lg:gap-16">
       <div class="flex-1">
-        <p class="text-sm uppercase tracking-[0.3em] text-brand/80">Software & AI Engineer</p>
+        <p class="text-sm uppercase tracking-[0.3em] text-brand/80">
+          <span data-lang="pt">Engenheiro de Software & IA</span>
+          <span data-lang="en" hidden>Software & AI Engineer</span>
+        </p>
         <h1 class="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
           Nickolas Javier Santos Livero
         </h1>
-        <p class="mt-6 text-lg text-slate-300 md:text-xl">
+        <p class="mt-6 text-lg text-slate-300 md:text-xl" data-lang="pt">
           Soluções completas em Flutter, Python (FastAPI), automação e integrações inteligentes.
           Experiência em SaaS para pequenas empresas, projetos Web3 e agentes de IA focados em eficiência operacional.
         </p>
+        <p class="mt-6 text-lg text-slate-300 md:text-xl" data-lang="en" hidden>
+          End-to-end solutions using Flutter, Python (FastAPI), automation and smart integrations.
+          Experienced with SaaS for small businesses, Web3 initiatives and AI agents aimed at operational efficiency.
+        </p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a href="mailto:nickolasj.work@gmail.com" class="inline-flex items-center justify-center rounded-full border border-brand px-6 py-2 text-sm font-medium text-brand transition hover:bg-brand hover:text-slate-950">
-            Fale comigo
+            <span data-lang="pt">Fale comigo</span>
+            <span data-lang="en" hidden>Contact me</span>
           </a>
           <a href="https://www.linkedin.com/in/nickolaslivero" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-2 text-sm font-medium text-slate-100 transition hover:border-brand">
             LinkedIn
@@ -57,50 +75,86 @@
       </div>
       <div class="flex w-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-slate-200 shadow-xl lg:max-w-xs">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <span>Base</span>
+          <span>
+            <span data-lang="pt">Base</span>
+            <span data-lang="en" hidden>Based in</span>
+          </span>
           <span class="font-semibold text-white">Manaus, Amazonas</span>
         </div>
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <span>Anos em produção</span>
+          <span>
+            <span data-lang="pt">Anos em produção</span>
+            <span data-lang="en" hidden>Years in production</span>
+          </span>
           <span class="font-semibold text-white">4+</span>
         </div>
         <div class="flex items-center justify-between">
-          <span>Disponibilidade</span>
-          <span class="rounded-full bg-emerald-500/20 px-3 py-1 text-emerald-300">Novos projetos</span>
+          <span>
+            <span data-lang="pt">Disponibilidade</span>
+            <span data-lang="en" hidden>Availability</span>
+          </span>
+          <span class="rounded-full bg-emerald-500/20 px-3 py-1 text-emerald-300">
+            <span data-lang="pt">Novos projetos</span>
+            <span data-lang="en" hidden>Open for projects</span>
+          </span>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="mx-auto max-w-5xl px-6 py-16 space-y-20">
+  <main class="mx-auto max-w-5xl space-y-20 px-6 py-16">
     <section id="sobre" class="grid gap-6 lg:grid-cols-[2fr,1fr]">
       <article class="rounded-3xl border border-white/5 bg-white/5 p-8 shadow-2xl shadow-black/30">
-        <h2 class="text-2xl font-semibold text-white">Resumo Profissional</h2>
-        <p class="mt-4 text-slate-300 leading-relaxed">
+        <h2 class="text-2xl font-semibold text-white">
+          <span data-lang="pt">Resumo Profissional</span>
+          <span data-lang="en" hidden>Professional Summary</span>
+        </h2>
+        <p class="mt-4 leading-relaxed text-slate-300" data-lang="pt">
           Desenvolvedor de software com foco em aplicações multiplataforma e pipelines de automação movidos por IA.
           Atuo principalmente com Flutter, Python (FastAPI), JavaScript/TypeScript e integrações Web3. Me destaco por
           entregar MVPs completos — concepção, backend, front, testes e deploy — com ênfase em eficiência operacional,
           dados e UX. Pesquisador publicado (SBIE 2024) em assistentes virtuais baseados em LLMs.
         </p>
+        <p class="mt-4 leading-relaxed text-slate-300" data-lang="en" hidden>
+          Software developer focused on cross-platform applications and AI-driven automation pipelines.
+          I work mostly with Flutter, Python (FastAPI), JavaScript/TypeScript and Web3 integrations.
+          I stand out for delivering end-to-end MVPs—ideation, backend, frontend, testing and deployment—with emphasis on
+          operational efficiency, data and UX. Published researcher (SBIE 2024) on LLM-based virtual assistants.
+        </p>
       </article>
       <aside class="rounded-3xl border border-white/5 bg-slate-900/60 p-6">
-        <h3 class="text-lg font-semibold text-white">Stack de Confiança</h3>
+        <h3 class="text-lg font-semibold text-white">
+          <span data-lang="pt">Stack de Confiança</span>
+          <span data-lang="en" hidden>Trusted Stack</span>
+        </h3>
         <ul class="mt-4 space-y-3 text-sm text-slate-300">
           <li class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full bg-brand"></span>
-            Flutter · Dart · Firebase · Supabase
+            <span>
+              <span data-lang="pt">Flutter · Dart · Firebase · Supabase</span>
+              <span data-lang="en" hidden>Flutter · Dart · Firebase · Supabase</span>
+            </span>
           </li>
           <li class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full bg-brand"></span>
-            Python · FastAPI · LangChain · REST APIs
+            <span>
+              <span data-lang="pt">Python · FastAPI · LangChain · REST APIs</span>
+              <span data-lang="en" hidden>Python · FastAPI · LangChain · REST APIs</span>
+            </span>
           </li>
           <li class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full bg-brand"></span>
-            JavaScript/TypeScript · React · Node.js
+            <span>
+              <span data-lang="pt">JavaScript/TypeScript · React · Node.js</span>
+              <span data-lang="en" hidden>JavaScript/TypeScript · React · Node.js</span>
+            </span>
           </li>
           <li class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full bg-brand"></span>
-            Solidity · Web3 integrações · Docker · Linux
+            <span>
+              <span data-lang="pt">Solidity · Integrações Web3 · Docker · Linux</span>
+              <span data-lang="en" hidden>Solidity · Web3 integrations · Docker · Linux</span>
+            </span>
           </li>
         </ul>
       </aside>
@@ -108,33 +162,59 @@
 
     <section id="skills" class="space-y-6">
       <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <h2 class="text-2xl font-semibold text-white">Core Skills</h2>
-        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">IA aplicada · Produtos SaaS · Times ágeis</p>
+        <h2 class="text-2xl font-semibold text-white">
+          <span data-lang="pt">Core Skills</span>
+          <span data-lang="en" hidden>Core Skills</span>
+        </h2>
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">
+          <span data-lang="pt">IA aplicada · Produtos SaaS · Times ágeis</span>
+          <span data-lang="en" hidden>Applied AI · SaaS products · Agile teams</span>
+        </p>
       </div>
       <div class="grid gap-5 md:grid-cols-2">
         <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">Linguagens & Frameworks</h3>
-          <p class="mt-3 text-sm text-slate-300">Flutter (Dart), Python (FastAPI), React, Node.js, Solidity, C++, Java.</p>
+          <h3 class="text-lg font-semibold text-white">
+            <span data-lang="pt">Linguagens & Frameworks</span>
+            <span data-lang="en" hidden>Languages & Frameworks</span>
+          </h3>
+          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Flutter (Dart), Python (FastAPI), React, Node.js, Solidity, C++, Java.</p>
+          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>Flutter (Dart), Python (FastAPI), React, Node.js, Solidity, C++, Java.</p>
         </article>
         <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">Ferramentas</h3>
-          <p class="mt-3 text-sm text-slate-300">Docker, Git, Linux (Debian/Ubuntu), PostgreSQL, Firebase, Supabase, REST APIs.</p>
+          <h3 class="text-lg font-semibold text-white">
+            <span data-lang="pt">Ferramentas</span>
+            <span data-lang="en" hidden>Tools</span>
+          </h3>
+          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Docker, Git, Linux (Debian/Ubuntu), PostgreSQL, Firebase, Supabase, REST APIs.</p>
+          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>Docker, Git, Linux (Debian/Ubuntu), PostgreSQL, Firebase, Supabase, REST APIs.</p>
         </article>
         <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">Competências</h3>
-          <p class="mt-3 text-sm text-slate-300">Design UX/UI, automação de testes, prompt engineering, integrações Web3.</p>
+          <h3 class="text-lg font-semibold text-white">
+            <span data-lang="pt">Competências</span>
+            <span data-lang="en" hidden>Competencies</span>
+          </h3>
+          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Design UX/UI, automação de testes, prompt engineering, integrações Web3.</p>
+          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>UX/UI design, test automation, prompt engineering, Web3 integrations.</p>
         </article>
         <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">Colaboração</h3>
-          <p class="mt-3 text-sm text-slate-300">Scrum/Kanban, gestão de backlog, descobertas com clientes e squads multidisciplinares.</p>
+          <h3 class="text-lg font-semibold text-white">
+            <span data-lang="pt">Colaboração</span>
+            <span data-lang="en" hidden>Collaboration</span>
+          </h3>
+          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Scrum/Kanban, gestão de backlog, descobertas com clientes e squads multidisciplinares.</p>
+          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>Scrum/Kanban, backlog management, customer discovery and cross-functional squads.</p>
         </article>
       </div>
     </section>
 
     <section id="experiencia" class="space-y-8">
       <div>
-        <h2 class="text-2xl font-semibold text-white">Experiência Recente</h2>
-        <p class="mt-1 text-sm text-slate-400">Projetos que unem IA, automação e visão empreendedora.</p>
+        <h2 class="text-2xl font-semibold text-white">
+          <span data-lang="pt">Experiência Recente</span>
+          <span data-lang="en" hidden>Recent Experience</span>
+        </h2>
+        <p class="mt-1 text-sm text-slate-400" data-lang="pt">Projetos que unem IA, automação e visão empreendedora.</p>
+        <p class="mt-1 text-sm text-slate-400" data-lang="en" hidden>Projects that combine AI, automation and an entrepreneurial mindset.</p>
       </div>
       <div class="space-y-6">
         <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
@@ -143,15 +223,33 @@
               <h3 class="text-xl font-semibold text-white">Freelancer — Full Stack & AI Developer</h3>
               <p class="text-sm text-slate-400">Mar 2024 · Presente</p>
             </div>
-            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">Consultorias & SaaS</span>
+            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">
+              <span data-lang="pt">Consultorias & SaaS</span>
+              <span data-lang="en" hidden>Consulting & SaaS</span>
+            </span>
           </header>
           <ul class="mt-4 space-y-2 text-sm text-slate-200">
-            <li>Projetos ponta a ponta para pequenas empresas: arquitetura, desenvolvimento, testes e deploy.</li>
-            <li>Assistentes de IA para WhatsApp com OpenAI + LangChain, conectados a fluxos operacionais.</li>
-            <li>Sistema offline para oficinas automotivas com rastreio de serviços e persistência local-sincronizada.</li>
-            <li>MVPs entregues em < 30 dias, combinando Flutter, Python APIs, bancos de dados e UX de alto nível.</li>
+            <li>
+              <span data-lang="pt">Projetos ponta a ponta para pequenas empresas: arquitetura, desenvolvimento, testes e deploy.</span>
+              <span data-lang="en" hidden>End-to-end products for small businesses: architecture, development, testing and deployment.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Assistentes de IA para WhatsApp com OpenAI + LangChain, conectados a fluxos operacionais.</span>
+              <span data-lang="en" hidden>AI assistants for WhatsApp using OpenAI + LangChain connected to operational workflows.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Sistema offline para oficinas automotivas com rastreio de serviços e persistência local-sincronizada.</span>
+              <span data-lang="en" hidden>Offline-first automotive workshop system with service tracking and local-to-cloud sync.</span>
+            </li>
+            <li>
+              <span data-lang="pt">MVPs entregues em &lt; 30 dias, combinando Flutter, Python APIs, bancos de dados e UX de alto nível.</span>
+              <span data-lang="en" hidden>MVPs shipped in &lt; 30 days combining Flutter, Python APIs, databases and refined UX.</span>
+            </li>
           </ul>
-          <p class="mt-4 text-sm text-emerald-300">Impacto: redução de processos manuais em até 70% e entregas aceleradas para múltiplos setores.</p>
+          <p class="mt-4 text-sm text-emerald-300">
+            <span data-lang="pt">Impacto: redução de processos manuais em até 70% e entregas aceleradas para múltiplos setores.</span>
+            <span data-lang="en" hidden>Impact: up to 70% manual process reduction and faster delivery across industries.</span>
+          </p>
         </article>
 
         <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
@@ -160,13 +258,28 @@
               <h3 class="text-xl font-semibold text-white">INDT — Python QA Automation & AI Intern</h3>
               <p class="text-sm text-slate-400">Jun 2023 · Mai 2025</p>
             </div>
-            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">Qualidade & IA</span>
+            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">
+              <span data-lang="pt">Qualidade & IA</span>
+              <span data-lang="en" hidden>Quality & AI</span>
+            </span>
           </header>
           <ul class="mt-4 space-y-2 text-sm text-slate-200">
-            <li>Automação de regressão e testes exploratórios em Python para produtos móveis.</li>
-            <li>Modelos de classificação e LLMs dedicados a análise de dados de QA.</li>
-            <li>Administração de servidores Linux, redes e automação de VPN para time distribuído.</li>
-            <li>Trecho de automação validou mais de 400 casos de testes, cortando 60% do esforço manual.</li>
+            <li>
+              <span data-lang="pt">Automação de regressão e testes exploratórios em Python para produtos móveis.</span>
+              <span data-lang="en" hidden>Regression automation and exploratory testing in Python for mobile products.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Modelos de classificação e LLMs dedicados à análise de dados de QA.</span>
+              <span data-lang="en" hidden>Classification models and LLMs tailored for QA data analysis.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Administração de servidores Linux, redes e automação de VPN para time distribuído.</span>
+              <span data-lang="en" hidden>Linux server administration, networking and VPN automation for distributed teams.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Automação validou mais de 400 casos de teste, reduzindo 60% do esforço manual.</span>
+              <span data-lang="en" hidden>Automation validated 400+ test cases, cutting 60% of manual effort.</span>
+            </li>
           </ul>
         </article>
 
@@ -176,12 +289,24 @@
               <h3 class="text-xl font-semibold text-white">UEA — Pesquisador R&D em Sistemas Embarcados</h3>
               <p class="text-sm text-slate-400">Jun 2022 · Mai 2023</p>
             </div>
-            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">Prototipação</span>
+            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">
+              <span data-lang="pt">Prototipação</span>
+              <span data-lang="en" hidden>Prototyping</span>
+            </span>
           </header>
           <ul class="mt-4 space-y-2 text-sm text-slate-200">
-            <li>Refatoração de apps Android legados para Flutter, adicionando pipelines multiplataforma.</li>
-            <li>Dashboards em React.js integrados a módulos de visão computacional em Python.</li>
-            <li>Dois protótipos funcionais entregues para monitoramento industrial e mobilidade.</li>
+            <li>
+              <span data-lang="pt">Refatoração de apps Android legados para Flutter, adicionando pipelines multiplataforma.</span>
+              <span data-lang="en" hidden>Refactored legacy Android apps into Flutter, enabling cross-platform pipelines.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Dashboards em React.js integrados a módulos de visão computacional em Python.</span>
+              <span data-lang="en" hidden>Built React.js dashboards integrated with Python computer-vision modules.</span>
+            </li>
+            <li>
+              <span data-lang="pt">Dois protótipos funcionais entregues para monitoramento industrial e mobilidade.</span>
+              <span data-lang="en" hidden>Delivered two functional prototypes for industrial monitoring and mobility.</span>
+            </li>
           </ul>
         </article>
       </div>
@@ -189,15 +314,26 @@
 
     <section id="formacao" class="grid gap-6 md:grid-cols-2">
       <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-        <h2 class="text-2xl font-semibold text-white">Educação</h2>
-        <p class="mt-4 text-sm text-slate-300">
+        <h2 class="text-2xl font-semibold text-white">
+          <span data-lang="pt">Educação</span>
+          <span data-lang="en" hidden>Education</span>
+        </h2>
+        <p class="mt-4 text-sm text-slate-300" data-lang="pt">
           <span class="font-semibold text-white">Bacharelado em Sistemas de Informação</span><br>
           Universidade do Estado do Amazonas (UEA) · 2021 — 2025
         </p>
-        <p class="mt-4 text-sm text-slate-400">Idiomas: Inglês (avançado), Português (nativo), Espanhol (intermediário).</p>
+        <p class="mt-4 text-sm text-slate-300" data-lang="en" hidden>
+          <span class="font-semibold text-white">Bachelor's in Information Systems</span><br>
+          State University of Amazonas (UEA) · 2021 — 2025
+        </p>
+        <p class="mt-4 text-sm text-slate-400" data-lang="pt">Idiomas: Inglês (avançado), Português (nativo), Espanhol (intermediário).</p>
+        <p class="mt-4 text-sm text-slate-400" data-lang="en" hidden>Languages: English (advanced), Portuguese (native), Spanish (intermediate).</p>
       </article>
       <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-        <h2 class="text-2xl font-semibold text-white">Certificações Selecionadas</h2>
+        <h2 class="text-2xl font-semibold text-white">
+          <span data-lang="pt">Certificações Selecionadas</span>
+          <span data-lang="en" hidden>Selected Certifications</span>
+        </h2>
         <ul class="mt-4 space-y-2 text-sm text-slate-300">
           <li>Flutter Development — Alura</li>
           <li>Introduction to CyberSecurity — Cisco</li>
@@ -212,29 +348,60 @@
     <section id="projetos" class="space-y-6">
       <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 class="text-2xl font-semibold text-white">Projetos & Publicações</h2>
-          <p class="text-sm text-slate-400">Iniciativas que conectam IA aplicada, acessibilidade e Web3.</p>
+          <h2 class="text-2xl font-semibold text-white">
+            <span data-lang="pt">Projetos & Publicações</span>
+            <span data-lang="en" hidden>Projects & Publications</span>
+          </h2>
+          <p class="text-sm text-slate-400" data-lang="pt">Iniciativas que conectam IA aplicada, acessibilidade e Web3.</p>
+          <p class="text-sm text-slate-400" data-lang="en" hidden>Initiatives that connect applied AI, accessibility and Web3.</p>
         </div>
-        <a href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer" class="text-sm font-semibold text-brand hover:text-brand-dark">Ver GitHub completo →</a>
+        <a href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer" class="text-sm font-semibold text-brand hover:text-brand-dark">
+          <span data-lang="pt">Ver GitHub completo →</span>
+          <span data-lang="en" hidden>See full GitHub →</span>
+        </a>
       </div>
       <div class="grid gap-6 md:grid-cols-2">
         <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <p class="text-xs uppercase tracking-[0.3em] text-brand">Pesquisa</p>
-          <h3 class="mt-2 text-xl font-semibold text-white">Assistente LLM para estudantes com deficiência visual</h3>
-          <p class="mt-3 text-sm text-slate-200">Paper apresentado no SBIE 2024, combinando reconhecimento de voz, LLMs e feedback multimodal para inclusão educacional.</p>
-          <a href="https://github.com/nickolaslivero/phidata" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">Repositório do paper</a>
+          <p class="text-xs uppercase tracking-[0.3em] text-brand">
+            <span data-lang="pt">Pesquisa</span>
+            <span data-lang="en" hidden>Research</span>
+          </p>
+          <h3 class="mt-2 text-xl font-semibold text-white">
+            <span data-lang="pt">Assistente LLM para estudantes com deficiência visual</span>
+            <span data-lang="en" hidden>LLM assistant for visually impaired students</span>
+          </h3>
+          <p class="mt-3 text-sm text-slate-200" data-lang="pt">Paper apresentado no SBIE 2024, combinando reconhecimento de voz, LLMs e feedback multimodal para inclusão educacional.</p>
+          <p class="mt-3 text-sm text-slate-200" data-lang="en" hidden>Paper presented at SBIE 2024 combining speech recognition, LLMs and multimodal feedback for educational inclusion.</p>
+          <a href="https://github.com/nickolaslivero/phidata" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">
+            <span data-lang="pt">Repositório do paper</span>
+            <span data-lang="en" hidden>Paper repository</span>
+          </a>
         </article>
         <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <p class="text-xs uppercase tracking-[0.3em] text-brand">Web3</p>
+          <p class="text-xs uppercase tracking-[0.3em] text-brand">
+            <span data-lang="pt">Web3</span>
+            <span data-lang="en" hidden>Web3</span>
+          </p>
           <h3 class="mt-2 text-xl font-semibold text-white">Auction System (Solidity + React)</h3>
-          <p class="mt-3 text-sm text-slate-200">Leilões descentralizados com contratos Solidity, painel em React e integração com carteiras Web3.</p>
-          <a href="https://github.com/nickolaslivero/auction-blockchainWeb3" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">Ver código</a>
+          <p class="mt-3 text-sm text-slate-200" data-lang="pt">Leilões descentralizados com contratos Solidity, painel em React e integração com carteiras Web3.</p>
+          <p class="mt-3 text-sm text-slate-200" data-lang="en" hidden>Decentralized auctions with Solidity contracts, a React dashboard and Web3 wallet integration.</p>
+          <a href="https://github.com/nickolaslivero/auction-blockchainWeb3" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">
+            <span data-lang="pt">Ver código</span>
+            <span data-lang="en" hidden>See code</span>
+          </a>
         </article>
         <article class="rounded-3xl border border-white/5 bg-white/5 p-6 md:col-span-2">
-          <p class="text-xs uppercase tracking-[0.3em] text-brand">Migração Flutter</p>
+          <p class="text-xs uppercase tracking-[0.3em] text-brand">
+            <span data-lang="pt">Migração Flutter</span>
+            <span data-lang="en" hidden>Flutter Migration</span>
+          </p>
           <h3 class="mt-2 text-xl font-semibold text-white">Callidus — legado Android transformado em Flutter</h3>
-          <p class="mt-3 text-sm text-slate-200">Upgrade de app corporativo com camadas multiplataforma, melhora de UX e integração com APIs REST.</p>
-          <a href="https://github.com/nickolaslivero/Flutter-Project---Callidus" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">Ver projeto</a>
+          <p class="mt-3 text-sm text-slate-200" data-lang="pt">Upgrade de app corporativo com camadas multiplataforma, melhora de UX e integração com APIs REST.</p>
+          <p class="mt-3 text-sm text-slate-200" data-lang="en" hidden>Corporate app upgrade with cross-platform layers, UX improvements and REST API integrations.</p>
+          <a href="https://github.com/nickolaslivero/Flutter-Project---Callidus" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">
+            <span data-lang="pt">Ver projeto</span>
+            <span data-lang="en" hidden>View project</span>
+          </a>
         </article>
       </div>
     </section>
@@ -242,36 +409,88 @@
     <section id="roadmap" class="rounded-3xl border border-dashed border-brand/40 bg-brand/5 p-6">
       <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 class="text-2xl font-semibold text-white">Backlog de Projetos</h2>
-          <p class="text-sm text-slate-300">Espaço para registrar e acompanhar os próximos experimentos antes de publicá-los.</p>
+          <h2 class="text-2xl font-semibold text-white">
+            <span data-lang="pt">Backlog de Projetos</span>
+            <span data-lang="en" hidden>Project Backlog</span>
+          </h2>
+          <p class="text-sm text-slate-300" data-lang="pt">Espaço para registrar e acompanhar os próximos experimentos antes de publicá-los.</p>
+          <p class="text-sm text-slate-300" data-lang="en" hidden>A space to capture and track upcoming experiments before they go live.</p>
         </div>
         <span class="text-xs font-semibold uppercase tracking-[0.3em] text-brand">To-Do Board</span>
       </div>
       <div class="mt-6 grid gap-4 md:grid-cols-2">
         <article class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-          <h3 class="text-sm font-semibold text-white">Assistente de IA para Operações Locais</h3>
+          <h3 class="text-sm font-semibold text-white">
+            <span data-lang="pt">Assistente de IA para Operações Locais</span>
+            <span data-lang="en" hidden>AI Assistant for Local Operations</span>
+          </h3>
           <ul class="mt-3 space-y-2 text-sm text-slate-300">
-            <li><input type="checkbox" class="mr-2 align-middle" disabled>Mapear fluxos e integrações com APIs internas</li>
-            <li><input type="checkbox" class="mr-2 align-middle" disabled>Prototipar agente com memória curta no LangChain</li>
-            <li><input type="checkbox" class="mr-2 align-middle" disabled>Publicar estudo de caso aqui no site</li>
+            <li class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" disabled>
+              <span>
+                <span data-lang="pt">Mapear fluxos e integrações com APIs internas</span>
+                <span data-lang="en" hidden>Map flows and integrations with internal APIs</span>
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" disabled>
+              <span>
+                <span data-lang="pt">Prototipar agente com memória curta no LangChain</span>
+                <span data-lang="en" hidden>Prototype a short-term-memory agent on LangChain</span>
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" disabled>
+              <span>
+                <span data-lang="pt">Publicar estudo de caso aqui no site</span>
+                <span data-lang="en" hidden>Publish the case study on this site</span>
+              </span>
+            </li>
           </ul>
         </article>
         <article class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-          <h3 class="text-sm font-semibold text-white">Dashboard Web3 + IA</h3>
+          <h3 class="text-sm font-semibold text-white">
+            <span data-lang="pt">Dashboard Web3 + IA</span>
+            <span data-lang="en" hidden>Web3 + AI Dashboard</span>
+          </h3>
           <ul class="mt-3 space-y-2 text-sm text-slate-300">
-            <li><input type="checkbox" class="mr-2 align-middle" disabled>Atualizar contratos para suportar análise de risco</li>
-            <li><input type="checkbox" class="mr-2 align-middle" disabled>Adicionar copiloto de insights com embeddings</li>
-            <li><input type="checkbox" class="mr-2 align-middle" disabled>Release com documentação aberta</li>
+            <li class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" disabled>
+              <span>
+                <span data-lang="pt">Atualizar contratos para suportar análise de risco</span>
+                <span data-lang="en" hidden>Update contracts to support risk analysis</span>
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" disabled>
+              <span>
+                <span data-lang="pt">Adicionar copiloto de insights com embeddings</span>
+                <span data-lang="en" hidden>Add an insight copilot backed by embeddings</span>
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <input type="checkbox" class="mt-1" disabled>
+              <span>
+                <span data-lang="pt">Release com documentação aberta</span>
+                <span data-lang="en" hidden>Release with public documentation</span>
+              </span>
+            </li>
           </ul>
         </article>
       </div>
-      <p class="mt-6 text-xs text-slate-400">Use esta área como checklist vivo para novos projetos. Basta editar este arquivo e publicar.</p>
+      <p class="mt-6 text-xs text-slate-400">
+        <span data-lang="pt">Use esta área como checklist vivo para novos projetos. Basta editar este arquivo e publicar.</span>
+        <span data-lang="en" hidden>Use this area as a living checklist for new projects. Just edit this file and publish.</span>
+      </p>
     </section>
   </main>
 
   <footer class="border-t border-white/5 bg-slate-900/80">
     <div class="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-8 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-      <p>Disponível para colaborações em IA aplicada, SaaS e integrações Web3.</p>
+      <p>
+        <span data-lang="pt">Disponível para colaborações em IA aplicada, SaaS e integrações Web3.</span>
+        <span data-lang="en" hidden>Open to collaborations in applied AI, SaaS and Web3 integrations.</span>
+      </p>
       <div class="flex flex-wrap gap-4 text-slate-300">
         <a href="mailto:nickolasj.work@gmail.com" class="hover:text-brand">nickolasj.work@gmail.com</a>
         <a href="https://github.com/nickolaslivero" class="hover:text-brand" target="_blank" rel="noreferrer">GitHub</a>
@@ -279,5 +498,51 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = 'nickolaslivero-lang';
+      const elements = () => document.querySelectorAll('[data-lang]');
+
+      const applyLang = (rawLang) => {
+        const lang = rawLang === 'en' ? 'en' : 'pt';
+        document.body.dataset.lang = lang;
+        document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+        elements().forEach((el) => {
+          el.hidden = el.dataset.lang !== lang;
+        });
+        document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+          const isActive = button.dataset.langSwitch === lang;
+          button.setAttribute('aria-pressed', isActive);
+          button.classList.toggle('bg-white/90', isActive);
+          button.classList.toggle('text-slate-900', isActive);
+          button.classList.toggle('bg-white/10', !isActive);
+          button.classList.toggle('text-slate-100', !isActive);
+        });
+        try {
+          localStorage.setItem(STORAGE_KEY, lang);
+        } catch (_) {
+          /* ignore */
+        }
+      };
+
+      const detectInitial = () => {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) return stored;
+        } catch (_) {
+          /* ignore */
+        }
+        return navigator.language && navigator.language.startsWith('en') ? 'en' : 'pt';
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        applyLang(detectInitial());
+        document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+          button.addEventListener('click', () => applyLang(button.dataset.langSwitch));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
