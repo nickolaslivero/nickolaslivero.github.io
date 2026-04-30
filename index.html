@@ -1,518 +1,816 @@
 <!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nickolas Livero — Software & AI Engineer</title>
-  <meta name="description" content="Portfólio bilíngue de Nickolas Livero com foco em Flutter, Python, IA aplicada, automação e integrações Web3.">
-  <meta name="keywords" content="NestJS, Next.js, Prisma, Cloud Run, Full Stack Developer, GCP, TypeScript, Python, Flutter, AI Engineer">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <title>Nickolas Livero - Software Engineer, Applied AI and Full Stack Systems</title>
+  <meta name="description" content="Nickolas Livero is a Software Engineer focused on applied AI, full stack systems, Flutter, Python, TypeScript, APIs, AWS deployments, and business automation.">
+  <meta name="keywords" content="Software Engineer, Full Stack Engineer, Applied AI, AI Engineer, Flutter, Python, FastAPI, TypeScript, React, Next.js, AWS, Docker, PostgreSQL, APIs, RAG, LLM Integration">
+  <meta name="author" content="Nickolas J. S. Livero">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nickolaslivero.github.io/">
+  <meta property="og:title" content="Nickolas Livero - Software Engineer">
+  <meta property="og:description" content="Applied AI, full stack systems, cloud deployments, APIs, automation, and production software delivery.">
+  <meta property="og:url" content="https://nickolaslivero.github.io/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Nickolas Livero - Software Engineer">
+  <meta name="twitter:description" content="Software Engineer focused on applied AI, full stack systems, AWS, APIs, Flutter, Python, and TypeScript.">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Space Grotesk', 'system-ui', 'sans-serif']
-          },
-          colors: {
-            brand: {
-              DEFAULT: '#38bdf8',
-              dark: '#0ea5e9'
-            }
-          }
-        }
+    (() => {
+      try {
+        const stored = localStorage.getItem('nickolas-theme');
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = stored === 'dark' || stored === 'light'
+          ? stored
+          : systemDark ? 'dark' : 'light';
+      } catch (_) {
+        document.documentElement.dataset.theme = 'light';
       }
-    };
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #eef2f6;
+      --panel: #f8fafc;
+      --ink: #111827;
+      --muted: #4b5563;
+      --line: #d1d5db;
+      --accent: #0f766e;
+      --accent-dark: #115e59;
+      --blue: #1d4ed8;
+      --code: #0f172a;
+      --code-line: #334155;
+      --code-muted: #cbd5e1;
+      --topbar-bg: rgba(238, 242, 246, 0.92);
+      --button-bg: #111827;
+      --button-text: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --panel: #111827;
+      --ink: #f8fafc;
+      --muted: #cbd5e1;
+      --line: #334155;
+      --accent: #5eead4;
+      --accent-dark: #99f6e4;
+      --blue: #93c5fd;
+      --code: #020617;
+      --code-line: #334155;
+      --code-muted: #cbd5e1;
+      --topbar-bg: rgba(15, 23, 42, 0.92);
+      --button-bg: #f8fafc;
+      --button-text: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+      margin: 0;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    .shell {
+      margin: 0 auto;
+      max-width: 1120px;
+      padding: 0 24px;
+    }
+
+    .topbar {
+      background: var(--topbar-bg);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      align-items: center;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      min-height: 64px;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    nav {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .theme-toggle {
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 800;
+      gap: 8px;
+      min-height: 34px;
+      padding: 6px 10px;
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle-mark {
+      background: var(--ink);
+      border-radius: 999px;
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+    }
+
+    main {
+      padding-bottom: 56px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 42px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      padding: 70px 0 52px;
+    }
+
+    .eyebrow {
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      max-width: 820px;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.1;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.12rem;
+      margin-top: 22px;
+      max-width: 760px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      align-items: center;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      display: inline-flex;
+      font-size: 0.95rem;
+      font-weight: 800;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+    }
+
+    .button.primary {
+      background: var(--button-bg);
+      color: var(--button-text);
+    }
+
+    .button:hover,
+    .button:focus {
+      text-decoration: none;
+    }
+
+    .metrics {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 34px;
+    }
+
+    .metric {
+      border-top: 3px solid var(--ink);
+      padding-top: 10px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.88rem;
+      margin-top: 6px;
+    }
+
+    .system-map {
+      background: var(--code);
+      color: #e5e7eb;
+      min-height: 100%;
+      padding: 24px;
+    }
+
+    .profile-visual {
+      align-items: center;
+      border-bottom: 1px solid var(--code-line);
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+    }
+
+    .profile-visual img {
+      border: 2px solid var(--code-line);
+      border-radius: 999px;
+      height: 96px;
+      object-fit: cover;
+      object-position: center 34%;
+      width: 96px;
+    }
+
+    .profile-visual strong {
+      color: #ffffff;
+      display: block;
+      font-size: 1.08rem;
+      line-height: 1.2;
+    }
+
+    .profile-visual span {
+      color: var(--code-muted);
+      display: block;
+      font-size: 0.92rem;
+      margin-top: 3px;
+    }
+
+    .system-map h2 {
+      color: #ffffff;
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .node {
+      border: 1px solid var(--code-line);
+      padding: 14px;
+    }
+
+    .node strong {
+      color: #ffffff;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .node span {
+      color: var(--code-muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      padding: 58px 0 0;
+    }
+
+    .section-head {
+      align-items: end;
+      border-top: 3px solid var(--ink);
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      padding-top: 18px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 22px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 14px 0 0;
+      padding-left: 19px;
+    }
+
+    .tagline {
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .stack span {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 5px 8px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .role {
+      background: var(--panel);
+      border-left: 4px solid var(--ink);
+      padding: 20px 22px;
+    }
+
+    .role-header {
+      align-items: baseline;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+    }
+
+    .role time {
+      color: var(--muted);
+      flex: 0 0 auto;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .role ul {
+      margin: 14px 0 0;
+      padding-left: 19px;
+    }
+
+    .role li {
+      color: var(--muted);
+      margin: 7px 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      margin-top: 58px;
+      padding: 28px 0;
+    }
+
+    footer .shell {
+      align-items: center;
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 860px) {
+      .topbar-inner,
+      .section-head,
+      footer .shell {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .hero-grid,
+      .grid.two,
+      .grid.three {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .role-header {
+        display: block;
+      }
+
+      .role time {
+        display: block;
+        margin-top: 4px;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nickolas J. S. Livero",
+      "jobTitle": "Software Engineer",
+      "email": "mailto:nickolasjl.work@gmail.com",
+      "url": "https://nickolaslivero.github.io/",
+      "sameAs": [
+        "https://github.com/nickolaslivero",
+        "https://www.linkedin.com/in/nickolaslivero/"
+      ],
+      "knowsAbout": [
+        "Software Engineering",
+        "Applied AI",
+        "Full Stack Development",
+        "Flutter",
+        "Python",
+        "FastAPI",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "AWS",
+        "Docker",
+        "PostgreSQL",
+        "REST APIs",
+        "RAG",
+        "LLM Integration"
+      ]
+    }
   </script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans" data-lang="pt">
-  <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
-    <div class="absolute inset-0 opacity-30 blur-3xl" aria-hidden="true">
-      <div class="w-72 h-72 bg-brand/40 rounded-full absolute -top-12 -left-12"></div>
-      <div class="w-80 h-80 bg-purple-500/30 rounded-full absolute bottom-0 right-0"></div>
-    </div>
-    <div class="absolute right-6 top-6 flex flex-col items-end gap-2 text-xs text-slate-300">
-      <span class="uppercase tracking-[0.3em]">
-        <span data-lang="pt">Idioma</span>
-        <span data-lang="en" hidden>Language</span>
-      </span>
-      <div class="flex rounded-full border border-white/20 p-1 backdrop-blur">
-        <button data-lang-switch="pt" aria-pressed="true" class="rounded-full bg-white/90 px-4 py-1 text-xs font-semibold text-slate-900 transition">PT</button>
-        <button data-lang-switch="en" aria-pressed="false" class="rounded-full bg-white/10 px-4 py-1 text-xs font-semibold text-slate-100 transition">EN</button>
-      </div>
-    </div>
-    <div class="relative mx-auto flex max-w-5xl flex-col gap-9 px-6 py-20 lg:flex-row lg:items-center lg:gap-16">
-      <div class="flex-1">
-        <p class="text-sm uppercase tracking-[0.3em] text-brand/80">
-          <span data-lang="pt">Engenheiro de Software & IA</span>
-          <span data-lang="en" hidden>Software & AI Engineer</span>
-        </p>
-        <h1 class="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
-          Nickolas Livero
-        </h1>
-        <p class="mt-6 text-lg text-slate-300 md:text-xl" data-lang="pt">
-          Soluções completas em Flutter, Python (FastAPI), automação e integrações inteligentes.
-          Experiência em SaaS para pequenas empresas, projetos Web3 e agentes de IA focados em eficiência operacional.
-        </p>
-        <p class="mt-6 text-lg text-slate-300 md:text-xl" data-lang="en" hidden>
-          End-to-end solutions using Flutter, Python (FastAPI), automation and smart integrations.
-          Experienced with SaaS for small businesses, Web3 initiatives and AI agents aimed at operational efficiency.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="mailto:nickolasj.work@gmail.com" class="inline-flex items-center justify-center rounded-full border border-brand px-6 py-2 text-sm font-medium text-brand transition hover:bg-brand hover:text-slate-950">
-            <span data-lang="pt">Fale comigo</span>
-            <span data-lang="en" hidden>Contact me</span>
-          </a>
-          <a href="https://www.linkedin.com/in/nickolaslivero" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-2 text-sm font-medium text-slate-100 transition hover:border-brand">
-            LinkedIn
-          </a>
-          <a href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-2 text-sm font-medium text-slate-100 transition hover:border-brand">
-            GitHub
-          </a>
-          <a href="https://wa.me/5592988023281" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-2 text-sm font-medium text-slate-100 transition hover:border-brand">
-            <span data-lang="pt">WhatsApp · +55 92 98802-3281</span>
-            <span data-lang="en" hidden>WhatsApp · +55 92 98802-3281</span>
-          </a>
-        </div>
-      </div>
-      <div class="flex w-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-slate-200 shadow-xl lg:max-w-xs">
-        <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <span>
-            <span data-lang="pt">Base</span>
-            <span data-lang="en" hidden>Based in</span>
-          </span>
-          <span class="font-semibold text-white">Manaus, Amazonas</span>
-        </div>
-        <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <span>
-            <span data-lang="pt">Anos em produção</span>
-            <span data-lang="en" hidden>Years in production</span>
-          </span>
-          <span class="font-semibold text-white">4+</span>
-        </div>
-        <div class="flex items-center justify-between">
-          <span>
-            <span data-lang="pt">Disponibilidade</span>
-            <span data-lang="en" hidden>Availability</span>
-          </span>
-          <span class="rounded-full bg-emerald-500/20 px-3 py-1 text-emerald-300">
-            <span data-lang="pt">Novos projetos</span>
-            <span data-lang="en" hidden>Open for projects</span>
-          </span>
-        </div>
-      </div>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top">Nickolas J. S. Livero</a>
+      <nav aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#proof">Proof</a>
+        <a href="mailto:nickolasjl.work@gmail.com">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
+          <span class="theme-toggle-mark" aria-hidden="true"></span>
+          <span data-theme-label>Dark</span>
+        </button>
+      </nav>
     </div>
   </header>
 
-  <main class="mx-auto max-w-5xl space-y-20 px-6 py-16">
-    <section id="sobre" class="grid gap-6 lg:grid-cols-[2fr,1fr]">
-      <article class="rounded-3xl border border-white/5 bg-white/5 p-8 shadow-2xl shadow-black/30">
-        <h2 class="text-2xl font-semibold text-white">
-          <span data-lang="pt">Resumo Profissional</span>
-          <span data-lang="en" hidden>Professional Summary</span>
-        </h2>
-        <p class="mt-4 leading-relaxed text-slate-300" data-lang="pt">
-          Desenvolvedor de software com foco em aplicações multiplataforma, APIs modernas e pipelines de automação movidos por IA.
-          Experiência prática com Flutter, Python (FastAPI), TypeScript/NestJS, Next.js, Prisma, PostgreSQL, mensageria e deploy em GCP.
-          Entrego MVPs completos — concepção, backend, front, testes (Jest/Playwright) e CI/CD — com ênfase em eficiência operacional,
-          dados e UX. Pesquisador publicado (SBIE 2024) em assistentes virtuais baseados em LLMs.
-        </p>
-        <p class="mt-4 leading-relaxed text-slate-300" data-lang="en" hidden>
-          Software developer focused on cross-platform applications, modern APIs and AI-driven automation pipelines.
-          Hands-on experience with Flutter, Python (FastAPI), TypeScript/NestJS, Next.js, Prisma, PostgreSQL, messaging systems and GCP deployments.
-          I deliver end-to-end MVPs—ideation, backend, frontend, testing (Jest/Playwright) and CI/CD—with emphasis on operational efficiency,
-          data and UX. Published researcher (SBIE 2024) on LLM-based virtual assistants.
-        </p>
-      </article>
-      <aside class="rounded-3xl border border-white/5 bg-slate-900/60 p-6">
-        <h3 class="text-lg font-semibold text-white">
-          <span data-lang="pt">Stack de Confiança</span>
-          <span data-lang="en" hidden>Trusted Stack</span>
-        </h3>
-        <ul class="mt-4 space-y-3 text-sm text-slate-300">
-          <li class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-brand"></span>
-            <span>
-              <span data-lang="pt">Flutter · Dart · Firebase · Supabase</span>
-              <span data-lang="en" hidden>Flutter · Dart · Firebase · Supabase</span>
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-brand"></span>
-            <span>
-              <span data-lang="pt">Python · FastAPI · LangChain · REST APIs</span>
-              <span data-lang="en" hidden>Python · FastAPI · LangChain · REST APIs</span>
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-brand"></span>
-            <span>
-              <span data-lang="pt">JavaScript/TypeScript · React · Node.js</span>
-              <span data-lang="en" hidden>JavaScript/TypeScript · React · Node.js</span>
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-brand"></span>
-            <span>
-              <span data-lang="pt">Solidity · Integrações Web3 · Docker · Linux</span>
-              <span data-lang="en" hidden>Solidity · Web3 integrations · Docker · Linux</span>
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-brand"></span>
-            <span>
-              <span data-lang="pt">NestJS · TypeScript · Prisma · PostgreSQL · Docker · GCP (Cloud Run · Pub/Sub)</span>
-              <span data-lang="en" hidden>NestJS · TypeScript · Prisma · PostgreSQL · Docker · GCP (Cloud Run · Pub/Sub)</span>
-            </span>
-          </li>
-        </ul>
-      </aside>
-    </section>
-
-    <section id="infra" class="space-y-4 rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <h2 class="text-2xl font-semibold text-white">
-          <span data-lang="pt">Infra & Backend Proficiency</span>
-          <span data-lang="en" hidden>Infra & Backend Proficiency</span>
-        </h2>
-        <p class="text-sm text-slate-400">
-          <span data-lang="pt">Arquiteturas em NestJS, Next.js 13+, mensageria e observabilidade pronta para fintech.</span>
-          <span data-lang="en" hidden>Architectures with NestJS, Next.js 13+, messaging and fintech-grade observability.</span>
-        </p>
-      </div>
-      <div class="grid gap-4 md:grid-cols-3">
-        <article class="rounded-2xl border border-white/5 bg-slate-950/60 p-4 text-sm text-slate-300">
-          <h3 class="text-base font-semibold text-white">NestJS · Prisma · PostgreSQL</h3>
-          <p class="mt-2">
-            <span data-lang="pt">APIs modulares com autenticação JWT, migrations automatizadas, testes Jest e pipelines CI/CD.</span>
-            <span data-lang="en" hidden>Modular APIs with JWT auth, automated migrations, Jest tests and CI/CD pipelines.</span>
-          </p>
-        </article>
-        <article class="rounded-2xl border border-white/5 bg-slate-950/60 p-4 text-sm text-slate-300">
-          <h3 class="text-base font-semibold text-white">GCP · Cloud Run · Pub/Sub</h3>
-          <p class="mt-2">
-            <span data-lang="pt">Containers Docker, filas assíncronas (Pub/Sub, RabbitMQ) e Terraform para provisionamento.</span>
-            <span data-lang="en" hidden>Dockerized workloads, async queues (Pub/Sub, RabbitMQ) and Terraform provisioning.</span>
-          </p>
-        </article>
-        <article class="rounded-2xl border border-white/5 bg-slate-950/60 p-4 text-sm text-slate-300">
-          <h3 class="text-base font-semibold text-white">Observability & Reliability</h3>
-          <p class="mt-2">
-            <span data-lang="pt">Logs estruturados, métricas e tracing (OpenTelemetry + Datadog) conectados a alertas de produto.</span>
-            <span data-lang="en" hidden>Structured logs, metrics and tracing (OpenTelemetry + Datadog) wired to product alerts.</span>
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="space-y-6">
-      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <h2 class="text-2xl font-semibold text-white">
-          <span data-lang="pt">Core Skills</span>
-          <span data-lang="en" hidden>Core Skills</span>
-        </h2>
-        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">
-          <span data-lang="pt">IA aplicada · Produtos SaaS · Times ágeis</span>
-          <span data-lang="en" hidden>Applied AI · SaaS products · Agile teams</span>
-        </p>
-      </div>
-      <div class="grid gap-5 md:grid-cols-2">
-        <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">
-            <span data-lang="pt">Linguagens & Frameworks</span>
-            <span data-lang="en" hidden>Languages & Frameworks</span>
-          </h3>
-          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Flutter (Dart), Python (FastAPI), React, Node.js, Solidity, C++, Java.</p>
-          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>Flutter (Dart), Python (FastAPI), React, Node.js, Solidity, C++, Java.</p>
-        </article>
-        <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">
-            <span data-lang="pt">Ferramentas</span>
-            <span data-lang="en" hidden>Tools</span>
-          </h3>
-          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Docker, Git, Linux (Debian/Ubuntu), PostgreSQL, Firebase, Supabase, REST APIs.</p>
-          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>Docker, Git, Linux (Debian/Ubuntu), PostgreSQL, Firebase, Supabase, REST APIs.</p>
-        </article>
-        <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">
-            <span data-lang="pt">Competências</span>
-            <span data-lang="en" hidden>Competencies</span>
-          </h3>
-          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Design UX/UI, automação de testes (Jest, Playwright), prompt engineering, pipelines CI/CD e integrações Web3.</p>
-          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>UX/UI design, automated testing (Jest, Playwright), prompt engineering, CI/CD pipelines and Web3 integrations.</p>
-        </article>
-        <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-          <h3 class="text-lg font-semibold text-white">
-            <span data-lang="pt">Colaboração</span>
-            <span data-lang="en" hidden>Collaboration</span>
-          </h3>
-          <p class="mt-3 text-sm text-slate-300" data-lang="pt">Scrum/Kanban, gestão de backlog, descobertas com clientes e squads multidisciplinares.</p>
-          <p class="mt-3 text-sm text-slate-300" data-lang="en" hidden>Scrum/Kanban, backlog management, customer discovery and cross-functional squads.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="experiencia" class="space-y-8">
-      <div>
-        <h2 class="text-2xl font-semibold text-white">
-          <span data-lang="pt">Experiência Recente</span>
-          <span data-lang="en" hidden>Recent Experience</span>
-        </h2>
-        <p class="mt-1 text-sm text-slate-400" data-lang="pt">Projetos que unem IA, automação e visão empreendedora.</p>
-        <p class="mt-1 text-sm text-slate-400" data-lang="en" hidden>Projects that combine AI, automation and an entrepreneurial mindset.</p>
-      </div>
-      <div class="space-y-6">
-        <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <header class="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-            <div>
-              <h3 class="text-xl font-semibold text-white">Freelancer — Full Stack & AI Developer</h3>
-              <p class="text-sm text-slate-400">Mar 2024 · Presente</p>
-            </div>
-            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">
-              <span data-lang="pt">Consultorias & SaaS</span>
-              <span data-lang="en" hidden>Consulting & SaaS</span>
-            </span>
-          </header>
-          <ul class="mt-4 space-y-2 text-sm text-slate-200">
-            <li>
-              <span data-lang="pt">Projetos ponta a ponta para pequenas empresas: arquitetura, desenvolvimento, testes e deploy.</span>
-              <span data-lang="en" hidden>End-to-end products for small businesses: architecture, development, testing and deployment.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Assistentes de IA para WhatsApp com OpenAI + LangChain, conectados a fluxos operacionais.</span>
-              <span data-lang="en" hidden>AI assistants for WhatsApp using OpenAI + LangChain connected to operational workflows.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Sistema offline para oficinas automotivas com rastreio de serviços e persistência local-sincronizada.</span>
-              <span data-lang="en" hidden>Offline-first automotive workshop system with service tracking and local-to-cloud sync.</span>
-            </li>
-            <li>
-              <span data-lang="pt">MVPs entregues em &lt; 30 dias, combinando Flutter, Python APIs, bancos de dados e UX de alto nível.</span>
-              <span data-lang="en" hidden>MVPs shipped in &lt; 30 days combining Flutter, Python APIs, databases and refined UX.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Observabilidade com logs estruturados, métricas e tracing (OpenTelemetry + Datadog) para detectar regressões.</span>
-              <span data-lang="en" hidden>Observability with structured logs, metrics and tracing (OpenTelemetry + Datadog) to catch regressions.</span>
-            </li>
-          </ul>
-        </article>
-
-        <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <header class="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-            <div>
-              <h3 class="text-xl font-semibold text-white">INDT — Python QA Automation & AI Intern</h3>
-              <p class="text-sm text-slate-400">Jun 2023 · Mai 2025</p>
-            </div>
-            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">
-              <span data-lang="pt">Qualidade & IA</span>
-              <span data-lang="en" hidden>Quality & AI</span>
-            </span>
-          </header>
-          <ul class="mt-4 space-y-2 text-sm text-slate-200">
-            <li>
-              <span data-lang="pt">Automação de regressão e testes exploratórios em Python para produtos móveis.</span>
-              <span data-lang="en" hidden>Regression automation and exploratory testing in Python for mobile products.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Modelos de classificação e LLMs dedicados à análise de dados de QA.</span>
-              <span data-lang="en" hidden>Classification models and LLMs tailored for QA data analysis.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Administração de servidores Linux, redes e automação de VPN para time distribuído.</span>
-              <span data-lang="en" hidden>Linux server administration, networking and VPN automation for distributed teams.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Automação validou mais de 400 casos de teste, reduzindo 60% do esforço manual.</span>
-              <span data-lang="en" hidden>Automation validated 400+ test cases, cutting 60% of manual effort.</span>
-            </li>
-          </ul>
-        </article>
-
-        <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <header class="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-            <div>
-              <h3 class="text-xl font-semibold text-white">UEA — Pesquisador R&D em Sistemas Embarcados</h3>
-              <p class="text-sm text-slate-400">Jun 2022 · Mai 2023</p>
-            </div>
-            <span class="rounded-full bg-brand/20 px-3 py-1 text-xs font-semibold text-brand">
-              <span data-lang="pt">Prototipação</span>
-              <span data-lang="en" hidden>Prototyping</span>
-            </span>
-          </header>
-          <ul class="mt-4 space-y-2 text-sm text-slate-200">
-            <li>
-              <span data-lang="pt">Refatoração de apps Android legados para Flutter, adicionando pipelines multiplataforma.</span>
-              <span data-lang="en" hidden>Refactored legacy Android apps into Flutter, enabling cross-platform pipelines.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Dashboards em React.js integrados a módulos de visão computacional em Python.</span>
-              <span data-lang="en" hidden>Built React.js dashboards integrated with Python computer-vision modules.</span>
-            </li>
-            <li>
-              <span data-lang="pt">Dois protótipos funcionais entregues para monitoramento industrial e mobilidade.</span>
-              <span data-lang="en" hidden>Delivered two functional prototypes for industrial monitoring and mobility.</span>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="formacao" class="grid gap-6 md:grid-cols-2">
-      <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-        <h2 class="text-2xl font-semibold text-white">
-          <span data-lang="pt">Educação</span>
-          <span data-lang="en" hidden>Education</span>
-        </h2>
-        <p class="mt-4 text-sm text-slate-300" data-lang="pt">
-          <span class="font-semibold text-white">Bacharelado em Sistemas de Informação</span><br>
-          Universidade do Estado do Amazonas (UEA) · 2021 — 2025
-        </p>
-        <p class="mt-4 text-sm text-slate-300" data-lang="en" hidden>
-          <span class="font-semibold text-white">Bachelor's in Information Systems</span><br>
-          State University of Amazonas (UEA) · 2021 — 2025
-        </p>
-        <p class="mt-4 text-sm text-slate-400" data-lang="pt">Idiomas: Inglês (avançado), Português (nativo), Espanhol (intermediário).</p>
-        <p class="mt-4 text-sm text-slate-400" data-lang="en" hidden>Languages: English (advanced), Portuguese (native), Spanish (intermediate).</p>
-      </article>
-      <article class="rounded-3xl border border-white/5 bg-slate-900/70 p-6">
-        <h2 class="text-2xl font-semibold text-white">
-          <span data-lang="pt">Certificações Selecionadas</span>
-          <span data-lang="en" hidden>Selected Certifications</span>
-        </h2>
-        <ul class="mt-4 space-y-2 text-sm text-slate-300">
-          <li>Flutter Development — Alura</li>
-          <li>Introduction to CyberSecurity — Cisco</li>
-          <li>Linux Essentials — Alura</li>
-          <li>Agile Methodologies (Scrum, Kanban, XP) — Alura</li>
-          <li>IoT Applications — Samsung Ocean</li>
-          <li>LGPD Fundamentals — Fundação Bradesco</li>
-        </ul>
-      </article>
-    </section>
-
-    <section id="projetos" class="space-y-6">
-      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
         <div>
-          <h2 class="text-2xl font-semibold text-white">
-            <span data-lang="pt">Projetos & Publicações</span>
-            <span data-lang="en" hidden>Projects & Publications</span>
-          </h2>
-          <p class="text-sm text-slate-400" data-lang="pt">Iniciativas que conectam IA aplicada, acessibilidade e Web3.</p>
-          <p class="text-sm text-slate-400" data-lang="en" hidden>Initiatives that connect applied AI, accessibility and Web3.</p>
+          <p class="eyebrow">Software Engineer - Applied AI - Full Stack Systems</p>
+          <h1>Nickolas Livero</h1>
+          <p class="lead">
+            Software Engineer building production software with AI, APIs, cloud, and business impact. I design, build, and deploy real systems across web, mobile, backend APIs, AWS infrastructure, automation, and LLM-enabled workflows.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="mailto:nickolasjl.work@gmail.com">Contact me</a>
+            <a class="button" href="resume.pdf">Download resume</a>
+            <a class="button" href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button" href="https://www.linkedin.com/in/nickolaslivero/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <div class="metrics" aria-label="Career metrics">
+            <div class="metric">
+              <strong>4+ years</strong>
+              <span>software, automation, AI, and product delivery</span>
+            </div>
+            <div class="metric">
+              <strong>400+ tests</strong>
+              <span>automated across QA and validation workflows</span>
+            </div>
+            <div class="metric">
+              <strong>60-70%</strong>
+              <span>manual work reduction in validated workflows</span>
+            </div>
+          </div>
         </div>
-        <a href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer" class="text-sm font-semibold text-brand hover:text-brand-dark">
-          <span data-lang="pt">Ver GitHub completo →</span>
-          <span data-lang="en" hidden>See full GitHub →</span>
-        </a>
-      </div>
-      <div class="grid gap-6 md:grid-cols-2">
-        <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <p class="text-xs uppercase tracking-[0.3em] text-brand">
-            <span data-lang="pt">Pesquisa</span>
-            <span data-lang="en" hidden>Research</span>
-          </p>
-          <h3 class="mt-2 text-xl font-semibold text-white">
-            <span data-lang="pt">Assistente LLM para estudantes com deficiência visual</span>
-            <span data-lang="en" hidden>LLM assistant for visually impaired students</span>
-          </h3>
-          <p class="mt-3 text-sm text-slate-200" data-lang="pt">Paper apresentado no SBIE 2024, combinando reconhecimento de voz, LLMs e feedback multimodal para inclusão educacional.</p>
-          <p class="mt-3 text-sm text-slate-200" data-lang="en" hidden>Paper presented at SBIE 2024 combining speech recognition, LLMs and multimodal feedback for educational inclusion.</p>
-          <a href="https://github.com/nickolaslivero/phidata" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">
-            <span data-lang="pt">Repositório do paper</span>
-            <span data-lang="en" hidden>Paper repository</span>
-          </a>
-        </article>
-        <article class="rounded-3xl border border-white/5 bg-white/5 p-6">
-          <p class="text-xs uppercase tracking-[0.3em] text-brand">
-            <span data-lang="pt">Web3</span>
-            <span data-lang="en" hidden>Web3</span>
-          </p>
-          <h3 class="mt-2 text-xl font-semibold text-white">Auction System (Solidity + React)</h3>
-          <p class="mt-3 text-sm text-slate-200" data-lang="pt">Leilões descentralizados com contratos Solidity, painel em React e integração com carteiras Web3.</p>
-          <p class="mt-3 text-sm text-slate-200" data-lang="en" hidden>Decentralized auctions with Solidity contracts, a React dashboard and Web3 wallet integration.</p>
-          <a href="https://github.com/nickolaslivero/auction-blockchainWeb3" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">
-            <span data-lang="pt">Ver código</span>
-            <span data-lang="en" hidden>See code</span>
-          </a>
-        </article>
-        <article class="rounded-3xl border border-white/5 bg-white/5 p-6 md:col-span-2">
-          <p class="text-xs uppercase tracking-[0.3em] text-brand">
-            <span data-lang="pt">Migração Flutter</span>
-            <span data-lang="en" hidden>Flutter Migration</span>
-          </p>
-          <h3 class="mt-2 text-xl font-semibold text-white">Callidus — legado Android transformado em Flutter</h3>
-          <p class="mt-3 text-sm text-slate-200" data-lang="pt">Upgrade de app corporativo com camadas multiplataforma, melhora de UX e integração com APIs REST.</p>
-          <p class="mt-3 text-sm text-slate-200" data-lang="en" hidden>Corporate app upgrade with cross-platform layers, UX improvements and REST API integrations.</p>
-          <a href="https://github.com/nickolaslivero/Flutter-Project---Callidus" target="_blank" rel="noreferrer" class="mt-4 inline-block text-sm font-semibold text-brand hover:text-brand-dark">
-            <span data-lang="pt">Ver projeto</span>
-            <span data-lang="en" hidden>View project</span>
-          </a>
-        </article>
+
+        <aside class="system-map" aria-label="System delivery map">
+          <div class="profile-visual">
+            <img src="assets/nickolas-livero-linkedin.jpeg" alt="Nickolas Livero profile photo" width="96" height="96">
+            <p>
+              <strong>End-to-end ownership</strong>
+              <span>Requirements, architecture, code, deployment, support</span>
+            </p>
+          </div>
+          <h2>How I Deliver</h2>
+          <div class="flow">
+            <div class="node">
+              <strong>Product and business context</strong>
+              <span>requirements, constraints, workflow mapping, technical tradeoffs</span>
+            </div>
+            <div class="node">
+              <strong>Application engineering</strong>
+              <span>Flutter, React, Next.js, TypeScript, Python, FastAPI, REST APIs</span>
+            </div>
+            <div class="node">
+              <strong>Applied AI and automation</strong>
+              <span>LLM integration, RAG, embeddings, semantic search, data processing</span>
+            </div>
+            <div class="node">
+              <strong>Cloud deployment</strong>
+              <span>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, load balancing, Docker</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
+    <section id="work" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Selected Work</h2>
+          <p>Production systems, confidential client work represented as case studies, and public projects that support the software engineering and applied AI profile.</p>
+        </div>
+        <div class="grid two">
+          <article class="card">
+            <p class="tagline">Production - Cloud - Full Stack</p>
+            <h3>PEDLOG Payroll and Administrative System</h3>
+            <p>Built and deployed a production administrative system for a transportation company, covering frontend, backend APIs, database infrastructure, DNS, CDN, load balancing, and AWS operations.</p>
+            <div class="stack">
+              <span>Flutter Web</span><span>APIs</span><span>Database</span><span>AWS ECS</span><span>ECR</span><span>EC2</span><span>CloudFront</span><span>ALB</span>
+            </div>
+            <p><a href="https://administracaopedlog.ipenaconsultoria.com.br/" target="_blank" rel="noreferrer">Open live system</a></p>
+          </article>
+
+          <article class="card">
+            <p class="tagline">B2B - ERP - Software House</p>
+            <h3>IPENA Consultoria Website</h3>
+            <p>Delivered the institutional website for a B2B industrial software house focused on TOTVS Protheus consulting, API integrations, ERP support, and custom software.</p>
+            <div class="stack">
+              <span>Next.js</span><span>SEO</span><span>B2B</span><span>AWS S3</span><span>Route 53</span><span>ERP Context</span>
+            </div>
+            <p><a href="https://ipenaconsultoria.com.br/" target="_blank" rel="noreferrer">Open live website</a></p>
+          </article>
+
+          <article class="card">
+            <p class="tagline">Applied AI - Accessibility - Research</p>
+            <h3>Voice and LLM-Based Assistant</h3>
+            <p>Published SBIE 2024 research on an assistant designed to support visually impaired students using voice interaction and LLM-based workflows.</p>
+            <div class="stack">
+              <span>LLMs</span><span>Voice UX</span><span>Accessibility</span><span>Research</span><span>Education</span>
+            </div>
+            <p><a href="https://sol.sbc.org.br/index.php/sbie/article/view/31461" target="_blank" rel="noreferrer">Read publication</a></p>
+          </article>
+
+          <article class="card">
+            <p class="tagline">Flutter - Migration - Public Code</p>
+            <h3>Callidus Legacy Migration</h3>
+            <p>Migrated legacy Java Android workflows toward a Flutter/Dart cross-platform implementation with mobile UI and device-oriented interactions.</p>
+            <div class="stack">
+              <span>Flutter</span><span>Dart</span><span>Android</span><span>Migration</span><span>Mobile</span>
+            </div>
+            <p><a href="https://github.com/nickolaslivero/Flutter-Project---Callidus" target="_blank" rel="noreferrer">View repository</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Experience</h2>
+          <p>Hands-on engineering across production delivery, automation, cloud deployment, QA pipelines, and research prototypes.</p>
+        </div>
+        <div class="timeline">
+          <article class="role">
+            <div class="role-header">
+              <h3>Full Stack Software Engineer and Cloud Developer - IPENA Consultoria / Independent Contractor</h3>
+              <time>Mar 2024 - Present</time>
+            </div>
+            <ul>
+              <li>Built production web and administrative systems for B2B operations, including cloud deployment and API integration work.</li>
+              <li>Delivered AWS-backed infrastructure using ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, Docker, and Linux workflows.</li>
+              <li>Integrated APIs and business data flows for ERP-adjacent industrial operations, reducing manual client work by up to 70%.</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <div class="role-header">
+              <h3>Python QA Automation and AI Intern - INDT</h3>
+              <time>Jun 2023 - May 2025</time>
+            </div>
+            <ul>
+              <li>Developed Python automation pipelines for mobile systems, regression testing, exploratory testing, and validation workflows.</li>
+              <li>Automated 400+ test cases and internal processes, reducing manual testing effort by 60%.</li>
+              <li>Worked with AI models for analysis, classification, and QA validation tasks.</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <div class="role-header">
+              <h3>R&D Scholarship Holder - Embedded Systems - UEA</h3>
+              <time>Jun 2022 - May 2023</time>
+            </div>
+            <ul>
+              <li>Migrated legacy Android applications from Java to Flutter and delivered two functional cross-platform prototypes.</li>
+              <li>Built React.js dashboards integrated with Python computer vision modules for industrial monitoring contexts.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Technical Focus</h2>
+          <p>A generalist engineering base with clear depth in applied AI, APIs, automation, cloud deployment, and cross-platform product work.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>Applied AI</h3>
+            <ul>
+              <li>LLM integration with OpenAI, Gemini, GPT-4, Claude-oriented workflows</li>
+              <li>RAG, embeddings, semantic search, document chunking, prompt engineering</li>
+              <li>Vector databases: Qdrant, pgvector, Weaviate, FAISS</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Full Stack Engineering</h3>
+            <ul>
+              <li>Flutter, Dart, React, Next.js, TypeScript, JavaScript</li>
+              <li>Python, FastAPI, Node.js, NestJS, Express.js, Prisma ORM</li>
+              <li>REST APIs, authentication, API integrations, business automation</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Cloud and Reliability</h3>
+            <ul>
+              <li>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer</li>
+              <li>Docker, Linux, CI/CD concepts, PostgreSQL, Firebase, Supabase</li>
+              <li>QA automation, regression pipelines, validation workflows</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Proof Points</h2>
+          <p>Short, defensible signals for recruiters and technical interviewers.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>Production ownership</h3>
+            <p>Owned architecture, implementation, deployment, DNS, cloud configuration, and production support for real business systems.</p>
+          </article>
+          <article class="card">
+            <h3>Business impact</h3>
+            <p>Reduced manual work in validated workflows through automation, API integration, and production software delivery.</p>
+          </article>
+          <article class="card">
+            <h3>Remote readiness</h3>
+            <p>Advanced English, international interview experience, technical writing, async-friendly communication, and end-to-end ownership.</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="border-t border-white/5 bg-slate-900/80">
-    <div class="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-8 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-      <p>
-        <span data-lang="pt">Disponível para colaborações em IA aplicada, SaaS e integrações Web3.</span>
-        <span data-lang="en" hidden>Open to collaborations in applied AI, SaaS and Web3 integrations.</span>
-      </p>
-      <div class="flex flex-wrap gap-4 text-slate-300">
-        <a href="mailto:nickolasj.work@gmail.com" class="hover:text-brand">nickolasj.work@gmail.com</a>
-        <a href="https://github.com/nickolaslivero" class="hover:text-brand" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/nickolaslivero" class="hover:text-brand" target="_blank" rel="noreferrer">LinkedIn</a>
-      </div>
+  <footer>
+    <div class="shell">
+      <p>Nickolas J. S. Livero - Manaus, Brazil - Open to remote international roles</p>
+      <p><a href="mailto:nickolasjl.work@gmail.com">nickolasjl.work@gmail.com</a></p>
     </div>
   </footer>
-
   <script>
     (() => {
-      const STORAGE_KEY = 'nickolaslivero-lang';
-      const elements = () => document.querySelectorAll('[data-lang]');
+      const storageKey = 'nickolas-theme';
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const label = document.querySelector('[data-theme-label]');
 
-      const applyLang = (rawLang) => {
-        const lang = rawLang === 'en' ? 'en' : 'pt';
-        document.body.dataset.lang = lang;
-        document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
-        elements().forEach((el) => {
-          el.hidden = el.dataset.lang !== lang;
-        });
-        document.querySelectorAll('[data-lang-switch]').forEach((button) => {
-          const isActive = button.dataset.langSwitch === lang;
-          button.setAttribute('aria-pressed', isActive);
-          button.classList.toggle('bg-white/90', isActive);
-          button.classList.toggle('text-slate-900', isActive);
-          button.classList.toggle('bg-white/10', !isActive);
-          button.classList.toggle('text-slate-100', !isActive);
-        });
+      const getSystemTheme = () => {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      const getInitialTheme = () => {
         try {
-          localStorage.setItem(STORAGE_KEY, lang);
+          const stored = localStorage.getItem(storageKey);
+          if (stored === 'dark' || stored === 'light') return stored;
         } catch (_) {
-          /* ignore */
+          return getSystemTheme();
+        }
+
+        return getSystemTheme();
+      };
+
+      const applyTheme = (theme) => {
+        const normalized = theme === 'dark' ? 'dark' : 'light';
+        root.dataset.theme = normalized;
+        if (toggle && label) {
+          const isDark = normalized === 'dark';
+          toggle.setAttribute('aria-pressed', String(isDark));
+          toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          label.textContent = isDark ? 'Light' : 'Dark';
+        }
+        try {
+          localStorage.setItem(storageKey, normalized);
+        } catch (_) {
+          /* Storage can be unavailable in private browsing. */
         }
       };
 
-      const detectInitial = () => {
-        try {
-          const stored = localStorage.getItem(STORAGE_KEY);
-          if (stored) return stored;
-        } catch (_) {
-          /* ignore */
-        }
-        return navigator.language && navigator.language.startsWith('en') ? 'en' : 'pt';
-      };
+      applyTheme(getInitialTheme());
 
-      document.addEventListener('DOMContentLoaded', () => {
-        applyLang(detectInitial());
-        document.querySelectorAll('[data-lang-switch]').forEach((button) => {
-          button.addEventListener('click', () => applyLang(button.dataset.langSwitch));
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
         });
-      });
+      }
     })();
   </script>
 </body>

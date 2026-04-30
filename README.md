@@ -1,12 +1,28 @@
 # nickolaslivero.github.io
 
-Portfólio pessoal hospedado no GitHub Pages com Tailwind CSS e conteúdo em português.
+Personal GitHub Pages portfolio focused on international remote Software Engineer roles.
+
+## Positioning
+
+- Software Engineer
+- Applied AI
+- Full stack systems
+- Cloud deployment
+- APIs and business automation
 
 ## Stack
 
-- HTML estático
-- Tailwind Play CDN (sem build step)
+- Static HTML
+- CSS without build step
+- SEO metadata
+- JSON-LD structured data
+- Printable/downloadable resume link
 
-## Estrutura
+## Main Files
 
-- `index.html`: página única (PT/EN) com resumo profissional, habilidades, experiências, certificações, vitrine de projetos e CTAs de contato (e-mail, LinkedIn, GitHub, WhatsApp). A troca de idioma é feita via toggle (PT/EN) e persistida em `localStorage`.
+- `index.html`: portfolio page with production work, experience, skills, proof points, and contact links.
+- `resume.pdf`: current ATS resume exported from `../../resume/resume.html`.
+
+## Update Rule
+
+Keep this portfolio aligned with `../../resume/master-resume.md` and `../case-studies/`.
