@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nickolas Livero - Software Engineer, Full Stack, Android QA and Cloud</title>
   <meta name="description" content="Nickolas Livero is a Software Engineer focused on full stack systems, Android QA, cloud/self-hosted infrastructure, AWS, Docker, Linux, Nginx, VPN, DNS, hardware, automation, and applied AI.">
-  <meta name="keywords" content="Software Engineer, Full Stack Engineer, Applied AI, Android QA, QA Automation, Flutter, Dart, Python, FastAPI, TypeScript, JavaScript, React, Next.js, Tailwind CSS, Node.js, Express.js, AWS, ECS, ECR, EC2, S3, Route 53, CloudFront, Docker, Linux, Ubuntu Server, Nginx, Tailscale VPN, DNS, PostgreSQL, MySQL, SQL, APIs, REST APIs, DevOps, CI/CD, Jenkins, Azure DevOps, Gerrit, Git, Pull Requests, Cypress, Playwright, UI Automator, ADB, Android Studio, PowerShell, Hardware, Self-hosted Infrastructure, LLM Integration">
+  <meta name="keywords" content="Software Engineer, Full Stack Engineer, Backend Engineer, Applied AI, Generative AI, Android QA, QA Automation, Flutter, Dart, Python, FastAPI, Flask, SQLAlchemy, Django, pytest, TypeScript, JavaScript, React, Next.js, Tailwind CSS, Node.js, NestJS, Express.js, Prisma, Knex, Jest, Supertest, AWS, ECS, ECR, EC2, S3, Route 53, CloudFront, Docker, Linux, Ubuntu Server, Nginx, Tailscale VPN, DNS, PostgreSQL, MySQL, SQL, Swagger, OpenAPI, APIs, REST APIs, DevOps, CI/CD, Jenkins, Azure DevOps, Gerrit, Git, Pull Requests, Kotlin, Gradle, Cypress, Playwright, UI Automator, ADB, AOSP, Android Studio, MCP, TOTVS Protheus, PowerShell, Hardware, Self-hosted Infrastructure, LLM Integration, LangChain, LangGraph, RAG, OpenAI, Gemini, NumPy, Pandas, TensorFlow, Keras">
   <meta name="author" content="Nickolas J. S. Livero">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f172a">
@@ -193,7 +193,7 @@
       display: grid;
       gap: 42px;
       grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-      padding: 70px 0 52px;
+      padding: 70px 24px 52px;
     }
 
     .eyebrow {
@@ -496,6 +496,10 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-grid {
+        padding: 48px 20px 42px;
+      }
+
       .metrics {
         grid-template-columns: 1fr;
       }
@@ -629,7 +633,7 @@
             </div>
             <div class="node">
               <strong>Automation, QA and applied AI</strong>
-              <span>Python automation, Android validation, UI Automator, LLM workflows, data processing</span>
+              <span>Python automation, pytest, Android validation, UI Automator, LLM workflows, LangChain/LangGraph exposure, data processing</span>
             </div>
             <div class="node">
               <strong>Cloud deployment</strong>
@@ -648,9 +652,29 @@
         </div>
         <div class="grid two">
           <article class="card">
+            <p class="tagline">Android Distribution - Backend - Internal Tooling</p>
+            <h3>i-repos Android Distribution Hub</h3>
+            <p>Building an internal Android app distribution and validation hub for apps, versions, rollouts, devices, artifacts, and authentication, connecting backend APIs with administrative workflows and Android tooling.</p>
+            <div class="stack">
+              <span>NestJS</span><span>Swagger</span><span>JWT</span><span>Prisma</span><span>TypeScript</span><span>Android</span><span>Kotlin</span><span>Gradle</span>
+            </div>
+            <p><a href="#skills">See technical focus</a></p>
+          </article>
+
+          <article class="card">
+            <p class="tagline">Backend - Tests - Business Rules</p>
+            <h3>iCheck/PEDLOG Backend</h3>
+            <p>Worked on backend APIs for administrative and payroll workflows using documented REST endpoints, relational data, automated tests, mocks, and business-rule validation.</p>
+            <div class="stack">
+              <span>Express</span><span>TypeScript</span><span>PostgreSQL</span><span>Knex</span><span>Swagger/OpenAPI</span><span>Jest</span><span>Supertest</span><span>AWS S3</span>
+            </div>
+            <p><a href="#experience">See delivery context</a></p>
+          </article>
+
+          <article class="card">
             <p class="tagline">Production - Cloud - Full Stack</p>
             <h3>PEDLOG Payroll and Administrative System</h3>
-            <p>Built and deployed a production administrative system for a transportation company, covering frontend, backend APIs, database infrastructure, DNS, CDN, load balancing, and AWS operations.</p>
+            <p>Built and deployed a production administrative system for a transportation company, covering frontend, backend APIs, database infrastructure, DNS, CDN, load balancing, AWS operations, reporting, and production support.</p>
             <div class="stack">
               <span>Flutter Web</span><span>APIs</span><span>Database</span><span>AWS ECS</span><span>ECR</span><span>EC2</span><span>CloudFront</span><span>ALB</span>
             </div>
@@ -678,6 +702,16 @@
           </article>
 
           <article class="card">
+            <p class="tagline">Generative AI - WhatsApp - Confidential</p>
+            <h3>AI Bot Automation Workflows</h3>
+            <p>Short confidential freelance engagement building WhatsApp automation flows with LangGraph, LangChain, agents/tools, RAG, fallback handling, and Gemini/OpenAI API workflows. Source code and client details are private.</p>
+            <div class="stack">
+              <span>LangGraph</span><span>LangChain</span><span>Agents</span><span>Tools</span><span>RAG</span><span>Fallback</span><span>Gemini</span><span>OpenAI</span>
+            </div>
+            <p><a href="#skills">See technical focus</a></p>
+          </article>
+
+          <article class="card">
             <p class="tagline">Self-hosted - DevOps - Cost Reduction</p>
             <h3>Homologation Infrastructure</h3>
             <p>Built a low-cost homologation environment using a repurposed notebook server, Ubuntu Server, Docker containers, Tailscale VPN, AWS EC2 routing, Route 53 DNS records, and Nginx reverse proxy. Enabled client validation without duplicating AWS production costs or exposing the home network.</p>
@@ -685,6 +719,16 @@
               <span>AWS EC2</span><span>Route 53</span><span>Tailscale</span><span>Nginx</span><span>Docker</span><span>Ubuntu Server</span><span>DNS</span><span>Hardware</span>
             </div>
             <p><a href="#experience">See delivery context</a></p>
+          </article>
+
+          <article class="card">
+            <p class="tagline">Experimental Tooling - ERP Context - Automation</p>
+            <h3>Protheus/TOTVS MCP Tooling</h3>
+            <p>Experimental MCP/TOTVS tooling project exploring ERP-adjacent automation, Protheus support workflows, developer operations, and AI-assisted command interfaces. Built as a personal learning and prototyping project, with focus on integration patterns, tool design, and practical business automation.</p>
+            <div class="stack">
+              <span>MCP</span><span>Python</span><span>TOTVS Protheus</span><span>Automation</span><span>Developer Tools</span>
+            </div>
+            <p><a href="#skills">See technical focus</a></p>
           </article>
         </div>
       </div>
@@ -703,7 +747,8 @@
               <time>Mar 2024 - Present</time>
             </div>
             <ul>
-              <li>Built production web and administrative systems for B2B operations, including cloud deployment and API integration work.</li>
+              <li>Built production web and administrative systems for B2B operations, including backend API work, cloud deployment, test coverage, and API integration.</li>
+              <li>Worked with Express/TypeScript/PostgreSQL/Knex and NestJS/Prisma backends, Swagger/OpenAPI documentation, JWT flows, Jest, ts-jest, Supertest, and business-rule validation.</li>
               <li>Delivered AWS-backed and self-hosted infrastructure using ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, Docker, Ubuntu Server, Nginx reverse proxy, Tailscale VPN, DNS, and Linux workflows.</li>
               <li>Configured a low-cost homologation environment using a repurposed notebook server, EC2 routing, Route 53 subdomain records, Docker containers, and reverse proxy access without exposing the home network.</li>
               <li>Maintained practical hardware/software environments, including RAM, CPU and SATA SSD upgrades, Linux/Windows setup, and installer packaging experience with Inno Setup.</li>
@@ -719,7 +764,7 @@
             <ul>
               <li>Developed Python automation pipelines for mobile systems, regression testing, exploratory testing, and validation workflows.</li>
               <li>Automated 400+ test cases and internal processes, reducing manual testing effort by 60%.</li>
-              <li>Worked with UI Automator XML inspection, ADB, Android Studio, Cypress, Jenkins, Gerrit, Azure DevOps, and AI models for analysis, classification, and QA validation tasks.</li>
+              <li>Worked with pytest, UI Automator XML inspection, ADB, Android Studio, introductory AOSP exposure, Cypress, Jenkins, Gerrit, Azure DevOps, and AI models for analysis, classification, and QA validation tasks.</li>
             </ul>
           </article>
 
@@ -730,7 +775,7 @@
             </div>
             <ul>
               <li>Migrated legacy Android applications from Java to Flutter and delivered two functional cross-platform prototypes.</li>
-              <li>Built React.js dashboards integrated with Python computer vision modules for industrial monitoring contexts.</li>
+              <li>Built React.js dashboards integrated with Python computer vision modules for industrial monitoring contexts, using academic/R&D foundations in NumPy, Pandas, TensorFlow/Keras, confusion matrix, classification, and model validation.</li>
             </ul>
           </article>
         </div>
@@ -747,9 +792,9 @@
           <article class="card">
             <h3>Automation, Android QA and Applied AI</h3>
             <ul>
-              <li>Python automation, Android validation workflows, UI Automator XML inspection, ADB, data processing, SQL querying, and classification</li>
-              <li>LLM-assisted workflows, prompt engineering, OpenAI/Gemini API concepts, documentation workflows, and applied AI experiments</li>
-              <li>Published SBIE 2024 research involving voice and LLM-based accessibility</li>
+              <li>Python automation, pytest, Android validation workflows, UI Automator XML inspection, ADB, Android Studio, introductory AOSP exposure, data processing, SQL querying, and classification</li>
+              <li>LLM-assisted workflows, prompt engineering, LangChain, LangGraph, agents/tools, RAG, fallback handling, OpenAI/Gemini API workflows, documentation workflows, and applied AI experiments</li>
+              <li>Experimental MCP/TOTVS/Protheus personal tooling and SBIE 2024 research involving voice and LLM-based accessibility</li>
             </ul>
           </article>
 
@@ -757,8 +802,8 @@
             <h3>Full Stack Engineering</h3>
             <ul>
               <li>Flutter, Dart, React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS</li>
-              <li>Python, FastAPI, Node.js, NestJS, Express.js, Java, Kotlin, C++, PostgreSQL, MySQL</li>
-              <li>REST APIs, authentication, API integrations, Git, pull requests, advanced Git, Scrum, Kanban, Agile, business automation</li>
+              <li>Python, FastAPI, Flask, SQLAlchemy, Django exposure, Node.js, NestJS, Express.js, Swagger/OpenAPI, JWT, Prisma, Knex, Java, Kotlin, Gradle exposure, C++, PostgreSQL, MySQL</li>
+              <li>REST APIs, Jest, ts-jest, Supertest, Swagger/OpenAPI, authentication, API integrations, Git, pull requests, advanced Git, Scrum, Kanban, Agile, business automation</li>
             </ul>
           </article>
 
@@ -766,8 +811,8 @@
             <h3>Cloud and Reliability</h3>
             <ul>
               <li>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, DNS, subdomains</li>
-              <li>Docker, Docker Compose concepts, Linux, Ubuntu Server, Nginx reverse proxy, Tailscale VPN, self-hosted homologation, PowerShell</li>
-              <li>Android Studio, ADB, UI Automator, Cypress, Jenkins, Gerrit, Azure DevOps, regression pipelines, hardware troubleshooting</li>
+              <li>Docker, Docker Compose, Linux, Ubuntu Server, Nginx reverse proxy, Tailscale VPN, self-hosted homologation, PowerShell</li>
+              <li>Android Studio, ADB, UI Automator, introductory AOSP exposure, Cypress, Jenkins, Gerrit, Azure DevOps, regression pipelines, hardware troubleshooting</li>
             </ul>
           </article>
         </div>
@@ -791,7 +836,7 @@
           </article>
           <article class="card">
             <h3>Remote readiness</h3>
-            <p>Advanced English, international interview experience, technical writing, async-friendly communication, and end-to-end ownership.</p>
+            <p>Advanced English, international interview experience, technical writing, async-friendly communication, and backend/full-stack delivery with API documentation, tests, cloud deployment, and production support.</p>
           </article>
         </div>
       </div>
