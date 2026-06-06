@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nickolas Livero - Software Engineer, Full Stack, Android QA and Cloud</title>
-  <meta name="description" content="Nickolas Livero is a Software Engineer focused on full stack systems, Android QA, cloud/self-hosted infrastructure, AWS, Docker, Linux, Nginx, VPN, DNS, hardware, automation, and applied AI.">
-  <meta name="keywords" content="Software Engineer, Full Stack Engineer, Backend Engineer, Applied AI, Generative AI, Android QA, QA Automation, Flutter, Dart, Python, FastAPI, Flask, SQLAlchemy, Django, pytest, TypeScript, JavaScript, React, Next.js, Tailwind CSS, Node.js, NestJS, Express.js, Prisma, Knex, Jest, Supertest, AWS, ECS, ECR, EC2, S3, Route 53, CloudFront, Docker, Linux, Ubuntu Server, Nginx, Tailscale VPN, DNS, PostgreSQL, MySQL, SQL, Swagger, OpenAPI, APIs, REST APIs, DevOps, CI/CD, Jenkins, Azure DevOps, Gerrit, Git, Pull Requests, Kotlin, Gradle, Cypress, Playwright, UI Automator, ADB, AOSP, Android Studio, MCP, TOTVS Protheus, PowerShell, Hardware, Self-hosted Infrastructure, LLM Integration, LangChain, LangGraph, RAG, OpenAI, Gemini, NumPy, Pandas, TensorFlow, Keras">
+  <title>Nickolas Livero - Full Stack Software Engineer, Backend, Cloud and Automation</title>
+  <meta name="description" content="Nickolas Livero is a Full Stack Software Engineer focused on backend APIs, cloud delivery, business automation, TypeScript, Python, Flutter, AWS, Docker, and production support.">
+  <meta name="keywords" content="Full Stack Software Engineer, Backend Engineer, Software Engineer, TypeScript, Python, FastAPI, Node.js, NestJS, Express.js, React, Next.js, Flutter, Dart, REST APIs, Swagger, OpenAPI, PostgreSQL, MySQL, SQL, AWS, ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, Docker, Linux, Nginx, CI/CD, Jenkins, Azure DevOps, Gerrit, Git, Business Automation, Production Support, API Integration">
   <meta name="author" content="Nickolas J. S. Livero">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://nickolaslivero.github.io/">
   <link rel="alternate" hreflang="x-default" href="https://nickolaslivero.github.io/">
   <link rel="alternate" hreflang="en" href="https://nickolaslivero.github.io/">
@@ -17,7 +18,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta property="og:title" content="Nickolas Livero - Software Engineer">
-  <meta property="og:description" content="Full stack systems, Android QA, cloud deployments, APIs, automation, and production software delivery.">
+  <meta property="og:description" content="Full stack/backend systems, cloud delivery, APIs, automation, and production software ownership.">
   <meta property="og:url" content="https://nickolaslivero.github.io/">
   <meta property="og:image" content="https://nickolaslivero.github.io/assets/social-preview.png">
   <meta property="og:image:width" content="1200">
@@ -25,7 +26,7 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Nickolas Livero - Software Engineer">
-  <meta name="twitter:description" content="Software Engineer focused on full stack systems, Android QA, AWS, APIs, Flutter, Python, and TypeScript.">
+  <meta name="twitter:description" content="Full Stack Software Engineer focused on backend APIs, cloud delivery, automation, Flutter, Python, TypeScript, and AWS.">
   <meta name="twitter:image" content="https://nickolaslivero.github.io/assets/social-preview.png">
   <script>
     (() => {
@@ -52,17 +53,27 @@
       --blue: #1d4ed8;
       --code: #0f172a;
       --code-line: #334155;
-      --code-muted: #cbd5e1;
+      --code-muted: #e2e8f0;
       --topbar-bg: rgba(238, 242, 246, 0.92);
       --button-bg: #111827;
       --button-text: #ffffff;
+      --bg-gradient:
+        radial-gradient(circle at 12% 8%, rgba(20, 184, 166, 0.16), transparent 28%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2f6 42%, #e5e7eb 100%);
+      --panel-soft: rgba(248, 250, 252, 0.82);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 22px 55px rgba(15, 23, 42, 0.14);
+      --surface-highlight: rgba(255, 255, 255, 0.72);
+      --accent-wash: rgba(15, 118, 110, 0.10);
+      --radius: 8px;
+      --radius-sm: 6px;
     }
 
     [data-theme="dark"] {
       --bg: #0f172a;
       --panel: #111827;
       --ink: #f8fafc;
-      --muted: #cbd5e1;
+      --muted: #e2e8f0;
       --line: #334155;
       --accent: #5eead4;
       --accent-dark: #99f6e4;
@@ -73,6 +84,14 @@
       --topbar-bg: rgba(15, 23, 42, 0.92);
       --button-bg: #f8fafc;
       --button-text: #111827;
+      --bg-gradient:
+        radial-gradient(circle at 12% 8%, rgba(94, 234, 212, 0.13), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #0f172a 48%, #111827 100%);
+      --panel-soft: rgba(17, 24, 39, 0.82);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.24);
+      --shadow-hover: 0 24px 60px rgba(0, 0, 0, 0.34);
+      --surface-highlight: rgba(15, 23, 42, 0.76);
+      --accent-wash: rgba(94, 234, 212, 0.10);
     }
 
     * {
@@ -84,17 +103,31 @@
     }
 
     body {
-      background: var(--bg);
+      background: var(--bg-gradient);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       line-height: 1.55;
       margin: 0;
-      transition: background-color 180ms ease, color 180ms ease;
+      transition: background 320ms ease, background-color 320ms ease, color 220ms ease;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      content: "";
+      inset: 0;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 62%);
+      pointer-events: none;
+      position: fixed;
+      z-index: -1;
     }
 
     a {
       color: var(--blue);
       text-decoration: none;
+      overflow-wrap: anywhere;
     }
 
     a:hover,
@@ -108,13 +141,34 @@
       padding: 0 24px;
     }
 
+    .skip-link {
+      background: var(--button-bg);
+      color: var(--button-text);
+      font-weight: 900;
+      left: 16px;
+      padding: 10px 14px;
+      position: fixed;
+      top: 12px;
+      transform: translateY(-140%);
+      transition: transform 180ms ease;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      outline: 3px solid var(--blue);
+      outline-offset: 2px;
+      transform: translateY(0);
+    }
+
     .topbar {
-      background: var(--topbar-bg);
+      background:
+        linear-gradient(180deg, var(--topbar-bg), color-mix(in srgb, var(--topbar-bg), transparent 18%));
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 20;
       backdrop-filter: blur(14px);
+      transition: background-color 220ms ease, border-color 220ms ease;
     }
 
     .topbar-inner {
@@ -143,6 +197,16 @@
       color: var(--muted);
       font-size: 0.92rem;
       font-weight: 700;
+      transition: color 180ms ease;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+      text-decoration: none;
     }
 
     .theme-toggle,
@@ -159,6 +223,8 @@
       gap: 8px;
       min-height: 34px;
       padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease, transform 220ms ease;
     }
 
     .theme-toggle:focus-visible,
@@ -170,6 +236,21 @@
     .language-toggle:hover,
     .language-toggle:focus {
       text-decoration: none;
+    }
+
+    a:focus-visible,
+    .button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+      text-decoration: none;
+    }
+
+    .theme-toggle:hover,
+    .language-toggle:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.16);
+      transform: translateY(-1px);
     }
 
     .theme-toggle-mark {
@@ -185,15 +266,21 @@
     }
 
     .hero {
-      background: var(--panel);
+      background: linear-gradient(135deg, var(--panel-soft), rgba(255, 255, 255, 0.45));
       border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    [data-theme="dark"] .hero {
+      background: linear-gradient(135deg, var(--panel-soft), rgba(15, 23, 42, 0.35));
     }
 
     .hero-grid {
+      align-items: center;
       display: grid;
       gap: 42px;
       grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-      padding: 70px 24px 52px;
+      padding: 54px 24px 42px;
     }
 
     .eyebrow {
@@ -231,8 +318,30 @@
     .lead {
       color: var(--muted);
       font-size: 1.12rem;
-      margin-top: 22px;
+      margin-top: 18px;
       max-width: 760px;
+    }
+
+    .availability {
+      align-items: center;
+      background: var(--accent-wash);
+      border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+      color: var(--ink);
+      display: inline-flex;
+      font-size: 0.9rem;
+      font-weight: 800;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 11px;
+      border-radius: var(--radius-sm);
+    }
+
+    .availability::before {
+      background: var(--accent);
+      border-radius: 999px;
+      content: "";
+      height: 8px;
+      width: 8px;
     }
 
     .actions {
@@ -252,10 +361,21 @@
       justify-content: center;
       min-height: 44px;
       padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease, transform 220ms ease;
+    }
+
+    .button.secondary-link {
+      border-color: var(--line);
+      color: var(--muted);
+      min-height: 38px;
+      padding: 8px 12px;
     }
 
     .button.primary {
-      background: var(--button-bg);
+      background:
+        linear-gradient(135deg, var(--button-bg), color-mix(in srgb, var(--button-bg), var(--accent) 18%));
       color: var(--button-text);
     }
 
@@ -264,16 +384,41 @@
       text-decoration: none;
     }
 
+    .button:hover,
+    .button:focus-visible {
+      border-color: var(--accent);
+      box-shadow: 0 12px 28px rgba(15, 118, 110, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .button.primary:hover,
+    .button.primary:focus-visible {
+      background:
+        linear-gradient(135deg, var(--accent-dark), color-mix(in srgb, var(--accent-dark), var(--blue) 18%));
+      border-color: var(--accent-dark);
+      color: #ffffff;
+    }
+
     .metrics {
       display: grid;
       gap: 12px;
       grid-template-columns: repeat(3, 1fr);
-      margin-top: 34px;
+      margin-top: 24px;
     }
 
     .metric {
-      border-top: 3px solid var(--ink);
-      padding-top: 10px;
+      background: var(--surface-highlight);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .metric:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-2px);
     }
 
     .metric strong {
@@ -290,10 +435,13 @@
     }
 
     .system-map {
-      background: var(--code);
+      background: linear-gradient(145deg, var(--code), #111827 58%, #0f766e);
       color: #e5e7eb;
       min-height: 100%;
       padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      transition: background 220ms ease, box-shadow 220ms ease;
     }
 
     .profile-visual {
@@ -312,6 +460,7 @@
       object-fit: cover;
       object-position: center 34%;
       width: 96px;
+      box-shadow: 0 0 0 6px rgba(94, 234, 212, 0.08);
     }
 
     .profile-visual strong {
@@ -343,6 +492,13 @@
     .node {
       border: 1px solid var(--code-line);
       padding: 14px;
+      border-radius: var(--radius-sm);
+      transition: border-color 220ms ease, transform 220ms ease;
+    }
+
+    .node:hover {
+      border-color: var(--accent);
+      transform: translateX(3px);
     }
 
     .node strong {
@@ -392,6 +548,73 @@
       background: var(--panel);
       border: 1px solid var(--line);
       padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .card::before {
+      background: linear-gradient(90deg, var(--accent), transparent 72%);
+      border-radius: var(--radius) var(--radius) 0 0;
+      content: "";
+      height: 3px;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity 220ms ease;
+    }
+
+    .card.featured {
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 44%),
+        var(--panel);
+      border-top: 4px solid var(--accent);
+    }
+
+    .impact {
+      border-left: 3px solid var(--accent);
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 800;
+      margin-top: 14px;
+      padding-left: 10px;
+    }
+
+    .additional-work {
+      margin-top: 28px;
+    }
+
+    .additional-work summary {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      transition: border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .additional-work summary:hover,
+    .additional-work summary:focus-visible {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .additional-work .grid {
+      margin-top: 18px;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .card:hover::before {
+      opacity: 1;
     }
 
     .card p,
@@ -413,6 +636,11 @@
       text-transform: uppercase;
     }
 
+    .card a,
+    .role a {
+      font-weight: 800;
+    }
+
     .stack {
       display: flex;
       flex-wrap: wrap;
@@ -426,6 +654,17 @@
       font-size: 0.84rem;
       font-weight: 700;
       padding: 5px 8px;
+      border-radius: 999px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      background: rgba(15, 118, 110, 0.06);
+      transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+    }
+
+    .stack span:hover {
+      background: rgba(15, 118, 110, 0.12);
+      border-color: var(--accent);
+      transform: translateY(-1px);
     }
 
     .timeline {
@@ -438,6 +677,15 @@
       background: var(--panel);
       border-left: 4px solid var(--ink);
       padding: 20px 22px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-soft);
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .role:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
     }
 
     .role-header {
@@ -471,11 +719,63 @@
       padding: 28px 0;
     }
 
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-grid > *,
+    .section {
+      animation: rise-in 520ms ease both;
+    }
+
     footer .shell {
       align-items: center;
       display: flex;
       gap: 18px;
       justify-content: space-between;
+    }
+
+    h1,
+    h2,
+    h3,
+    .button,
+    .card,
+    .role {
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 1100px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 8px;
+        padding-top: 8px;
+      }
+
+      nav {
+        gap: 10px;
+        max-width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: thin;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-map {
+        padding: 20px;
+      }
     }
 
     @media (max-width: 860px) {
@@ -490,6 +790,11 @@
         justify-content: flex-start;
       }
 
+      nav > a[href="#experience"],
+      nav > a[href="#skills"] {
+        display: none;
+      }
+
       .hero-grid,
       .grid.two,
       .grid.three {
@@ -497,11 +802,66 @@
       }
 
       .hero-grid {
-        padding: 48px 20px 42px;
+        padding: 28px 20px 30px;
+      }
+
+      h1 {
+        font-size: clamp(2.1rem, 12vw, 3.2rem);
+      }
+
+      .lead {
+        font-size: 0.98rem;
+        margin-top: 14px;
+      }
+
+      .actions {
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .button {
+        flex: 1 1 145px;
+        min-height: 42px;
       }
 
       .metrics {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .metric {
+        padding: 9px 10px;
+      }
+
+      .metric strong {
+        font-size: 1.05rem;
+      }
+
+      .metric span {
+        font-size: 0.74rem;
+      }
+
+      .system-map {
+        display: none;
+      }
+
+
+      .metrics {
+        display: none;
+      }
+
+      #work.section {
+        padding-top: 24px;
+      }
+
+      .section-head {
+        gap: 10px;
+        padding-top: 12px;
+      }
+
+      .section-head p {
+        font-size: 0.92rem;
       }
 
       .role-header {
@@ -511,6 +871,219 @@
       .role time {
         display: block;
         margin-top: 4px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: clip;
+      }
+
+      .shell {
+        max-width: 100%;
+        padding-left: max(28px, env(safe-area-inset-left));
+        padding-right: max(28px, env(safe-area-inset-right));
+        width: 100%;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        min-height: 58px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .brand {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      nav {
+        gap: 8px;
+        justify-content: flex-start;
+        overflow: visible;
+        padding-bottom: 0;
+        width: 100%;
+      }
+
+      nav > a:not(.language-toggle) {
+        display: none;
+      }
+
+      nav > a[href^="mailto:"] {
+        display: none;
+      }
+
+      nav a,
+      .theme-toggle,
+      .language-toggle {
+        font-size: 0.82rem;
+      }
+
+      .profile-visual img {
+        height: 76px;
+        width: 76px;
+      }
+
+      .hero-grid {
+        box-sizing: border-box;
+        padding: 22px max(28px, env(safe-area-inset-right)) 94px max(28px, env(safe-area-inset-left));
+        width: 100%;
+      }
+
+      .eyebrow {
+        font-size: 0.66rem;
+        line-height: 1.45;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: clamp(1.78rem, 10.5vw, 2.35rem);
+        line-height: 0.95;
+        max-width: 100%;
+      }
+
+      .lead {
+        display: -webkit-box;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-top: 10px;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+      }
+
+      .availability {
+        display: none;
+      }
+
+      .actions {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 16px;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .button {
+        box-sizing: border-box;
+        flex: initial;
+        font-size: 0.78rem;
+        min-height: 38px;
+        min-width: 0;
+        padding: 8px 10px;
+        white-space: normal;
+        width: 100%;
+      }
+
+      #work.section {
+        margin-top: -94px;
+        padding-top: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      #work .section-head {
+        display: none;
+      }
+
+      #work .grid {
+        margin-top: 0;
+      }
+
+      .card {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .actions {
+        gap: 7px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 14px;
+      }
+
+      .button {
+        font-size: 0.74rem;
+        min-height: 36px;
+        padding: 7px 8px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .shell {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+      }
+
+      .hero-grid {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+      }
+
+      h1 {
+        font-size: clamp(1.65rem, 10vw, 2rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .skip-link {
+        transform: translateY(-140%) !important;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0) !important;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .button,
+      .card,
+      .role,
+      .system-map,
+      .node,
+      .theme-toggle,
+      .language-toggle,
+      .metric,
+      .additional-work summary {
+        border: 1px solid CanvasText;
+        box-shadow: none;
+      }
+
+      .button.primary,
+      .skip-link {
+        background: Highlight;
+        color: HighlightText;
+      }
+
+      a,
+      nav a {
+        color: LinkText;
       }
     }
   </style>
@@ -528,34 +1101,33 @@
       ],
       "knowsAbout": [
         "Software Engineering",
-        "Applied AI",
         "Full Stack Development",
-        "Flutter",
+        "Backend APIs",
+        "Business Automation",
+        "Cloud Infrastructure",
+        "TypeScript",
         "Python",
         "FastAPI",
-        "TypeScript",
         "React",
         "Next.js",
+        "Flutter",
         "AWS",
-        "Self-hosted infrastructure",
         "Docker",
         "Linux",
         "Nginx",
-        "Tailscale VPN",
-        "DNS",
-        "Hardware maintenance",
         "PostgreSQL",
         "MySQL",
         "REST APIs",
-        "Android QA",
-        "QA Automation",
-        "DevOps",
+        "CI/CD",
+        "Technical Documentation",
+        "Applied AI Workflows",
         "LLM Integration"
       ]
     }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <header class="topbar">
     <div class="shell topbar-inner">
       <a class="brand" href="#top">Nickolas J. S. Livero</a>
@@ -585,26 +1157,27 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div>
-          <p class="eyebrow">Software Engineer - Full Stack - Android QA - Cloud</p>
+          <p class="eyebrow">Full Stack Software Engineer - Backend - Cloud - Automation</p>
           <h1>Nickolas Livero</h1>
           <p class="lead">
-            Software Engineer building production software across web, mobile, backend APIs, Android validation, AWS infrastructure, automation, and LLM-enabled workflows. I focus on practical delivery, release support, and systems that reduce manual work.
+            I build production web, backend, and automation systems with TypeScript, Python, Flutter, and AWS. I am focused on full stack/backend roles where delivery, reliability, and business automation matter.
           </p>
+          <p class="availability">Open to remote full stack/backend roles, UTC-friendly, based in Brazil</p>
           <div class="actions">
-            <a class="button primary" href="mailto:nickolasjl.work@gmail.com">Contact me</a>
-            <a class="button" href="resume.pdf">Download resume</a>
+            <a class="button primary" href="resume.pdf">Download resume</a>
+            <a class="button" href="mailto:nickolasjl.work@gmail.com">Contact me</a>
             <a class="button" href="resume-pt.pdf" hreflang="pt-BR">Currículo PT-BR</a>
-            <a class="button" href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="button" href="https://www.linkedin.com/in/nickolaslivero/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button secondary-link" href="https://github.com/nickolaslivero" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="button secondary-link" href="https://www.linkedin.com/in/nickolaslivero/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
           <div class="metrics" aria-label="Career metrics">
             <div class="metric">
               <strong>4+ years</strong>
-              <span>software, automation, QA, and product delivery</span>
+              <span>software, backend, cloud, and product delivery</span>
             </div>
             <div class="metric">
-              <strong>400+ tests</strong>
-              <span>automated across QA and validation workflows</span>
+              <strong>400+ checks</strong>
+              <span>automated across validation and release workflows</span>
             </div>
             <div class="metric">
               <strong>60-70%</strong>
@@ -618,7 +1191,7 @@
             <img src="assets/nickolas-livero-linkedin.jpeg" alt="Nickolas Livero profile photo" width="96" height="96">
             <p>
               <strong>End-to-end ownership</strong>
-              <span>Requirements, code, deployment, validation, support</span>
+              <span>Business context, code, cloud, automation, support</span>
             </p>
           </div>
           <h2>How I Deliver</h2>
@@ -629,11 +1202,11 @@
             </div>
             <div class="node">
               <strong>Application engineering</strong>
-              <span>Flutter, React, Next.js, TypeScript, Python, FastAPI, REST APIs, Android tooling</span>
+              <span>TypeScript, Python, Flutter, React, Next.js, REST APIs, Android tooling</span>
             </div>
             <div class="node">
-              <strong>Automation, QA and applied AI</strong>
-              <span>Python automation, pytest, Android validation, UI Automator, LLM workflows, LangChain/LangGraph exposure, data processing</span>
+              <strong>Automation and validation</strong>
+              <span>Python automation, release validation, test pipelines, operational support, data processing</span>
             </div>
             <div class="node">
               <strong>Cloud deployment</strong>
@@ -648,63 +1221,72 @@
       <div class="shell">
         <div class="section-head">
           <h2>Selected Work</h2>
-          <p>Production systems, confidential client work represented as case studies, and public projects that support a full stack, cloud, Android QA, and applied AI profile.</p>
+          <p>Primary proof of production ownership, business automation, cloud delivery, and technical range.</p>
         </div>
         <div class="grid two">
-          <article class="card">
-            <p class="tagline">Android Distribution - Backend - Internal Tooling</p>
-            <h3>i-repos Android Distribution Hub</h3>
-            <p>Building an internal Android app distribution and validation hub for apps, versions, rollouts, devices, artifacts, and authentication, connecting backend APIs with administrative workflows and Android tooling.</p>
+          <article class="card featured">
+            <p class="tagline">Production - Cloud - Full Stack</p>
+            <h3>PEDLOG Payroll and Administrative System</h3>
+            <p>Built and deployed a production administrative system for a transportation company, covering frontend, backend APIs, database infrastructure, DNS, CDN, load balancing, AWS operations, reporting, and production support.</p>
+            <p class="impact">Impact: moved payroll/admin work into a live production workflow and reduced manual administrative effort in validated flows by up to 60-70%.</p>
             <div class="stack">
-              <span>NestJS</span><span>Swagger</span><span>JWT</span><span>Prisma</span><span>TypeScript</span><span>Android</span><span>Kotlin</span><span>Gradle</span>
+              <span>Flutter Web</span><span>APIs</span><span>Database</span><span>AWS ECS</span><span>ECR</span><span>EC2</span><span>CloudFront</span><span>ALB</span>
             </div>
-            <p><a href="#skills">See technical focus</a></p>
+            <p><a href="https://administracaopedlog.ipenaconsultoria.com.br/" target="_blank" rel="noopener noreferrer">Open live system</a></p>
           </article>
 
-          <article class="card">
+          <article class="card featured">
             <p class="tagline">Backend - Tests - Business Rules</p>
             <h3>iCheck/PEDLOG Backend</h3>
             <p>Worked on backend APIs for administrative and payroll workflows using documented REST endpoints, relational data, automated tests, mocks, and business-rule validation.</p>
+            <p class="impact">Impact: reduced change risk by making payroll/admin rules explicit, documented, and covered by API-level tests.</p>
             <div class="stack">
               <span>Express</span><span>TypeScript</span><span>PostgreSQL</span><span>Knex</span><span>Swagger/OpenAPI</span><span>Jest</span><span>Supertest</span><span>AWS S3</span>
             </div>
             <p><a href="#experience">See delivery context</a></p>
           </article>
 
-          <article class="card">
-            <p class="tagline">Production - Cloud - Full Stack</p>
-            <h3>PEDLOG Payroll and Administrative System</h3>
-            <p>Built and deployed a production administrative system for a transportation company, covering frontend, backend APIs, database infrastructure, DNS, CDN, load balancing, AWS operations, reporting, and production support.</p>
+          <article class="card featured">
+            <p class="tagline">Android Distribution - Backend - Internal Tooling</p>
+            <h3>i-repos Android Distribution Hub</h3>
+            <p>Building an internal Android app distribution and validation hub for apps, versions, rollouts, devices, artifacts, and authentication, connecting backend APIs with administrative workflows and Android tooling.</p>
+            <p class="impact">Impact: creates a safer internal path for Android tablet app updates, version control, and rollout validation.</p>
             <div class="stack">
-              <span>Flutter Web</span><span>APIs</span><span>Database</span><span>AWS ECS</span><span>ECR</span><span>EC2</span><span>CloudFront</span><span>ALB</span>
+              <span>NestJS</span><span>Swagger</span><span>JWT</span><span>Prisma</span><span>TypeScript</span><span>Android</span><span>Kotlin</span><span>Gradle</span>
             </div>
-            <p><a href="https://administracaopedlog.ipenaconsultoria.com.br/" target="_blank" rel="noreferrer">Open live system</a></p>
+            <p><a href="#skills">See technical focus</a></p>
           </article>
 
-          <article class="card">
+          <article class="card featured">
             <p class="tagline">B2B - ERP - Software House</p>
             <h3>IPENA Consultoria Website</h3>
             <p>Delivered the institutional website for a B2B industrial software house focused on TOTVS Protheus consulting, API integrations, ERP support, and custom software.</p>
+            <p class="impact">Impact: gave the company a clearer B2B sales surface for ERP consulting, API integration, and custom software work.</p>
             <div class="stack">
               <span>Next.js</span><span>SEO</span><span>B2B</span><span>AWS S3</span><span>Route 53</span><span>ERP Context</span>
             </div>
-            <p><a href="https://ipenaconsultoria.com.br/" target="_blank" rel="noreferrer">Open live website</a></p>
+            <p><a href="https://ipenaconsultoria.com.br/" target="_blank" rel="noopener noreferrer">Open live website</a></p>
           </article>
-
+        </div>
+        <details class="additional-work">
+          <summary>Additional proof: AI, infrastructure, research, and experimental tooling</summary>
+          <div class="grid two">
           <article class="card">
             <p class="tagline">Applied AI - Accessibility - Research</p>
             <h3>Voice and LLM-Based Assistant</h3>
             <p>Published SBIE 2024 research on an assistant designed to support visually impaired students using voice interaction and LLM-based workflows.</p>
+            <p class="impact">Impact: peer-reviewed proof of applied AI, accessibility, and technical communication.</p>
             <div class="stack">
               <span>LLMs</span><span>Voice UX</span><span>Accessibility</span><span>Research</span><span>Education</span>
             </div>
-            <p><a href="https://sol.sbc.org.br/index.php/sbie/article/view/31461" target="_blank" rel="noreferrer">Read publication</a></p>
+            <p><a href="https://sol.sbc.org.br/index.php/sbie/article/view/31461" target="_blank" rel="noopener noreferrer">Read publication</a></p>
           </article>
 
           <article class="card">
             <p class="tagline">Generative AI - WhatsApp - Confidential</p>
             <h3>AI Bot Automation Workflows</h3>
             <p>Short confidential freelance engagement building WhatsApp automation flows with LangGraph, LangChain, agents/tools, RAG, fallback handling, and Gemini/OpenAI API workflows. Source code and client details are private.</p>
+            <p class="impact">Impact: practical exposure to agent workflows and AI automation in a client context.</p>
             <div class="stack">
               <span>LangGraph</span><span>LangChain</span><span>Agents</span><span>Tools</span><span>RAG</span><span>Fallback</span><span>Gemini</span><span>OpenAI</span>
             </div>
@@ -715,6 +1297,7 @@
             <p class="tagline">Self-hosted - DevOps - Cost Reduction</p>
             <h3>Homologation Infrastructure</h3>
             <p>Built a low-cost homologation environment using a repurposed notebook server, Ubuntu Server, Docker containers, Tailscale VPN, AWS EC2 routing, Route 53 DNS records, and Nginx reverse proxy. Enabled client validation without duplicating AWS production costs or exposing the home network.</p>
+            <p class="impact">Impact: enabled validation while avoiding duplicated cloud infrastructure costs.</p>
             <div class="stack">
               <span>AWS EC2</span><span>Route 53</span><span>Tailscale</span><span>Nginx</span><span>Docker</span><span>Ubuntu Server</span><span>DNS</span><span>Hardware</span>
             </div>
@@ -725,12 +1308,14 @@
             <p class="tagline">Experimental Tooling - ERP Context - Automation</p>
             <h3>Protheus/TOTVS MCP Tooling</h3>
             <p>Experimental MCP/TOTVS tooling project exploring ERP-adjacent automation, Protheus support workflows, developer operations, and AI-assisted command interfaces. Built as a personal learning and prototyping project, with focus on integration patterns, tool design, and practical business automation.</p>
+            <p class="impact">Impact: exploratory integration practice for ERP-adjacent automation and developer tooling.</p>
             <div class="stack">
               <span>MCP</span><span>Python</span><span>TOTVS Protheus</span><span>Automation</span><span>Developer Tools</span>
             </div>
             <p><a href="#skills">See technical focus</a></p>
           </article>
-        </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -786,18 +1371,9 @@
       <div class="shell">
         <div class="section-head">
           <h2>Technical Focus</h2>
-          <p>A generalist engineering base with clear depth in APIs, automation, Android QA, cloud deployment, and cross-platform product work.</p>
+          <p>A practical full stack/backend base with supporting depth in automation, Android QA, cloud deployment, and cross-platform product work.</p>
         </div>
         <div class="grid three">
-          <article class="card">
-            <h3>Automation, Android QA and Applied AI</h3>
-            <ul>
-              <li>Python automation, pytest, Android validation workflows, UI Automator XML inspection, ADB, Android Studio, introductory AOSP exposure, data processing, SQL querying, and classification</li>
-              <li>LLM-assisted workflows, prompt engineering, LangChain, LangGraph, agents/tools, RAG, fallback handling, OpenAI/Gemini API workflows, documentation workflows, and applied AI experiments</li>
-              <li>Experimental MCP/TOTVS/Protheus personal tooling and SBIE 2024 research involving voice and LLM-based accessibility</li>
-            </ul>
-          </article>
-
           <article class="card">
             <h3>Full Stack Engineering</h3>
             <ul>
@@ -806,13 +1382,20 @@
               <li>REST APIs, Jest, ts-jest, Supertest, Swagger/OpenAPI, authentication, API integrations, Git, pull requests, advanced Git, Scrum, Kanban, Agile, business automation</li>
             </ul>
           </article>
-
           <article class="card">
             <h3>Cloud and Reliability</h3>
             <ul>
               <li>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, DNS, subdomains</li>
               <li>Docker, Docker Compose, Linux, Ubuntu Server, Nginx reverse proxy, Tailscale VPN, self-hosted homologation, PowerShell</li>
               <li>Android Studio, ADB, UI Automator, introductory AOSP exposure, Cypress, Jenkins, Gerrit, Azure DevOps, regression pipelines, hardware troubleshooting</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Automation and Validation</h3>
+            <ul>
+              <li>Python automation, pytest, Android validation workflows, UI Automator XML inspection, ADB, Android Studio, introductory AOSP exposure, data processing, SQL querying, and classification</li>
+              <li>LLM-assisted workflows, prompt engineering, LangChain, LangGraph, agents/tools, RAG, fallback handling, OpenAI/Gemini API workflows, documentation workflows, and applied AI experiments</li>
+              <li>Experimental MCP/TOTVS/Protheus personal tooling and SBIE 2024 research involving voice and LLM-based accessibility</li>
             </ul>
           </article>
         </div>
@@ -855,6 +1438,7 @@
       const root = document.documentElement;
       const toggle = document.querySelector('[data-theme-toggle]');
       const label = document.querySelector('[data-theme-label]');
+      const themeColor = document.querySelector('meta[name="theme-color"]');
 
       const getSystemTheme = () => {
         return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -874,6 +1458,9 @@
       const applyTheme = (theme) => {
         const normalized = theme === 'dark' ? 'dark' : 'light';
         root.dataset.theme = normalized;
+        if (themeColor) {
+          themeColor.setAttribute('content', normalized === 'dark' ? '#0f172a' : '#eef2f6');
+        }
         if (toggle && label) {
           const isDark = normalized === 'dark';
           toggle.setAttribute('aria-pressed', String(isDark));

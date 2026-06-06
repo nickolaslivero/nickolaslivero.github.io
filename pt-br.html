@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nickolas Livero - Engenheiro de Software, Full Stack, Android QA e Cloud</title>
-  <meta name="description" content="Nickolas Livero é Engenheiro de Software em Manaus com experiência em sistemas full stack, Android QA, cloud, infraestrutura self-hosted, AWS, Docker, Linux, Nginx, VPN, DNS, hardware, automação e IA aplicada.">
-  <meta name="keywords" content="Engenheiro de Software, Desenvolvedor Full Stack, Backend, IA Aplicada, IA Generativa, Android QA, Automação de Testes, Flutter, Dart, Python, FastAPI, Flask, SQLAlchemy, Django, pytest, TypeScript, JavaScript, React, Next.js, Tailwind CSS, Node.js, NestJS, Express.js, Prisma, Knex, Jest, Supertest, AWS, ECS, ECR, EC2, S3, Route 53, CloudFront, Docker, Linux, Ubuntu Server, Nginx, Tailscale VPN, DNS, PostgreSQL, MySQL, SQL, Swagger, OpenAPI, APIs, APIs REST, DevOps, CI/CD, Jenkins, Azure DevOps, Gerrit, Git, Pull Requests, Kotlin, Gradle, Cypress, Playwright, UI Automator, ADB, AOSP, Android Studio, MCP, TOTVS Protheus, PowerShell, Hardware, Infraestrutura Self-hosted, Integração com LLM, LangChain, LangGraph, RAG, OpenAI, Gemini, NumPy, Pandas, TensorFlow, Keras">
+  <title>Nickolas Livero - Engenheiro Full Stack, Backend, Cloud e Automação</title>
+  <meta name="description" content="Nickolas Livero é Engenheiro Full Stack focado em APIs backend, cloud, automação de negócio, TypeScript, Python, Flutter, AWS, Docker e suporte a produção.">
+  <meta name="keywords" content="Engenheiro Full Stack, Desenvolvedor Backend, Engenheiro de Software, TypeScript, Python, FastAPI, Node.js, NestJS, Express.js, React, Next.js, Flutter, Dart, APIs REST, Swagger, OpenAPI, PostgreSQL, MySQL, SQL, AWS, ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, Docker, Linux, Nginx, CI/CD, Jenkins, Azure DevOps, Gerrit, Git, Automação de Negócio, Suporte a Produção, Integração de APIs">
   <meta name="author" content="Nickolas J. S. Livero">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://nickolaslivero.github.io/pt-br.html">
   <link rel="alternate" hreflang="x-default" href="https://nickolaslivero.github.io/">
   <link rel="alternate" hreflang="en" href="https://nickolaslivero.github.io/">
@@ -17,7 +18,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta property="og:title" content="Nickolas Livero - Engenheiro de Software">
-  <meta property="og:description" content="Full stack, Android QA, cloud, APIs, automação e sistemas em produção.">
+  <meta property="og:description" content="Sistemas full stack/backend, cloud, APIs, automação de negócio e software em produção.">
   <meta property="og:url" content="https://nickolaslivero.github.io/pt-br.html">
   <meta property="og:image" content="https://nickolaslivero.github.io/assets/social-preview.png">
   <meta property="og:image:width" content="1200">
@@ -25,7 +26,7 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Nickolas Livero - Engenheiro de Software">
-  <meta name="twitter:description" content="Engenheiro de Software focado em full stack, Android QA, AWS, APIs, Flutter, Python e TypeScript.">
+  <meta name="twitter:description" content="Engenheiro Full Stack focado em APIs backend, cloud, automação, Flutter, Python, TypeScript e AWS.">
   <meta name="twitter:image" content="https://nickolaslivero.github.io/assets/social-preview.png">
   <script>
     (() => {
@@ -52,17 +53,27 @@
       --blue: #1d4ed8;
       --code: #0f172a;
       --code-line: #334155;
-      --code-muted: #cbd5e1;
+      --code-muted: #e2e8f0;
       --topbar-bg: rgba(238, 242, 246, 0.92);
       --button-bg: #111827;
       --button-text: #ffffff;
+      --bg-gradient:
+        radial-gradient(circle at 12% 8%, rgba(20, 184, 166, 0.16), transparent 28%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2f6 42%, #e5e7eb 100%);
+      --panel-soft: rgba(248, 250, 252, 0.82);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 22px 55px rgba(15, 23, 42, 0.14);
+      --surface-highlight: rgba(255, 255, 255, 0.72);
+      --accent-wash: rgba(15, 118, 110, 0.10);
+      --radius: 8px;
+      --radius-sm: 6px;
     }
 
     [data-theme="dark"] {
       --bg: #0f172a;
       --panel: #111827;
       --ink: #f8fafc;
-      --muted: #cbd5e1;
+      --muted: #e2e8f0;
       --line: #334155;
       --accent: #5eead4;
       --accent-dark: #99f6e4;
@@ -73,6 +84,14 @@
       --topbar-bg: rgba(15, 23, 42, 0.92);
       --button-bg: #f8fafc;
       --button-text: #111827;
+      --bg-gradient:
+        radial-gradient(circle at 12% 8%, rgba(94, 234, 212, 0.13), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #0f172a 48%, #111827 100%);
+      --panel-soft: rgba(17, 24, 39, 0.82);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.24);
+      --shadow-hover: 0 24px 60px rgba(0, 0, 0, 0.34);
+      --surface-highlight: rgba(15, 23, 42, 0.76);
+      --accent-wash: rgba(94, 234, 212, 0.10);
     }
 
     * {
@@ -84,17 +103,31 @@
     }
 
     body {
-      background: var(--bg);
+      background: var(--bg-gradient);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       line-height: 1.55;
       margin: 0;
-      transition: background-color 180ms ease, color 180ms ease;
+      transition: background 320ms ease, background-color 320ms ease, color 220ms ease;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      content: "";
+      inset: 0;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 62%);
+      pointer-events: none;
+      position: fixed;
+      z-index: -1;
     }
 
     a {
       color: var(--blue);
       text-decoration: none;
+      overflow-wrap: anywhere;
     }
 
     a:hover,
@@ -108,13 +141,34 @@
       padding: 0 24px;
     }
 
+    .skip-link {
+      background: var(--button-bg);
+      color: var(--button-text);
+      font-weight: 900;
+      left: 16px;
+      padding: 10px 14px;
+      position: fixed;
+      top: 12px;
+      transform: translateY(-140%);
+      transition: transform 180ms ease;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      outline: 3px solid var(--blue);
+      outline-offset: 2px;
+      transform: translateY(0);
+    }
+
     .topbar {
-      background: var(--topbar-bg);
+      background:
+        linear-gradient(180deg, var(--topbar-bg), color-mix(in srgb, var(--topbar-bg), transparent 18%));
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 20;
       backdrop-filter: blur(14px);
+      transition: background-color 220ms ease, border-color 220ms ease;
     }
 
     .topbar-inner {
@@ -143,6 +197,16 @@
       color: var(--muted);
       font-size: 0.92rem;
       font-weight: 700;
+      transition: color 180ms ease;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+      text-decoration: none;
     }
 
     .theme-toggle,
@@ -159,6 +223,8 @@
       gap: 8px;
       min-height: 34px;
       padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease, transform 220ms ease;
     }
 
     .theme-toggle:focus-visible,
@@ -170,6 +236,21 @@
     .language-toggle:hover,
     .language-toggle:focus {
       text-decoration: none;
+    }
+
+    a:focus-visible,
+    .button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+      text-decoration: none;
+    }
+
+    .theme-toggle:hover,
+    .language-toggle:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.16);
+      transform: translateY(-1px);
     }
 
     .theme-toggle-mark {
@@ -185,15 +266,21 @@
     }
 
     .hero {
-      background: var(--panel);
+      background: linear-gradient(135deg, var(--panel-soft), rgba(255, 255, 255, 0.45));
       border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    [data-theme="dark"] .hero {
+      background: linear-gradient(135deg, var(--panel-soft), rgba(15, 23, 42, 0.35));
     }
 
     .hero-grid {
+      align-items: center;
       display: grid;
       gap: 42px;
       grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-      padding: 70px 24px 52px;
+      padding: 54px 24px 42px;
     }
 
     .eyebrow {
@@ -231,8 +318,30 @@
     .lead {
       color: var(--muted);
       font-size: 1.12rem;
-      margin-top: 22px;
+      margin-top: 18px;
       max-width: 760px;
+    }
+
+    .availability {
+      align-items: center;
+      background: var(--accent-wash);
+      border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+      color: var(--ink);
+      display: inline-flex;
+      font-size: 0.9rem;
+      font-weight: 800;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 11px;
+      border-radius: var(--radius-sm);
+    }
+
+    .availability::before {
+      background: var(--accent);
+      border-radius: 999px;
+      content: "";
+      height: 8px;
+      width: 8px;
     }
 
     .actions {
@@ -252,10 +361,21 @@
       justify-content: center;
       min-height: 44px;
       padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease, transform 220ms ease;
+    }
+
+    .button.secondary-link {
+      border-color: var(--line);
+      color: var(--muted);
+      min-height: 38px;
+      padding: 8px 12px;
     }
 
     .button.primary {
-      background: var(--button-bg);
+      background:
+        linear-gradient(135deg, var(--button-bg), color-mix(in srgb, var(--button-bg), var(--accent) 18%));
       color: var(--button-text);
     }
 
@@ -264,16 +384,41 @@
       text-decoration: none;
     }
 
+    .button:hover,
+    .button:focus-visible {
+      border-color: var(--accent);
+      box-shadow: 0 12px 28px rgba(15, 118, 110, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .button.primary:hover,
+    .button.primary:focus-visible {
+      background:
+        linear-gradient(135deg, var(--accent-dark), color-mix(in srgb, var(--accent-dark), var(--blue) 18%));
+      border-color: var(--accent-dark);
+      color: #ffffff;
+    }
+
     .metrics {
       display: grid;
       gap: 12px;
       grid-template-columns: repeat(3, 1fr);
-      margin-top: 34px;
+      margin-top: 24px;
     }
 
     .metric {
-      border-top: 3px solid var(--ink);
-      padding-top: 10px;
+      background: var(--surface-highlight);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .metric:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-2px);
     }
 
     .metric strong {
@@ -290,10 +435,13 @@
     }
 
     .system-map {
-      background: var(--code);
+      background: linear-gradient(145deg, var(--code), #111827 58%, #0f766e);
       color: #e5e7eb;
       min-height: 100%;
       padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      transition: background 220ms ease, box-shadow 220ms ease;
     }
 
     .profile-visual {
@@ -312,6 +460,7 @@
       object-fit: cover;
       object-position: center 34%;
       width: 96px;
+      box-shadow: 0 0 0 6px rgba(94, 234, 212, 0.08);
     }
 
     .profile-visual strong {
@@ -343,6 +492,13 @@
     .node {
       border: 1px solid var(--code-line);
       padding: 14px;
+      border-radius: var(--radius-sm);
+      transition: border-color 220ms ease, transform 220ms ease;
+    }
+
+    .node:hover {
+      border-color: var(--accent);
+      transform: translateX(3px);
     }
 
     .node strong {
@@ -392,6 +548,73 @@
       background: var(--panel);
       border: 1px solid var(--line);
       padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .card::before {
+      background: linear-gradient(90deg, var(--accent), transparent 72%);
+      border-radius: var(--radius) var(--radius) 0 0;
+      content: "";
+      height: 3px;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity 220ms ease;
+    }
+
+    .card.featured {
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 44%),
+        var(--panel);
+      border-top: 4px solid var(--accent);
+    }
+
+    .impact {
+      border-left: 3px solid var(--accent);
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 800;
+      margin-top: 14px;
+      padding-left: 10px;
+    }
+
+    .additional-work {
+      margin-top: 28px;
+    }
+
+    .additional-work summary {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      transition: border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .additional-work summary:hover,
+    .additional-work summary:focus-visible {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .additional-work .grid {
+      margin-top: 18px;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .card:hover::before {
+      opacity: 1;
     }
 
     .card p,
@@ -413,6 +636,11 @@
       text-transform: uppercase;
     }
 
+    .card a,
+    .role a {
+      font-weight: 800;
+    }
+
     .stack {
       display: flex;
       flex-wrap: wrap;
@@ -426,6 +654,17 @@
       font-size: 0.84rem;
       font-weight: 700;
       padding: 5px 8px;
+      border-radius: 999px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      background: rgba(15, 118, 110, 0.06);
+      transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+    }
+
+    .stack span:hover {
+      background: rgba(15, 118, 110, 0.12);
+      border-color: var(--accent);
+      transform: translateY(-1px);
     }
 
     .timeline {
@@ -438,6 +677,15 @@
       background: var(--panel);
       border-left: 4px solid var(--ink);
       padding: 20px 22px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-soft);
+      transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .role:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
     }
 
     .role-header {
@@ -471,11 +719,63 @@
       padding: 28px 0;
     }
 
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-grid > *,
+    .section {
+      animation: rise-in 520ms ease both;
+    }
+
     footer .shell {
       align-items: center;
       display: flex;
       gap: 18px;
       justify-content: space-between;
+    }
+
+    h1,
+    h2,
+    h3,
+    .button,
+    .card,
+    .role {
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 1100px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 8px;
+        padding-top: 8px;
+      }
+
+      nav {
+        gap: 10px;
+        max-width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: thin;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-map {
+        padding: 20px;
+      }
     }
 
     @media (max-width: 860px) {
@@ -490,6 +790,11 @@
         justify-content: flex-start;
       }
 
+      nav > a[href="#experience"],
+      nav > a[href="#skills"] {
+        display: none;
+      }
+
       .hero-grid,
       .grid.two,
       .grid.three {
@@ -497,11 +802,66 @@
       }
 
       .hero-grid {
-        padding: 48px 20px 42px;
+        padding: 28px 20px 30px;
+      }
+
+      h1 {
+        font-size: clamp(2.1rem, 12vw, 3.2rem);
+      }
+
+      .lead {
+        font-size: 0.98rem;
+        margin-top: 14px;
+      }
+
+      .actions {
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .button {
+        flex: 1 1 145px;
+        min-height: 42px;
       }
 
       .metrics {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .metric {
+        padding: 9px 10px;
+      }
+
+      .metric strong {
+        font-size: 1.05rem;
+      }
+
+      .metric span {
+        font-size: 0.74rem;
+      }
+
+      .system-map {
+        display: none;
+      }
+
+
+      .metrics {
+        display: none;
+      }
+
+      #work.section {
+        padding-top: 24px;
+      }
+
+      .section-head {
+        gap: 10px;
+        padding-top: 12px;
+      }
+
+      .section-head p {
+        font-size: 0.92rem;
       }
 
       .role-header {
@@ -511,6 +871,219 @@
       .role time {
         display: block;
         margin-top: 4px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: clip;
+      }
+
+      .shell {
+        max-width: 100%;
+        padding-left: max(28px, env(safe-area-inset-left));
+        padding-right: max(28px, env(safe-area-inset-right));
+        width: 100%;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        min-height: 58px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .brand {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      nav {
+        gap: 8px;
+        justify-content: flex-start;
+        overflow: visible;
+        padding-bottom: 0;
+        width: 100%;
+      }
+
+      nav > a:not(.language-toggle) {
+        display: none;
+      }
+
+      nav > a[href^="mailto:"] {
+        display: none;
+      }
+
+      nav a,
+      .theme-toggle,
+      .language-toggle {
+        font-size: 0.82rem;
+      }
+
+      .profile-visual img {
+        height: 76px;
+        width: 76px;
+      }
+
+      .hero-grid {
+        box-sizing: border-box;
+        padding: 22px max(28px, env(safe-area-inset-right)) 94px max(28px, env(safe-area-inset-left));
+        width: 100%;
+      }
+
+      .eyebrow {
+        font-size: 0.66rem;
+        line-height: 1.45;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: clamp(1.78rem, 10.5vw, 2.35rem);
+        line-height: 0.95;
+        max-width: 100%;
+      }
+
+      .lead {
+        display: -webkit-box;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-top: 10px;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+      }
+
+      .availability {
+        display: none;
+      }
+
+      .actions {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 16px;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .button {
+        box-sizing: border-box;
+        flex: initial;
+        font-size: 0.78rem;
+        min-height: 38px;
+        min-width: 0;
+        padding: 8px 10px;
+        white-space: normal;
+        width: 100%;
+      }
+
+      #work.section {
+        margin-top: -94px;
+        padding-top: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      #work .section-head {
+        display: none;
+      }
+
+      #work .grid {
+        margin-top: 0;
+      }
+
+      .card {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .actions {
+        gap: 7px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 14px;
+      }
+
+      .button {
+        font-size: 0.74rem;
+        min-height: 36px;
+        padding: 7px 8px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .shell {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+      }
+
+      .hero-grid {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+      }
+
+      h1 {
+        font-size: clamp(1.65rem, 10vw, 2rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .skip-link {
+        transform: translateY(-140%) !important;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0) !important;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .button,
+      .card,
+      .role,
+      .system-map,
+      .node,
+      .theme-toggle,
+      .language-toggle,
+      .metric,
+      .additional-work summary {
+        border: 1px solid CanvasText;
+        box-shadow: none;
+      }
+
+      .button.primary,
+      .skip-link {
+        background: Highlight;
+        color: HighlightText;
+      }
+
+      a,
+      nav a {
+        color: LinkText;
       }
     }
   </style>
@@ -529,31 +1102,32 @@
       "knowsAbout": [
         "Engenharia de Software",
         "Desenvolvimento Full Stack",
-        "Android QA",
-        "Automação de Testes",
-        "Flutter",
-        "Python",
+        "APIs Backend",
+        "Automação de Negócio",
+        "Infraestrutura Cloud",
         "TypeScript",
+        "Python",
+        "FastAPI",
         "React",
         "Next.js",
+        "Flutter",
         "AWS",
-        "Infraestrutura self-hosted",
         "Docker",
         "Linux",
         "Nginx",
-        "Tailscale VPN",
-        "DNS",
-        "Manutenção de hardware",
         "PostgreSQL",
         "MySQL",
         "APIs REST",
-        "DevOps",
-        "IA aplicada"
+        "CI/CD",
+        "Documentação Técnica",
+        "Workflows com IA Aplicada",
+        "Integração com LLMs"
       ]
     }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Pular para o conteúdo</a>
   <header class="topbar">
     <div class="shell topbar-inner">
       <a class="brand" href="#top">Nickolas J. S. Livero</a>
@@ -583,32 +1157,33 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div>
-          <p class="eyebrow">Engenheiro de Software - Full Stack - Android QA - Cloud</p>
+          <p class="eyebrow">Engenheiro de Software Full Stack - Backend - Cloud - Automação</p>
           <h1>Nickolas Livero</h1>
-          <p class="lead">Engenheiro de Software em Manaus com experiência em sistemas web/mobile, APIs backend, validação Android, AWS, Docker, automação, IA aplicada e suporte a produção. Trabalho bem em ambientes onde é preciso entender o problema, entregar software funcional e sustentar a operação.</p>
+          <p class="lead">Construo sistemas web, backend e automações em produção com TypeScript, Python, Flutter e AWS. Meu foco é entrega full stack/backend, confiabilidade e automação de processos de negócio.</p>
+          <p class="availability">Aberto a vagas full stack/backend remotas, UTC-friendly; baseado no Brasil</p>
           <div class="actions">
-            <a class="button primary" href="mailto:nickolasjl.work@gmail.com">Entrar em contato</a>
-            <a class="button" href="resume-pt.pdf">Baixar currículo</a>
+            <a class="button primary" href="resume-pt.pdf">Baixar currículo</a>
+            <a class="button" href="mailto:nickolasjl.work@gmail.com">Entrar em contato</a>
             <a class="button" href="resume.pdf" hreflang="en">Resume EN</a>
-            <a class="button" href="https://github.com/nickolaslivero" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="button" href="https://www.linkedin.com/in/nickolaslivero/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button secondary-link" href="https://github.com/nickolaslivero" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="button secondary-link" href="https://www.linkedin.com/in/nickolaslivero/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
           <div class="metrics" aria-label="Métricas profissionais">
-            <div class="metric"><strong>4+ anos</strong><span>software, automação, QA e entrega de produto</span></div>
-            <div class="metric"><strong>400+ testes</strong><span>automatizados em fluxos de QA e validação</span></div>
+            <div class="metric"><strong>4+ anos</strong><span>software, backend, cloud e entrega de produto</span></div>
+            <div class="metric"><strong>400+ checks</strong><span>automatizados em fluxos de validação e release</span></div>
             <div class="metric"><strong>60-70%</strong><span>redução de trabalho manual em fluxos validados</span></div>
           </div>
         </div>
         <aside class="system-map" aria-label="Mapa de entrega">
           <div class="profile-visual">
             <img src="assets/nickolas-livero-linkedin.jpeg" alt="Foto de perfil de Nickolas Livero" width="96" height="96">
-            <p><strong>Entrega ponta a ponta</strong><span>Requisitos, código, deploy, validação e suporte</span></p>
+            <p><strong>Entrega ponta a ponta</strong><span>Contexto de negócio, código, cloud, automação e suporte</span></p>
           </div>
           <h2>Como eu entrego</h2>
           <div class="flow">
             <div class="node"><strong>Contexto de produto</strong><span>requisitos, restrições, workflow e tradeoffs técnicos</span></div>
-            <div class="node"><strong>Engenharia de aplicação</strong><span>Flutter, React, Next.js, TypeScript, Python, FastAPI, APIs REST e Android tooling</span></div>
-            <div class="node"><strong>Automação, QA e IA aplicada</strong><span>Python, pytest, Android validation, UI Automator, LLM workflows, contato com LangChain/LangGraph e processamento de dados</span></div>
+            <div class="node"><strong>Engenharia de aplicação</strong><span>TypeScript, Python, Flutter, React, Next.js, APIs REST e Android tooling</span></div>
+            <div class="node"><strong>Automação e validação</strong><span>Python, validação de releases, pipelines de teste, suporte operacional e processamento de dados</span></div>
             <div class="node"><strong>Cloud e operação</strong><span>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, load balancing, Docker, Linux, Nginx, DNS e VPN</span></div>
           </div>
         </aside>
@@ -619,18 +1194,26 @@
       <div class="shell">
         <div class="section-head">
           <h2>Projetos Selecionados</h2>
-          <p>Sistemas em produção, projetos confidenciais representados como case studies e repositórios públicos que sustentam um perfil full stack, cloud, Android QA e IA aplicada.</p>
+          <p>Principais provas de entrega em produção, automação de negócio, cloud e amplitude técnica.</p>
         </div>
         <div class="grid two">
-          <article class="card"><p class="tagline">Distribuição Android - Backend - Tooling Interno</p><h3>i-repos Hub de Distribuição Android</h3><p>Construção de um hub interno de distribuição e validação Android para apps, versões, rollouts, dispositivos, artifacts e autenticação, conectando APIs backend com fluxos administrativos e tooling Android.</p><div class="stack"><span>NestJS</span><span>Swagger</span><span>JWT</span><span>Prisma</span><span>TypeScript</span><span>Android</span><span>Kotlin</span><span>Gradle</span></div><p><a href="#skills">Ver competências técnicas</a></p></article>
-          <article class="card"><p class="tagline">Backend - Testes - Regras de Negócio</p><h3>Backend iCheck/PEDLOG</h3><p>Atuação em APIs backend para fluxos administrativos e folha usando endpoints REST documentados, dados relacionais, testes automatizados, mocks e validação de regras de negócio.</p><div class="stack"><span>Express</span><span>TypeScript</span><span>PostgreSQL</span><span>Knex</span><span>Swagger/OpenAPI</span><span>Jest</span><span>Supertest</span><span>AWS S3</span></div><p><a href="#experience">Ver contexto da entrega</a></p></article>
-          <article class="card"><p class="tagline">Produção - Cloud - Full Stack</p><h3>PEDLOG/iCheck</h3><p>Sistema administrativo em produção com frontend Flutter/Web, APIs backend, banco relacional, DNS, CDN, load balancing, Docker, Linux, AWS, relatórios e suporte operacional.</p><div class="stack"><span>Flutter Web</span><span>APIs</span><span>PostgreSQL</span><span>AWS ECS</span><span>ECR</span><span>EC2</span><span>CloudFront</span><span>ALB</span></div><p><a href="https://administracaopedlog.ipenaconsultoria.com.br/" target="_blank" rel="noreferrer">Abrir sistema</a></p></article>
-          <article class="card"><p class="tagline">B2B - ERP - Software House</p><h3>Site da IPENA Consultoria</h3><p>Entrega do site institucional para uma software house B2B industrial focada em consultoria TOTVS Protheus, integrações com APIs, suporte ERP e software sob demanda.</p><div class="stack"><span>Next.js</span><span>SEO</span><span>B2B</span><span>AWS S3</span><span>Route 53</span><span>ERP</span></div><p><a href="https://ipenaconsultoria.com.br/" target="_blank" rel="noreferrer">Abrir site</a></p></article>
-          <article class="card"><p class="tagline">IA Aplicada - Pesquisa</p><h3>Assistente com Voz e LLM</h3><p>Pesquisa SBIE 2024 sobre assistente virtual baseado em voz e LLM para apoiar alunos com deficiência visual.</p><div class="stack"><span>LLMs</span><span>Acessibilidade</span><span>Pesquisa</span><span>Educação</span></div><p><a href="https://sol.sbc.org.br/index.php/sbie/article/view/31461" target="_blank" rel="noreferrer">Ler publicação</a></p></article>
-          <article class="card"><p class="tagline">IA Generativa - WhatsApp - Confidencial</p><h3>Fluxos de Automação com Bots de IA</h3><p>Atuação freelancer curta e confidencial em automações para WhatsApp com LangGraph, LangChain, agentes/tools, RAG, fallback e workflows com APIs Gemini/OpenAI. Código-fonte e cliente permanecem privados por confidencialidade.</p><div class="stack"><span>LangGraph</span><span>LangChain</span><span>Agents</span><span>Tools</span><span>RAG</span><span>Fallback</span><span>Gemini</span><span>OpenAI</span></div><p><a href="#skills">Ver competências técnicas</a></p></article>
-          <article class="card"><p class="tagline">Self-hosted - DevOps - Redução de Custo</p><h3>Infraestrutura de Homologação</h3><p>Criei um ambiente de homologação de baixo custo usando notebook reaproveitado como servidor, Ubuntu Server, containers Docker, Tailscale VPN, roteamento via AWS EC2, registros DNS no Route 53 e Nginx reverse proxy. Isso permitiu validação com cliente sem duplicar custos de produção na AWS e sem expor a rede doméstica.</p><div class="stack"><span>AWS EC2</span><span>Route 53</span><span>Tailscale</span><span>Nginx</span><span>Docker</span><span>Ubuntu Server</span><span>DNS</span><span>Hardware</span></div><p><a href="#experience">Ver contexto da entrega</a></p></article>
-          <article class="card"><p class="tagline">Tooling Experimental - ERP - Automação</p><h3>Tooling MCP para Protheus/TOTVS</h3><p>Projeto experimental de tooling MCP/TOTVS para explorar automação em contextos próximos a ERP, fluxos de suporte a Protheus, operações de desenvolvimento e interfaces de comando assistidas por IA. Construído como projeto pessoal de aprendizado e prototipagem, com foco em padrões de integração, desenho de ferramentas e automação prática de processos.</p><div class="stack"><span>MCP</span><span>Python</span><span>TOTVS Protheus</span><span>Automação</span><span>Developer Tools</span></div><p><a href="#skills">Ver competências técnicas</a></p></article>
+          <article class="card featured"><p class="tagline">Produção - Cloud - Full Stack</p><h3>PEDLOG/iCheck</h3><p>Sistema administrativo em produção com Flutter/Web, APIs, banco relacional, DNS, CDN, load balancing, Docker, Linux, AWS, relatórios e suporte.</p><p class="impact">Impacto: folha/administração migrada para um workflow em produção, reduzindo esforço administrativo manual em fluxos validados em até 60-70%.</p><div class="stack"><span>Flutter Web</span><span>APIs</span><span>PostgreSQL</span><span>AWS ECS</span><span>ECR</span><span>EC2</span><span>CloudFront</span><span>ALB</span></div><p><a href="https://administracaopedlog.ipenaconsultoria.com.br/" target="_blank" rel="noopener noreferrer">Abrir sistema</a></p></article>
+
+          <article class="card featured"><p class="tagline">Backend - Testes - Regras de Negócio</p><h3>Backend iCheck/PEDLOG</h3><p>APIs para fluxos administrativos e folha com endpoints REST documentados, dados relacionais, testes automatizados, mocks e regras de negócio.</p><p class="impact">Impacto: menor risco de mudança ao tornar regras de folha/administração explícitas, documentadas e cobertas por testes de API.</p><div class="stack"><span>Express</span><span>TypeScript</span><span>PostgreSQL</span><span>Knex</span><span>Swagger/OpenAPI</span><span>Jest</span><span>Supertest</span><span>AWS S3</span></div><p><a href="#experience">Ver contexto da entrega</a></p></article>
+
+          <article class="card featured"><p class="tagline">Distribuição Android - Backend - Tooling Interno</p><h3>i-repos Hub de Distribuição Android</h3><p>Hub interno para apps, versões, rollouts, dispositivos, artifacts e autenticação, conectando APIs backend com fluxos administrativos e tooling Android.</p><p class="impact">Impacto: caminho interno mais seguro para atualização de apps Android em tablets, controle de versões e validação de rollout.</p><div class="stack"><span>NestJS</span><span>Swagger</span><span>JWT</span><span>Prisma</span><span>TypeScript</span><span>Android</span><span>Kotlin</span><span>Gradle</span></div><p><a href="#skills">Ver competências técnicas</a></p></article>
+
+          <article class="card featured"><p class="tagline">B2B - ERP - Software House</p><h3>Site da IPENA Consultoria</h3><p>Site institucional para software house B2B focada em TOTVS Protheus, integrações com APIs, suporte ERP e software sob demanda.</p><p class="impact">Impacto: superfície comercial B2B mais clara para consultoria ERP, integrações via API e software sob demanda.</p><div class="stack"><span>Next.js</span><span>SEO</span><span>B2B</span><span>AWS S3</span><span>Route 53</span><span>ERP</span></div><p><a href="https://ipenaconsultoria.com.br/" target="_blank" rel="noopener noreferrer">Abrir site</a></p></article>
         </div>
+        <details class="additional-work">
+          <summary>Evidências adicionais: IA, infraestrutura, pesquisa e tooling experimental</summary>
+          <div class="grid two">
+          <article class="card"><p class="tagline">IA Aplicada - Pesquisa</p><h3>Assistente com Voz e LLM</h3><p>Pesquisa SBIE 2024 sobre assistente virtual baseado em voz e LLM para apoiar alunos com deficiência visual.</p><p class="impact">Impacto: evidência revisada por pares em IA aplicada, acessibilidade e comunicação técnica.</p><div class="stack"><span>LLMs</span><span>Acessibilidade</span><span>Pesquisa</span><span>Educação</span></div><p><a href="https://sol.sbc.org.br/index.php/sbie/article/view/31461" target="_blank" rel="noopener noreferrer">Ler publicação</a></p></article>
+          <article class="card"><p class="tagline">IA Generativa - WhatsApp - Confidencial</p><h3>Fluxos de Automação com Bots de IA</h3><p>Atuação freelancer curta e confidencial em automações para WhatsApp com LangGraph, LangChain, agentes/tools, RAG, fallback e APIs Gemini/OpenAI.</p><p class="impact">Impacto: contato prático com agentes e automação de IA em contexto de cliente.</p><div class="stack"><span>LangGraph</span><span>LangChain</span><span>Agents</span><span>Tools</span><span>RAG</span><span>Fallback</span><span>Gemini</span><span>OpenAI</span></div><p><a href="#skills">Ver competências técnicas</a></p></article>
+          <article class="card"><p class="tagline">Self-hosted - DevOps - Redução de Custo</p><h3>Infraestrutura de Homologação</h3><p>Ambiente de homologação de baixo custo com Ubuntu Server, Docker, Tailscale VPN, AWS EC2, Route 53 e Nginx reverse proxy.</p><p class="impact">Impacto: validação com cliente sem duplicar custos de produção na AWS.</p><div class="stack"><span>AWS EC2</span><span>Route 53</span><span>Tailscale</span><span>Nginx</span><span>Docker</span><span>Ubuntu Server</span><span>DNS</span><span>Hardware</span></div><p><a href="#experience">Ver contexto da entrega</a></p></article>
+          <article class="card"><p class="tagline">Tooling Experimental - ERP - Automação</p><h3>Tooling MCP para Protheus/TOTVS</h3><p>Projeto experimental para explorar automação próxima a ERP, suporte a Protheus e interfaces de comando assistidas por IA.</p><p class="impact">Impacto: prática exploratória em integrações ERP, desenho de tools e automação de processos.</p><div class="stack"><span>MCP</span><span>Python</span><span>TOTVS Protheus</span><span>Automação</span><span>Developer Tools</span></div><p><a href="#skills">Ver competências técnicas</a></p></article>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -647,11 +1230,11 @@
 
     <section id="skills" class="section">
       <div class="shell">
-        <div class="section-head"><h2>Competências Técnicas</h2><p>Base generalista com profundidade prática em APIs, automação, Android QA, cloud e produtos multiplataforma.</p></div>
+        <div class="section-head"><h2>Competências Técnicas</h2><p>Base prática full stack/backend com profundidade de apoio em automação, Android QA, cloud e produtos multiplataforma.</p></div>
         <div class="grid three">
-          <article class="card"><h3>Automação, QA Android e IA</h3><ul><li>Python, pytest, UI Automator, Android Studio, ADB, inspeção XML, dispositivos físicos, contato introdutório com AOSP, processamento de dados e SQL</li><li>LangChain, LangGraph, agentes/tools, RAG, fallback, workflows OpenAI/Gemini, Cypress, Jest, Playwright, Flutter Test, regressão, validação mobile e documentação técnica</li><li>Tooling experimental MCP/TOTVS/Protheus, Jenkins, Azure DevOps, Gerrit, Git, pull requests, advanced Git, Scrum, Kanban e Agile</li></ul></article>
           <article class="card"><h3>Full Stack</h3><ul><li>Flutter, Dart, React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML e CSS</li><li>Python, FastAPI, Flask, SQLAlchemy, contato com Django, Node.js, NestJS, Express.js, Swagger/OpenAPI, JWT, Prisma, Knex, Java, Kotlin, contato com Gradle, C++, PostgreSQL e MySQL</li><li>APIs REST, Jest, ts-jest, Supertest, autenticação, integrações, automação de processos e sistemas SaaS/B2B</li></ul></article>
-          <article class="card"><h3>Cloud, Infra e Hardware</h3><ul><li>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, DNS e subdomínios</li><li>Docker, Docker Compose, Linux, Ubuntu Server, Nginx reverse proxy, Tailscale VPN, homologação self-hosted e PowerShell</li><li>Linux/Windows installers, Inno Setup, troubleshooting, upgrades de RAM/CPU/SSD e manutenção de hardware</li></ul></article>
+          <article class="card"><h3>Cloud e Infraestrutura</h3><ul><li>AWS ECS, ECR, EC2, S3, Route 53, CloudFront, Application Load Balancer, DNS e subdomínios</li><li>Docker, Docker Compose, Linux, Ubuntu Server, Nginx reverse proxy, Tailscale VPN, homologação self-hosted e PowerShell</li><li>Linux/Windows installers, Inno Setup, troubleshooting, suporte a produção e manutenção prática de laboratório</li></ul></article>
+          <article class="card"><h3>Automação e Validação</h3><ul><li>Python, pytest, validação de releases, regressão, troubleshooting mobile/dispositivos, processamento de dados e SQL</li><li>Cypress, Jest, Playwright, Flutter Test, regressão, documentação técnica e contato prático com LangChain/LangGraph, agentes/tools, RAG, fallback e workflows OpenAI/Gemini</li><li>Jenkins, Azure DevOps, Gerrit, Git, pull requests, advanced Git, Scrum, Kanban, Agile e tooling experimental MCP/TOTVS</li></ul></article>
         </div>
       </div>
     </section>
@@ -662,7 +1245,7 @@
         <div class="grid three">
           <article class="card"><h3>Produção e infraestrutura real</h3><p>Atuação em arquitetura, implementação, deploy, DNS, cloud, ambientes self-hosted, validação e suporte de sistemas de negócio.</p></article>
           <article class="card"><h3>Impacto mensurável</h3><p>Redução de esforço manual por automação, integrações e entrega de software para operação.</p></article>
-          <article class="card"><h3>Manaus e híbrido</h3><p>Localizado em Manaus, com inglês avançado, experiência em institutos de tecnologia e disponibilidade para atuação híbrida/local.</p></article>
+          <article class="card"><h3>Pronto para times remotos</h3><p>Baseado no Brasil, com inglês avançado, comunicação assíncrona e experiência apoiando fluxos técnicos distribuídos.</p></article>
         </div>
       </div>
     </section>
@@ -670,7 +1253,7 @@
 
   <footer>
     <div class="shell">
-      <p>Nickolas J. S. Livero - Manaus, Brasil - Aberto a oportunidades locais, híbridas e remotas</p>
+      <p>Nickolas J. S. Livero - Brasil - Aberto a oportunidades remotas full stack/backend</p>
       <p><a href="mailto:nickolasjl.work@gmail.com">nickolasjl.work@gmail.com</a></p>
     </div>
   </footer>
@@ -680,6 +1263,7 @@
       const root = document.documentElement;
       const toggle = document.querySelector('[data-theme-toggle]');
       const label = document.querySelector('[data-theme-label]');
+      const themeColor = document.querySelector('meta[name="theme-color"]');
 
       const getSystemTheme = () => {
         return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -699,6 +1283,9 @@
       const applyTheme = (theme) => {
         const normalized = theme === 'dark' ? 'dark' : 'light';
         root.dataset.theme = normalized;
+        if (themeColor) {
+          themeColor.setAttribute('content', normalized === 'dark' ? '#0f172a' : '#eef2f6');
+        }
         if (toggle && label) {
           const isDark = normalized === 'dark';
           toggle.setAttribute('aria-pressed', String(isDark));
