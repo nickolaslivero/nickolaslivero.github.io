@@ -1,64 +1,61 @@
 # Nickolas Livero Portfolio
 
-Personal GitHub Pages portfolio for software engineering opportunities.
+Bilingual static portfolio for software engineering roles and consulting through
+NLivero Software e Consultoria Ltda.
 
-Live site: [nickolaslivero.github.io](https://nickolaslivero.github.io/)
+[English](https://nickolaslivero.github.io/) |
+[Portugues](https://nickolaslivero.github.io/pt-br.html)
 
-## About
+## Work represented
 
-This repository hosts a static portfolio focused on practical software delivery:
+- Technos gatehouse/maintenance workflows integrated with TOTVS Protheus,
+  delivered through IPena Consultoria.
+- Production Android application distribution, with targeted releases and
+  installer handoff.
+- Maintenance of inherited factory and non-fiscal payroll systems, logistics
+  dashboards and cloud operations.
+- Android QA automation, research prototypes and bounded freelance contributions.
 
-- Full stack web and mobile systems
-- Android QA, ADB, UI Automator, and test automation
-- AWS, Docker, Linux, Nginx, DNS, VPN, and self-hosted environments
-- Backend APIs, business automation, and production support
-- Applied AI and LLM-assisted workflows
+Client source code, operational data and internal endpoints are not included.
+A pilot, a delivered frontend MVP and maintained production software are
+described separately. No unverified productivity metrics or production-AI
+authorship claims are used.
 
-The site is available in English and Portuguese:
+## Files
 
-- [English](https://nickolaslivero.github.io/)
-- [Portuguese](https://nickolaslivero.github.io/pt-br.html)
+- `index.html`, `pt-br.html`: English/Portuguese pages.
+- `assets/site.css`, `assets/site.js`: shared responsive styles and theme toggle.
+- `assets/`: existing portrait, favicons and application icons.
+- `cv-en.pdf`, `cv-pt.pdf`: reviewed public master resumes.
+- `resume.pdf`, `resume-pt.pdf`: compatibility aliases of the current public
+  masters for previously shared links. Earlier modified files were preserved
+  in the private workspace before the owner-authorized replacement.
+- `robots.txt`, `sitemap.xml`, `site.webmanifest`: crawler/browser metadata.
+- `scripts/`, `.github/workflows/`: public-only validation, not deployment.
 
-## Highlights
+## Preview and validate
 
-- Production system delivery with frontend, backend, database, DNS, CDN, load balancing, and AWS operations
-- Self-hosted homologation infrastructure using Ubuntu Server, Docker, Tailscale VPN, AWS EC2, Route 53, and Nginx reverse proxy
-- Android QA automation with Python, ADB, UI Automator, Cypress, Jenkins, Azure DevOps, and Gerrit
-- Published applied AI/accessibility research involving voice and LLM-based workflows
+Open either HTML file in a browser. No framework, build, server, CDN scripts,
+analytics, tracking or account credentials are required.
 
-## Repository Structure
+With Node.js 24, run:
 
-- `index.html`: English portfolio page
-- `pt-br.html`: Portuguese portfolio page
-- `resume.pdf`: English ATS resume
-- `resume-pt.pdf`: Portuguese ATS resume
-- `assets/`: profile image, favicon, app icons, and social preview image
-- `robots.txt`: crawler policy
-- `sitemap.xml`: search engine sitemap with EN/PT alternate URLs
-- `site.webmanifest`: browser metadata and app icons
+```powershell
+node --test scripts/validate-site.test.mjs
+node scripts/validate-site.mjs .
+```
 
-## Technical Notes
+Validation is a local/public-content gate, not proof that confidential client
+systems work or that a hiring platform will accept an application.
 
-This is intentionally a static site:
+## Publication
 
-- No frontend framework
-- No build step
-- Plain HTML and CSS
-- Lightweight JavaScript only for theme switching
-- SEO metadata, Open Graph/Twitter cards, JSON-LD, sitemap, and favicon support
+This repository is independent from the private career workspace and GitHub
+profile repository. GitHub Pages currently uses `main` from the repository root.
+The validation workflow does not change Pages mode or deploy the site.
 
-## GitHub Pages Visibility
-
-This repository is public because it is a GitHub Pages user site. GitHub Pages can be published from private repositories only on supported paid plans, and published Pages sites are still publicly available on the internet.
-
-No confidential client source code is stored here. Confidential work is represented only through public-safe descriptions and case-study style summaries.
-
-## Maintenance
-
-Keep this portfolio aligned with the source resume files in the broader career hub workspace:
-
-- `../../resume/master-resume.md`
-- `../../resume/master-resume-pt.md`
-- `../../resume/dist/pdf/resume.pdf`
-- `../../resume/dist/pdf/resume-pt.pdf`
-
+A local branch, successful tests and an edited README are not publication.
+Review the diff, approve the PDF/copy, then explicitly authorize commit/push.
+Check the remote workflow result and live pages after publication. Private
+evidence, application trackers and customer documentation must never enter
+this public repository.
