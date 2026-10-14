@@ -13,7 +13,7 @@
   const apply = (enabled) => {
     root.dataset.theme = enabled ? "dark" : "light";
     toggle.checked = enabled;
-    document.querySelector('meta[name="theme-color"]').content = enabled ? "#141a17" : "#fbfcfc";
+    document.querySelector('meta[name="theme-color"]').content = enabled ? "#1b2021" : "#f7f8f7";
   };
   apply(dark);
   toggle.closest("label").hidden = false;

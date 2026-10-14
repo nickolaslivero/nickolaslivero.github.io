@@ -3,8 +3,8 @@
   "short_name": "Nickolas Livero",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#fbfcfc",
-  "theme_color": "#176443",
+  "background_color": "#f7f8f7",
+  "theme_color": "#285e59",
   "icons": [
     {
       "src": "assets/favicon-32.png",

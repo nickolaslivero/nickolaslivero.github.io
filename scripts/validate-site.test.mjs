@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -94,6 +94,65 @@ test('local CSS and JavaScript imports resolve without dependencies', (t) => {
   assert.deepEqual(validateSite(root).errors, []);
 });
 
+test('external stylesheet cannot satisfy required shared CSS', (t) => {
+  const root = fixture(t);
+  edit(root, 'index.html', 'href="assets/site.css?v=1"', 'href="https://example.com/assets/site.css?v=1"');
+  const { errors } = validateSite(root);
+  assert.ok(errors.some((error) => error.includes('[shared-asset]')));
+  assert.ok(errors.some((error) => error.includes('[dependency]')));
+});
+
+test('data URL scripts are rejected with the local shared script present', (t) => {
+  reject(t, (root) => edit(root, 'index.html', '</head>',
+    '<script src="data:text/javascript,void%200"></script></head>'), 'asset');
+});
+
+test('same-origin shared assets accept absolute and root-relative URLs', (t) => {
+  const root = fixture(t);
+  edit(root, 'index.html', 'href="assets/site.css?v=1"', `href="${origin}/assets/site.css?v=1"`);
+  edit(root, 'index.html', 'src="assets/site.js"', 'src="/assets/site.js?v=1"');
+  edit(root, 'pt-br.html', 'href="assets/site.css?v=1"', 'href="/assets/site.css?v=1"');
+  edit(root, 'pt-br.html', 'src="assets/site.js"', `src="${origin}/assets/site.js"`);
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('external ordinary links and data images remain allowed', (t) => {
+  const root = fixture(t);
+  edit(root, 'index.html', '</main>', '<a href="https://example.com/assets/site.css">External resource</a>' +
+    '<a href="mailto:example@example.com">Email</a><a href="tel:+123456789">Phone</a>' +
+    '<img src="data:image/png;base64,AA==" alt="Synthetic image"></main>');
+  writeFileSync(join(root, 'assets/site.css'), 'body { background: url("data:image/png;base64,AA=="); }');
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('local CSS imports in quoted and URL forms remain allowed', (t) => {
+  const root = fixture(t);
+  writeFileSync(join(root, 'assets/colors.css'), ':root { color: black; }');
+  writeFileSync(join(root, 'assets/site.css'), '@import "./colors.css"; @import url("/assets/colors.css");');
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('shared assets must use their exact local paths', (t) => {
+  const root = fixture(t);
+  writeFileSync(join(root, 'assets/other.css'), 'body { color: black; }');
+  writeFileSync(join(root, 'assets/other.js'), 'void 0;');
+  edit(root, 'index.html', 'href="assets/site.css?v=1"', 'href="assets/other.css"');
+  edit(root, 'index.html', 'src="assets/site.js"', 'src="assets/other.js"');
+  assert.equal(validateSite(root).errors.filter((error) => error.includes('[shared-asset]')).length, 2);
+});
+
+test('realpath boundary rejects assets through an outside directory link', (t) => {
+  const root = fixture(t);
+  const outside = mkdtempSync(join(tmpdir(), 'public-site-boundary-'));
+  t.after(() => rmSync(outside, { recursive: true, force: true }));
+  writeFileSync(join(outside, 'photo.png'), 'synthetic image placeholder');
+  symlinkSync(outside, join(root, 'assets/outside'), 'junction');
+  edit(root, 'index.html', 'src="assets/photo.png"', 'src="assets/outside/photo.png"');
+  const { errors } = validateSite(root);
+  assert.ok(errors.some((error) => error.includes('[asset]')));
+  assert.ok(errors.some((error) => error.includes('[boundary]')));
+});
+
 const negatives = [
   ['missing bilingual page', (root) => rmSync(join(root, 'pt-br.html')), 'read'],
   ['wrong language', (root) => edit(root, 'pt-br.html', 'lang="pt-BR"', 'lang="en"'), 'lang'],
@@ -111,6 +170,16 @@ const negatives = [
   ['missing CSS import', (root) => writeFileSync(join(root, 'assets/site.css'), '@import "missing.css";'), 'asset'],
   ['missing JS import', (root) => writeFileSync(join(root, 'assets/site.js'), 'import "./missing.js";'), 'asset'],
   ['external JS dependency', (root) => writeFileSync(join(root, 'assets/site.js'), 'import "some-framework";'), 'dependency'],
+  ['mailto script scheme', (root) => edit(root, 'index.html', '</head>', '<script src="mailto:example@example.com"></script></head>'), 'asset'],
+  ['tel script scheme', (root) => edit(root, 'index.html', '</head>', '<script src="tel:+123456789"></script></head>'), 'asset'],
+  ['blob script scheme', (root) => edit(root, 'index.html', '</head>', `<script src="blob:${origin}/synthetic"></script></head>`), 'asset'],
+  ['additional external stylesheet', (root) => edit(root, 'index.html', '</head>', '<link rel="stylesheet" href="https://example.com/colors.css"></head>'), 'dependency'],
+  ['protocol-relative external stylesheet', (root) => edit(root, 'index.html', '</head>', '<link rel="stylesheet" href="//example.com/colors.css"></head>'), 'dependency'],
+  ['HTTP stylesheet on the public hostname', (root) => edit(root, 'index.html', 'href="assets/site.css?v=1"', `href="${origin.replace('https:', 'http:')}/assets/site.css"`), 'dependency'],
+  ['data stylesheet scheme', (root) => edit(root, 'index.html', '</head>', '<link rel="stylesheet" href="data:text/css,body%7Bcolor:black%7D"></head>'), 'asset'],
+  ['external quoted CSS import', (root) => writeFileSync(join(root, 'assets/site.css'), '@import "https://example.com/colors.css";'), 'dependency'],
+  ['external URL CSS import', (root) => writeFileSync(join(root, 'assets/site.css'), '@import url("//example.com/colors.css");'), 'dependency'],
+  ['data URL CSS import', (root) => writeFileSync(join(root, 'assets/site.css'), '@import url("data:text/css,body%7Bcolor:black%7D");'), 'asset'],
   ['path traversal', (root) => edit(root, 'index.html', 'assets/photo.png', '../private.png'), 'asset'],
   ['encoded traversal', (root) => edit(root, 'index.html', 'assets/photo.png', '%2e%2e/private.png'), 'asset'],
   ['shared asset mentioned only in comment', (root) => edit(root, 'index.html', '<script src="assets/site.js" defer></script>', '<!-- assets/site.js -->'), 'shared-asset'],

@@ -99,9 +99,10 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
     }
   }
 
-  function reference(file, value, context, module = false) {
+  function reference(file, value, context, localOnly = false) {
     const ref = decode(value).trim();
-    if (!ref || ref.startsWith('#') || /^(?:mailto|tel|data):/i.test(ref)) return;
+    if (!ref || ref.startsWith('#')) return;
+    if (!localOnly && /^(?:mailto|tel|data):/i.test(ref)) return;
     let url;
     try {
       const base = new URL(file.replaceAll('\\', '/'), `${publicOrigin}/`);
@@ -121,7 +122,7 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
       return;
     }
     if (url.origin !== publicOrigin) {
-      if (module) fail(file, 'dependency', `${context}: JavaScript modules must be local`);
+      if (localOnly) fail(file, 'dependency', `${context}: scripts and stylesheets must be local`);
       return; // No network requests, including external link checks.
     }
     let target;
@@ -166,8 +167,9 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
       }
     }
     for (const node of nodes) {
+      const localOnly = node.tag === 'script' || (node.tag === 'link' && hasRel(node, 'stylesheet'));
       for (const attr of ['href', 'src', 'poster']) {
-        if (attr in node.attrs) reference(page.file, node.attrs[attr], `${node.tag}.${attr} at line ${node.line}`, node.tag === 'script');
+        if (attr in node.attrs) reference(page.file, node.attrs[attr], `${node.tag}.${attr} at line ${node.line}`, localOnly);
       }
       if (node.attrs.srcset) {
         for (const entry of node.attrs.srcset.split(',')) reference(page.file, entry.trim().split(/\s+/)[0], `srcset at line ${node.line}`);
@@ -176,7 +178,10 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
     for (const [asset, tag, attr] of [['assets/site.css', 'link', 'href'], ['assets/site.js', 'script', 'src']]) {
       if (!elements(tag).some((node) => {
         if (tag === 'link' && !hasRel(node, 'stylesheet')) return false;
-        try { return new URL(node.attrs[attr], `${publicOrigin}/`).pathname === `/${asset}`; }
+        try {
+          const url = new URL(node.attrs[attr], `${publicOrigin}/`);
+          return url.origin === publicOrigin && url.pathname === `/${asset}`;
+        }
         catch { return false; }
       })) fail(page.file, 'shared-asset', `expected ${tag} reference to ${asset}`);
     }
@@ -223,8 +228,8 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
       if (match) fail(file, rule, `${message} at line ${text.slice(0, match.index).split('\n').length} (value redacted)`);
     }
     if (extname(file) === '.css') {
-      for (const match of source.matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]+))\s*\)|@import\s+["']([^"']+)["']/gi)) {
-        reference(file, match[1] ?? match[2] ?? match[3] ?? match[4], 'CSS URL/import');
+      for (const match of source.matchAll(/(@import\s+)?url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]+))\s*\)|@import\s+["']([^"']+)["']/gi)) {
+        reference(file, match[2] ?? match[3] ?? match[4] ?? match[5], 'CSS URL/import', Boolean(match[1]) || match[5] !== undefined);
       }
     }
     if (['.js', '.mjs'].includes(extname(file))) {

@@ -12,9 +12,10 @@ NLivero Software e Consultoria Ltda.
   delivered through IPena Consultoria.
 - Production Android application distribution, with targeted releases and
   installer handoff.
-- Maintenance of inherited factory and non-fiscal payroll systems, logistics
-  dashboards and cloud operations.
-- Android QA automation, research prototypes and bounded freelance contributions.
+- Modernization of an inherited factory application and ERP logistics dashboards.
+- Development/deployment of non-fiscal payroll software, AWS migration and recovery
+  checks; separate institutional website delivery with S3 and CloudFront.
+- Android QA automation, BERT classification research and bounded freelance work.
 
 Client source code, operational data and internal endpoints are not included.
 A pilot, a delivered frontend MVP and maintained production software are
@@ -25,7 +26,9 @@ authorship claims are used.
 
 - `index.html`, `pt-br.html`: English/Portuguese pages.
 - `assets/site.css`, `assets/site.js`: shared responsive styles and theme toggle.
-- `assets/`: existing portrait, favicons and application icons.
+- `assets/`: unchanged portrait, favicons and application icons; a generated office
+  background derived from the LinkedIn cover for visual identity. It does not depict
+  a client system or claim to be a photograph of an actual office.
 - `cv-en.pdf`, `cv-pt.pdf`: reviewed public master resumes.
 - `resume.pdf`, `resume-pt.pdf`: compatibility aliases of the current public
   masters for previously shared links. Earlier modified files were preserved

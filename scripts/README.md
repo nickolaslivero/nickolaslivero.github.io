@@ -25,6 +25,11 @@ signals. Public text files are screened for common private paths, runtime hosts,
 requests, credentials, and private source references. The scripts and hidden
 directories are excluded from public-content scanning.
 
+Shared CSS/JS references must match the exact public origin and path. Scripts,
+stylesheets and their imports must be local; nonlocal executable URL schemes are
+rejected. Ordinary external links and data images remain allowed and are not
+fetched or evaluated by the validator.
+
 These are lightweight static checks, not browser rendering, a full HTML/CSS/JS
 parser, comprehensive secret detection, or evidence verification. CSS visibility,
 dynamic asset references, binary files/PDF contents, and external link availability
