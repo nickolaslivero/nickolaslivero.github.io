@@ -20,22 +20,24 @@
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="assets/site.css">
-  <link rel="stylesheet" href="assets/projects.css">
-  <script src="assets/site.js" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=20261015">
+  <link rel="stylesheet" href="assets/projects.css?v=20261015">
+  <script src="assets/site.js?v=20261015" defer></script>
+  <script src="assets/gallery.js?v=20261014" defer></script>
 </head>
 <body class="collection">
   <a class="skip-link" href="#main">Pular para o conte&uacute;do</a>
   <header class="site-header wrap">
-    <a class="brand" href="pt-br.html" aria-label="Nickolas Livero">NL<span>.</span></a>
+    <a class="brand" href="pt-br.html" aria-label="Nickolas Livero">N Livero<span>.</span></a>
     <nav aria-label="Navega&ccedil;&atilde;o principal">
-      <a href="pt-br.html#work">Trabalhos selecionados</a>
+      <a href="pt-br.html#work">Trabalhos</a>
       <a href="projetos.html" aria-current="page">Projetos</a>
-      <a href="#contact">Contato</a>
+      <a href="pt-br.html#experience">Experiência</a>
+      <a href="pt-br.html#contact">Contato</a>
     </nav>
     <div class="header-tools">
-      <a class="language" href="projects.html" lang="en">English</a>
-      <label class="theme-control" hidden><input id="theme-toggle" type="checkbox" role="switch"><span>Tema escuro</span></label>
+      <a class="language" href="projects.html" lang="en" aria-label="EN-US: Read in English" title="Read in English"><img class="icon" src="assets/icons/languages.svg" width="18" height="18" alt="">EN-US</a>
+      <button id="theme-toggle" class="icon-button theme-control" type="button" hidden aria-label="Tema escuro" aria-pressed="false" data-dark-label="Ativar tema escuro" data-light-label="Ativar tema claro" title="Ativar tema escuro"><img class="icon theme-moon" src="assets/icons/moon.svg" width="18" height="18" alt=""><img class="icon theme-sun" src="assets/icons/sun.svg" width="18" height="18" alt=""></button>
     </div>
   </header>
   <main id="main" tabindex="-1">
@@ -46,75 +48,135 @@
       </div>
       <p class="collection-intro">Sistemas profissionais, pesquisa e experimentos pr&aacute;ticos em mobile, web, automa&ccedil;&atilde;o e infraestrutura.</p>
     </header>
-    <details class="collection-index wrap">
-      <summary>Categorias de projetos</summary>
-      <nav aria-label="Categorias de projetos">
-        <ul>
-          <li><a href="#professional">Sistemas profissionais</a></li>
-          <li><a href="#independent">Trabalhos independentes e hist&oacute;ricos</a></li>
-          <li><a href="#infrastructure">Ferramentas e infraestrutura pessoal</a></li>
-          <li><a href="#pilots">Pilotos e prot&oacute;tipos</a></li>
-          <li><a href="#research">Pesquisa e trabalho acad&ecirc;mico</a></li>
-          <li><a href="#academic">Acervo acad&ecirc;mico e de estudos</a></li>
-          <li><a href="#historical">Experimentos anteriores</a></li>
-        </ul>
-      </nav>
-    </details>
+    <nav class="collection-index wrap" aria-label="Categorias de projetos">
+      <ul>
+        <li><a href="#professional">Profissionais</a></li>
+        <li><a href="#independent">Independentes</a></li>
+        <li><a href="#infrastructure">Infraestrutura</a></li>
+        <li><a href="#pilots">Pilotos</a></li>
+        <li><a href="#research">Pesquisa</a></li>
+        <li><a href="#academic">Estudos</a></li>
+        <li><a href="#historical">Experimentos</a></li>
+      </ul>
+    </nav>
 
     <section class="collection-category wrap" id="professional" aria-labelledby="professional-heading">
-      <header><h2 id="professional-heading">Sistemas profissionais</h2><p>Software industrial e entregas cloud pela parceria com a IPena Consultoria.</p></header>
+      <header><h2 id="professional-heading">Trabalhos profissionais</h2><p>Software e entregas cloud pela IPena Consultoria, al&eacute;m de QA Android e CI/CD no meu est&aacute;gio do INDT.</p></header>
       <article class="project-row" id="sistech">
         <div class="project-heading"><h3>SisTech: portaria e manuten&ccedil;&atilde;o</h3><p class="project-state">Sistema em produ&ccedil;&atilde;o</p></div>
         <p class="project-context">Technos por meio da IPena Consultoria / Desenvolvimento profissional</p>
         <p class="project-summary">Registros de acesso e solicita&ccedil;&otilde;es de manuten&ccedil;&atilde;o conectados ao TOTVS Protheus.</p>
+        <div class="project-gallery" data-gallery-title="SisTech · Portaria e manutenção">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do SisTech" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/gatehouse-login.jpg" width="2304" height="1250" loading="lazy" alt="Login do SisTech em homologação pessoal">
+            <span>2 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/gatehouse-login.jpg" data-caption="Login do SisTech · Homologação pessoal (HML), não são métricas de produção">Login do SisTech (HML)</a></li>
+            <li><a href="assets/previews/gatehouse-overview.jpg" data-caption="Visão geral da portaria · Homologação pessoal (HML), não são métricas de produção">Visão geral da portaria (HML)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Criei o SisTech do zero, com contato direto com o cliente para requisitos e melhorias nos fluxos operacionais. Next.js/React, ASP.NET Core e PostgreSQL apoiam registros de acesso, permiss&otilde;es por perfil, auditoria e solicita&ccedil;&otilde;es de servi&ccedil;o Protheus. O sistema em produ&ccedil;&atilde;o evolui por entregas separadas em homologa&ccedil;&atilde;o, ilustradas nas capturas vinculadas.</p>
-          <p class="project-links"><a href="assets/previews/gatehouse-overview.jpg">Vis&atilde;o geral da portaria (homologa&ccedil;&atilde;o)</a><a href="assets/previews/gatehouse-login.jpg">Login (homologa&ccedil;&atilde;o)</a></p>
         </div></details>
       </article>
       <article class="project-row" id="irepos-1">
         <div class="project-heading"><h3>I-repos 1: distribui&ccedil;&atilde;o de aplicativos Android</h3><p class="project-state">Plataforma em produ&ccedil;&atilde;o</p></div>
         <p class="project-context">Technos por meio da IPena Consultoria / Desenvolvimento profissional</p>
         <p class="project-summary">Cat&aacute;logo de APKs, publica&ccedil;&otilde;es direcionadas, acompanhamento de dispositivos e updater Flutter.</p>
+        <div class="project-gallery" data-gallery-title="I-repos 1 · Distribuição Android">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do I-repos 1" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/android-distribution-login.jpg" width="2304" height="1250" loading="lazy" alt="Login do I-repos 1 em homologação pessoal">
+            <span>2 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/android-distribution-login.jpg" data-caption="Login do I-repos 1 · Homologação pessoal (HML), não são métricas de produção">Login do I-repos 1 (HML)</a></li>
+            <li><a href="assets/previews/android-distribution-overview.jpg" data-caption="Visão geral da distribuição · Homologação pessoal (HML), não são métricas de produção">Visão geral da distribuição (HML)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Criei a plataforma de distribui&ccedil;&atilde;o em produ&ccedil;&atilde;o e o updater do zero e mantenho sua integra&ccedil;&atilde;o. APIs NestJS/Prisma e administra&ccedil;&atilde;o Next.js gerenciam as publica&ccedil;&otilde;es, enquanto o updater Flutter verifica a integridade SHA-256 e encaminha a instala&ccedil;&atilde;o ao instalador do Android. O I-repos 2 explora gest&atilde;o de dispositivos como piloto separado.</p>
-          <p class="project-links"><a href="assets/previews/android-distribution-overview.jpg">Vis&atilde;o geral da distribui&ccedil;&atilde;o (homologa&ccedil;&atilde;o)</a><a href="assets/previews/android-distribution-login.jpg">Login (homologa&ccedil;&atilde;o)</a></p>
         </div></details>
       </article>
       <article class="project-row" id="factory-app">
         <div class="project-heading"><h3>App F&aacute;brica: evolu&ccedil;&atilde;o em v&aacute;rias vers&otilde;es</h3><p class="project-state">Aplicativo herdado em produ&ccedil;&atilde;o</p></div>
         <p class="project-context">Technos por meio da IPena Consultoria / Desenvolvimento profissional</p>
         <p class="project-summary">Funcionalidades e corre&ccedil;&otilde;es em um aplicativo Flutter Android para coletores e tablets da f&aacute;brica.</p>
+        <div class="project-gallery" data-gallery-title="App Fábrica · Android">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 3 telas do App Fábrica" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/factory-app-login.png" width="1920" height="1200" loading="lazy" alt="Login da candidata do App Fábrica no emulador Android">
+            <span>3 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/factory-app-login.png" data-caption="Login do App Fábrica · Candidata 2.4.2 no emulador">Login do aplicativo (candidata, emulador)</a></li>
+            <li><a href="assets/previews/factory-app-menu.png" data-caption="Candidata 2.4.2 · Menu no emulador, cabeçalho da conta recortado; sem aceite de produção">Menu de rotinas (candidata, emulador)</a></li>
+            <li><a href="assets/previews/factory-app-wms-menu.png" data-caption="Candidata 2.4.2 · Menu WMS no emulador, cabeçalho da conta recortado; sem executar transações no ERP">Menu WMS (candidata, emulador)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Entreguei funcionalidades e corre&ccedil;&otilde;es substanciais em v&aacute;rias vers&otilde;es de um aplicativo herdado em produ&ccedil;&atilde;o. O trabalho em Flutter/Dart abrange integra&ccedil;&otilde;es com APIs Protheus, leitura de c&oacute;digos de barras e usabilidade em paisagem. As capturas vinculadas mostram interfaces da vers&atilde;o candidata em um emulador Android.</p>
-          <p class="project-links"><a href="assets/previews/factory-app-menu.png">Menu da candidata (emulador)</a><a href="assets/previews/factory-app-wms-menu.png">Menu WMS da candidata (emulador)</a><a href="assets/previews/factory-app-login.png">Login da candidata (emulador)</a></p>
         </div></details>
       </article>
       <article class="project-row" id="ranking">
         <div class="project-heading"><h3>Ranking: pain&eacute;is log&iacute;sticos</h3><p class="project-state">Aplica&ccedil;&atilde;o em produ&ccedil;&atilde;o</p></div>
         <p class="project-context">Technos por meio da IPena Consultoria / Desenvolvimento profissional</p>
         <p class="project-summary">Vis&otilde;es operacionais e gerenciais sobre os dados log&iacute;sticos do Protheus.</p>
+        <div class="project-gallery" data-gallery-title="Ranking · Painel logístico">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 1 tela do Ranking" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/logistics-dashboard.jpg" width="2304" height="500" loading="lazy" alt="Painel logístico Ranking sem pedidos exibidos">
+            <span>1 tela</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/logistics-dashboard.jpg" data-caption="Homologação pessoal (HML) · Consulta filtrada sem pedidos para preservar dados; não são métricas de produção">Visão logística filtrada (HML)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Criei a aplica&ccedil;&atilde;o Flutter Web e o proxy Dart no servidor para dados log&iacute;sticos do Protheus. Requisi&ccedil;&otilde;es compartilhadas, tentativas limitadas e preserva&ccedil;&atilde;o do &uacute;ltimo conjunto completo de dados mant&ecirc;m o contexto quando uma consulta falha. A captura vinculada mostra uma vis&atilde;o filtrada de homologa&ccedil;&atilde;o.</p>
-          <p class="project-links"><a href="assets/previews/logistics-dashboard.jpg">Vis&atilde;o log&iacute;stica filtrada (homologa&ccedil;&atilde;o)</a></p>
         </div></details>
       </article>
       <article class="project-row" id="payroll-cloud">
         <div class="project-heading"><h3>Administra&ccedil;&atilde;o de folha e migra&ccedil;&atilde;o AWS</h3><p class="project-state">Software e cloud em produ&ccedil;&atilde;o</p></div>
         <p class="project-context">Por meio da IPena Consultoria / Desenvolvimento e opera&ccedil;&atilde;o profissional</p>
         <p class="project-summary">C&aacute;lculo de folha n&atilde;o fiscal, administra&ccedil;&atilde;o de RH, fechamento mensal e simplifica&ccedil;&atilde;o da hospedagem AWS.</p>
+        <div class="project-gallery" data-gallery-title="ICheck · Administração de folha">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do ICheck" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/payroll-login.jpg" width="2304" height="1250" loading="lazy" alt="Login do ICheck em homologação com campos de credenciais vazios">
+            <span>2 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/payroll-login.jpg" data-caption="Login ICheck · HML, campos de credenciais vazios">Login da folha (HML)</a></li>
+            <li><a href="assets/previews/payroll-dashboard.jpg" data-caption="Dashboard ICheck · Base de teste em HML">Dashboard de folha (dados de teste)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Desenvolvi e implantei a plataforma administrativa n&atilde;o fiscal a partir de uma base inacabada, com Flutter Web, TypeScript/Express e PostgreSQL, mantendo suporte recorrente aos fluxos. Migrei a hospedagem ECS/EC2/RDS para Lightsail/Docker/PostgreSQL, preservando a distribui&ccedil;&atilde;o S3/CloudFront e backups fora do host. Realizei restaura&ccedil;&otilde;es isoladas e verifica&ccedil;&otilde;es documentadas de paridade durante a migra&ccedil;&atilde;o.</p>
-          <p class="project-links"><a href="assets/previews/payroll-dashboard.jpg">Dashboard completo (base de teste em HML)</a><a href="assets/previews/payroll-login.jpg">Login (HML)</a></p>
         </div></details>
       </article>
       <article class="project-row" id="ipena-site">
         <div class="project-heading"><h3>Site institucional da IPena</h3><p class="project-state">Site est&aacute;tico entregue</p></div>
         <p class="project-context">Marca comercial IPena Consultoria / Desenvolvimento profissional</p>
         <p class="project-summary">Informa&ccedil;&otilde;es da marca e canais de contato em hospedagem est&aacute;tica cloud.</p>
+        <div class="project-gallery" data-gallery-title="IPena · Site institucional">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 3 telas do site IPena" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/ipena-website-hero.jpg" width="1905" height="1072" loading="lazy" alt="Página inicial pública e hero do site institucional IPena">
+            <span>3 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/ipena-website-hero.jpg" data-caption="Site institucional IPena · Página inicial pública e apresentação da marca">Página inicial (pública)</a></li>
+            <li><a href="assets/previews/ipena-website-services.jpg" data-caption="Site institucional da marca IPena · Seção pública de serviços">Serviços do site (público)</a></li>
+            <li><a href="assets/previews/ipena-website-about.jpg" data-caption="Site institucional IPena · Página Sobre pública e conteúdo da marca">Sobre a IPena (público)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Criei o site do zero e publiquei uma exporta&ccedil;&atilde;o est&aacute;tica Next.js/React com TypeScript. Configurei hospedagem AWS S3, distribui&ccedil;&atilde;o CloudFront e DNS Route 53 para o site institucional.</p>
-          <p class="project-links"><a href="assets/previews/ipena-website-services.jpg">Captura p&uacute;blica da p&aacute;gina de servi&ccedil;os</a></p>
+        </div></details>
+      </article>
+      <article class="project-row" id="android-qa">
+        <div class="project-heading"><h3>Automa&ccedil;&atilde;o QA Android em Python e CI/CD</h3><p class="project-state">Est&aacute;gio / 2023-2025</p></div>
+        <p class="project-context">INDT / Contribui&ccedil;&atilde;o profissional em est&aacute;gio</p>
+        <p class="project-summary">Automa&ccedil;&atilde;o Python e diagn&oacute;stico de dispositivos para valida&ccedil;&atilde;o e regress&atilde;o Android.</p>
+        <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
+          <p>Desenvolvi casos de teste Android em Python com pytest e framework interno de automa&ccedil;&atilde;o. Utilizei UI Automator, hierarquias XML, atributos dos componentes e an&aacute;lise de fluxos de navega&ccedil;&atilde;o, com Android Studio e ADB no diagn&oacute;stico de dispositivos. Configurei fluxos CI/CD de execu&ccedil;&atilde;o de testes no Jenkins e conex&otilde;es SSH; Cypress e Gerrit tamb&eacute;m apoiaram a execu&ccedil;&atilde;o e revis&atilde;o de QA.</p>
         </div></details>
       </article>
     </section>
@@ -169,6 +231,15 @@
         <div class="project-heading"><h3>Desenvolvimento e homologa&ccedil;&atilde;o self-hosted</h3><p class="project-state">Plataforma pessoal</p></div>
         <p class="project-context">Infraestrutura pessoal / Configura&ccedil;&atilde;o e opera&ccedil;&atilde;o pr&aacute;ticas</p>
         <p class="project-summary">Notebook reaproveitado para ambientes de aplica&ccedil;&otilde;es e bancos de dados separados por projeto.</p>
+        <div class="project-gallery" data-gallery-title="Self-hosted · Monitoramento do servidor">
+          <button type="button" class="gallery-trigger" hidden aria-label="Pr&eacute;via do servidor: btop no ambiente pessoal de desenvolvimento" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/self-hosted-btop.png" width="1680" height="1329" loading="lazy" alt="Captura real do btop com uso de CPU, mem&oacute;ria e disco do servidor pessoal; textos sens&iacute;veis borrados">
+            <span>Pr&eacute;via do servidor</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/self-hosted-btop.png" data-caption="Captura real do btop · Servidor pessoal de desenvolvimento e homologa&ccedil;&atilde;o; textos sens&iacute;veis borrados">Monitoramento do servidor (btop)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
           <p>Fiz upgrades em um notebook pessoal antigo e configurei Ubuntu, redes e runtimes Docker Compose por projeto para desenvolvimento e homologa&ccedil;&atilde;o. Mantenho backups delimitados, verifica&ccedil;&atilde;o de hashes e exerc&iacute;cios selecionados de restaura&ccedil;&atilde;o PostgreSQL, com administra&ccedil;&atilde;o privada por SSH.</p>
         </div></details>
@@ -178,20 +249,41 @@
     <section class="collection-category wrap" id="pilots" aria-labelledby="pilots-heading">
       <header><h2 id="pilots-heading">Pilotos e prot&oacute;tipos</h2><p>Explora&ccedil;&atilde;o de produtos em gest&atilde;o de dispositivos, assist&ecirc;ncia a ERP e opera&ccedil;&atilde;o de cafeterias.</p></header>
       <article class="project-row" id="irepos-2">
-        <div class="project-heading"><h3>I-repos 2: gest&atilde;o de dispositivos Android</h3><p class="project-state">Piloto fora de produ&ccedil;&atilde;o</p></div>
-        <p class="project-context">Produto experimental / Desenvolvimento Android e web</p>
-        <p class="project-summary">Experimentos de gest&atilde;o de dispositivos al&eacute;m da distribui&ccedil;&atilde;o de APKs, com pol&iacute;ticas de quiosque e aplica&ccedil;&otilde;es.</p>
+        <div class="project-heading"><h3>I-repos 2: gest&atilde;o de dispositivos Android</h3><p class="project-state">Piloto</p></div>
+        <p class="project-context">Produto de gest&atilde;o de dispositivos Android / Desenvolvimento Android e web</p>
+        <p class="project-summary">Piloto implementado com pol&iacute;ticas de quiosque e aplica&ccedil;&otilde;es, aguardando libera&ccedil;&atilde;o do cliente.</p>
+        <div class="project-gallery" data-gallery-title="I-repos 2 · Piloto de gestão de dispositivos">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 3 telas do piloto I-repos 2" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/android-management-login.jpg" width="2304" height="1306" loading="lazy" alt="Login do piloto de gestão de dispositivos I-repos 2 em homologação pessoal">
+            <span>3 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/android-management-login.jpg" data-caption="Login do piloto I-repos 2 · Homologação pessoal (HML), não são métricas de produção">Login do piloto (HML)</a></li>
+            <li><a href="assets/previews/android-management-pilot.jpg" data-caption="Piloto de gestão de dispositivos · Homologação pessoal (HML), não são métricas de produção">Piloto de gestão de dispositivos (HML)</a></li>
+            <li><a href="assets/previews/android-management-handheld.png" data-caption="Piloto I-repos 2 · Launcher no coletor Android físico com aplicações permitidas">Launcher no coletor físico (piloto)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
-          <p>Desenvolvi um piloto de gest&atilde;o de dispositivos fora de produ&ccedil;&atilde;o, separado da plataforma de distribui&ccedil;&atilde;o I-repos 1. Um agente Android Device Owner em Kotlin e administra&ccedil;&atilde;o NestJS/Next.js exploram pol&iacute;ticas de quiosque, listas de aplica&ccedil;&otilde;es permitidas e sess&otilde;es tempor&aacute;rias apenas de visualiza&ccedil;&atilde;o de tela.</p>
-          <p class="project-links"><a href="assets/previews/android-management-handheld.png">Launcher no coletor f&iacute;sico (piloto)</a><a href="assets/previews/android-management-pilot.jpg">Piloto de gest&atilde;o de dispositivos (homologa&ccedil;&atilde;o)</a><a href="assets/previews/android-management-login.jpg">Login do piloto (homologa&ccedil;&atilde;o)</a></p>
+          <p>Desenvolvi um piloto de gest&atilde;o de dispositivos, separado da plataforma de distribui&ccedil;&atilde;o I-repos 1. Um agente Android Device Owner em Kotlin e administra&ccedil;&atilde;o NestJS/Next.js implementam pol&iacute;ticas de quiosque, listas de aplica&ccedil;&otilde;es permitidas e sess&otilde;es tempor&aacute;rias apenas de visualiza&ccedil;&atilde;o de tela. A libera&ccedil;&atilde;o do cliente est&aacute; pendente.</p>
         </div></details>
       </article>
       <article class="project-row" id="erp-assistance">
-        <div class="project-heading"><h3>Ferramentas de assist&ecirc;ncia a ERP</h3><p class="project-state">Prot&oacute;tipo pausado</p></div>
-        <p class="project-context">Prot&oacute;tipo ligado &agrave; IPena / Python, FastMCP, Protheus</p>
-        <p class="project-summary">Conceitos de ferramentas locais para invent&aacute;rio, diagn&oacute;stico e desenvolvimento assistido em ERP.</p>
+        <div class="project-heading"><h3>Nina IA: assistente Protheus</h3><p class="project-state">Prot&oacute;tipo</p></div>
+        <p class="project-context">Prot&oacute;tipo ligado &agrave; IPena / Python, FastMCP, Next.js, Protheus</p>
+        <p class="project-summary">Console de assist&ecirc;ncia Protheus e ferramentas ERP em Python, al&eacute;m de um servidor FastMCP separado com busca documental local.</p>
+        <div class="project-gallery" data-gallery-title="Nina IA · Protótipo de assistente Protheus">
+          <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do protótipo Nina IA" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/nina-technical-console.jpg" width="1366" height="900" loading="lazy" alt="Interface histórica do console técnico Nina IA, sem registros de clientes">
+            <span>2 telas</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/nina-technical-console.jpg" data-caption="Protótipo Nina IA · Interface arquivada; não comprova execução de ferramentas ou acesso à produção">Console técnico (protótipo)</a></li>
+            <li><a href="assets/previews/nina-mobile-console.jpg" data-caption="Protótipo Nina IA · Interface mobile arquivada; não comprova execução de ferramentas ou acesso à produção">Console mobile (protótipo)</a></li>
+          </ul>
+        </div>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
-          <p>Explorei uma base Python/FastMCP para invent&aacute;rio local de ERP, contexto de diagn&oacute;stico e acesso a conhecimento. O prot&oacute;tipo pausado tamb&eacute;m investigou fluxos de compila&ccedil;&atilde;o assistida e consoles.</p>
+          <p>Criei um console Next.js/TypeScript com conversas t&eacute;cnicas e de neg&oacute;cio separadas, acionando ferramentas Python por API e worker. Implementei invent&aacute;rio, an&aacute;lise de logs, inspe&ccedil;&atilde;o de banco, consulta a fontes e consultas de estoque somente leitura. Um servidor FastMCP separado exp&otilde;e ferramentas ERP e busca textual b&aacute;sica local. O desenvolvimento est&aacute; em espera no est&aacute;gio de prot&oacute;tipo.</p>
+          <p>As capturas arquivadas mostram a interface do prot&oacute;tipo, n&atilde;o a execu&ccedil;&atilde;o de ferramentas ou acesso &agrave; produ&ccedil;&atilde;o.</p>
         </div></details>
       </article>
       <article class="project-row" id="cafe-management">
@@ -205,24 +297,25 @@
     </section>
 
     <section class="collection-category wrap" id="research" aria-labelledby="research-heading">
-      <header><h2 id="research-heading">Pesquisa e trabalho acad&ecirc;mico</h2><p>Publica&ccedil;&atilde;o acad&ecirc;mica, QA Android e pesquisa aplicada em est&aacute;gios e bolsas.</p></header>
+      <header><h2 id="research-heading">Pesquisa e trabalho acad&ecirc;mico</h2><p>Publica&ccedil;&atilde;o acad&ecirc;mica e P&amp;D aplicado em est&aacute;gio e bolsas universit&aacute;rias.</p></header>
       <article class="project-row" id="voice-assistant">
-        <div class="project-heading"><h3>Assistente de voz e LLMs para acessibilidade</h3><p class="project-state">Prot&oacute;tipo de pesquisa publicado / 2024</p></div>
-        <p class="project-context">SBIE 2024 / Coautoria acad&ecirc;mica</p>
+        <div class="project-heading"><h3>Assistente de voz e LLMs para acessibilidade</h3><p class="project-state">Artigo publicado / Prot&oacute;tipo descontinuado / 2024</p></div>
+        <p class="project-context">SBIE 2024 / Implementa&ccedil;&atilde;o do prot&oacute;tipo sob orienta&ccedil;&atilde;o acad&ecirc;mica</p>
         <p class="project-summary">Pesquisa sobre intera&ccedil;&atilde;o por voz e texto com sistemas operacionais para estudantes com defici&ecirc;ncia visual.</p>
+        <div class="project-gallery" data-gallery-title="SBIE 2024 · Artigo publicado">
+          <button type="button" class="gallery-trigger" hidden aria-label="Prévia do artigo: primeira página do SBIE" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+            <img class="project-preview-image" src="assets/previews/sbie-paper-first-page.jpg" width="1133" height="1600" loading="lazy" alt="Primeira página do artigo publicado no SBIE 2024, com título e créditos originais">
+            <span>Prévia do artigo</span>
+          </button>
+          <ul class="gallery-links">
+            <li><a href="assets/previews/sbie-paper-first-page.jpg" data-caption="Artigo SBIE 2024 · Primeira página renderizada do PDF oficial, com créditos originais preservados">Primeira página do artigo</a></li>
+          </ul>
+        </div>
         <details><summary>Pesquisa e publica&ccedil;&atilde;o</summary><div class="project-detail">
-          <p>Sou coautor com Fabio S. Silva do artigo do SBIE 2024 sobre um prot&oacute;tipo de pesquisa com voz, texto e LLMs, usando LM Studio e PostgreSQL. O estudo explora LLaMA 3, Mistral e Phi 3 para intera&ccedil;&atilde;o com sistemas operacionais por estudantes com defici&ecirc;ncia visual. O registro da publica&ccedil;&atilde;o e o c&oacute;digo do prot&oacute;tipo relacionado PAIC est&atilde;o vinculados abaixo.</p>
+          <p>Desenvolvi o prot&oacute;tipo de pesquisa com voz, texto e LLMs, usando LM Studio e PostgreSQL, sob orienta&ccedil;&atilde;o acad&ecirc;mica. O estudo explora LLaMA 3, Mistral e Phi 3 para intera&ccedil;&atilde;o com sistemas operacionais por estudantes com defici&ecirc;ncia visual. O projeto est&aacute; descontinuado; a publica&ccedil;&atilde;o no SBIE 2024 e o c&oacute;digo do prot&oacute;tipo relacionado PAIC continuam dispon&iacute;veis.</p>
           <p><cite class="publication-title">Desenvolvimento de um Assistente Virtual Baseado em Voz e LLMs para Facilitar a Intera&ccedil;&atilde;o de Estudantes com Defici&ecirc;ncia Visual com Sistemas Operacionais</cite></p>
           <p class="publication-meta">Nickolas J. S. Livero; Fabio S. Silva. SBIE 2024, Trabalhos em Andamento. Publicado em <time datetime="2024-11-04">4 de novembro de 2024</time>, pp. 2987-2998.</p>
           <p class="project-links"><a href="https://doi.org/10.5753/sbie.2024.244662">DOI: 10.5753/sbie.2024.244662</a><a href="https://sol.sbc.org.br/index.php/sbie/article/view/31461">Registro oficial da SBC</a><a href="https://github.com/nickolaslivero/PAIC">Reposit&oacute;rio do prot&oacute;tipo PAIC</a></p>
-        </div></details>
-      </article>
-      <article class="project-row" id="android-qa">
-        <div class="project-heading"><h3>Automa&ccedil;&atilde;o QA Android</h3><p class="project-state">Est&aacute;gio / 2023-2025</p></div>
-        <p class="project-context">INDT / Contribui&ccedil;&atilde;o profissional em est&aacute;gio</p>
-        <p class="project-summary">Automa&ccedil;&atilde;o Python e diagn&oacute;stico de dispositivos para valida&ccedil;&atilde;o e regress&atilde;o Android.</p>
-        <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
-          <p>Desenvolvi testes UI Automator com hierarquias XML e atributos dos componentes, usando Android Studio e ADB no diagn&oacute;stico de dispositivos f&iacute;sicos. Utilizei Python, pytest, Cypress, Gerrit e Jenkins nos fluxos de execu&ccedil;&atilde;o e revis&atilde;o de QA.</p>
         </div></details>
       </article>
       <article class="project-row" id="bert-qa">
@@ -230,15 +323,15 @@
         <p class="project-context">INDT / Contribui&ccedil;&atilde;o em pesquisa</p>
         <p class="project-summary">Treinamento e avalia&ccedil;&atilde;o da adequa&ccedil;&atilde;o de casos de teste &agrave; automa&ccedil;&atilde;o.</p>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
-          <p>Contribu&iacute; com treinamento, fine-tuning e avalia&ccedil;&atilde;o de classificadores BERT em Python para a adequa&ccedil;&atilde;o de casos de teste &agrave; automa&ccedil;&atilde;o. Apoiei experimentos com conjuntos de dados e explora&ccedil;&otilde;es separadas de IA generativa no contexto de P&amp;D do est&aacute;gio.</p>
+          <p>Contribu&iacute; com prepara&ccedil;&atilde;o e normaliza&ccedil;&atilde;o de datasets, treinamento, fine-tuning e avalia&ccedil;&atilde;o de classificadores BERT para a adequa&ccedil;&atilde;o de casos de teste &agrave; automa&ccedil;&atilde;o, usando Python, PyTorch, scikit-learn e Transformers. Apoiei experimentos com conjuntos de dados e explora&ccedil;&otilde;es separadas de IA generativa no contexto de P&amp;D do est&aacute;gio.</p>
         </div></details>
       </article>
       <article class="project-row" id="embedded-research">
-        <div class="project-heading"><h3>Prot&oacute;tipos de sistemas embarcados e monitoramento industrial</h3><p class="project-state">Pesquisa com bolsa / 2022-2023</p></div>
-        <p class="project-context">LUDUS / UEA / P&amp;D acad&ecirc;mico e industrial</p>
+        <div class="project-heading"><h3>Callidus e pesquisa em Sistemas de Informa&ccedil;&atilde;o</h3><p class="project-state">Pesquisa com bolsa / 2022-2023</p></div>
+        <p class="project-context">LUDUS / Universidade do Estado do Amazonas / P&amp;D acad&ecirc;mico e industrial</p>
         <p class="project-summary">Migra&ccedil;&atilde;o mobile, dashboards e vis&atilde;o computacional em pesquisa de sistemas embarcados.</p>
         <details><summary>Contribui&ccedil;&atilde;o e contexto</summary><div class="project-detail">
-          <p>Trabalhei na migra&ccedil;&atilde;o de fluxos Android legados em Java para prot&oacute;tipos de pesquisa Flutter/Dart. Criei dashboards React integrados a m&oacute;dulos Python de vis&atilde;o computacional e contribu&iacute; com processamento de dados, classifica&ccedil;&atilde;o e valida&ccedil;&atilde;o de modelos durante a bolsa no LUDUS/UEA.</p>
+          <p>Atuei no Callidus e em outros projetos de Sistemas de Informa&ccedil;&atilde;o no LUDUS, n&uacute;cleo de P&amp;D da UEA. Contribu&iacute; com c&oacute;digo Android legado em Java, prot&oacute;tipos de migra&ccedil;&atilde;o Flutter/Dart e dashboards React, al&eacute;m de vis&atilde;o computacional Python/OpenCV, processamento de datasets, classifica&ccedil;&atilde;o e valida&ccedil;&atilde;o de modelos em pesquisa industrial.</p>
         </div></details>
       </article>
     </section>
@@ -415,6 +508,28 @@
       </div></div>
     </section>
   </main>
+  <dialog id="project-gallery-dialog" aria-labelledby="gallery-title">
+    <header class="gallery-heading">
+      <h2 id="gallery-title"></h2>
+      <div class="gallery-controls">
+        <a id="gallery-original" class="icon-button" target="_blank" rel="noopener" title="Abrir imagem em tamanho original" aria-label="Abrir imagem em tamanho original"><img class="icon" src="assets/icons/zoom-in.svg" width="20" height="20" alt=""></a>
+        <button id="gallery-close" type="button" class="icon-button" title="Fechar galeria" aria-label="Fechar galeria"><img class="icon" src="assets/icons/x.svg" width="20" height="20" alt=""></button>
+      </div>
+    </header>
+    <div class="gallery-stage">
+      <img id="gallery-image" hidden alt="">
+      <p id="gallery-error" hidden role="alert">Não foi possível carregar a imagem.</p>
+    </div>
+    <div class="gallery-footer">
+      <p id="gallery-caption"></p>
+      <div class="gallery-navigation">
+        <button id="gallery-prev" type="button" class="icon-button" disabled title="Imagem anterior" aria-label="Imagem anterior"><img class="icon" src="assets/icons/chevron-left.svg" width="20" height="20" alt=""></button>
+        <p id="gallery-count"></p>
+        <button id="gallery-next" type="button" class="icon-button" disabled title="Próxima imagem" aria-label="Próxima imagem"><img class="icon" src="assets/icons/chevron-right.svg" width="20" height="20" alt=""></button>
+      </div>
+    </div>
+    <p id="gallery-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  </dialog>
   <footer class="wrap site-footer"><p>Nickolas Livero / Engenheiro de Software</p><a href="pt-br.html">Trabalhos selecionados</a><a href="projects.html" lang="en">English</a></footer>
 </body>
 </html>

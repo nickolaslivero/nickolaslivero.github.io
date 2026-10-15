@@ -94,11 +94,11 @@ test('optional catalog pair passes without homepage founder, degree or client fa
 });
 
 const catalogInventory = [
-  ['professional', ['sistech', 'irepos-1', 'factory-app', 'ranking', 'payroll-cloud', 'ipena-site']],
+  ['professional', ['sistech', 'irepos-1', 'factory-app', 'ranking', 'payroll-cloud', 'ipena-site', 'android-qa']],
   ['independent', ['project-management', 'whatsapp-assistants', 'offline-receipts', 'python-migration']],
   ['infrastructure', ['career-hub', 'self-hosted']],
   ['pilots', ['irepos-2', 'erp-assistance', 'cafe-management']],
-  ['research', ['voice-assistant', 'android-qa', 'bert-qa', 'embedded-research']],
+  ['research', ['voice-assistant', 'bert-qa', 'embedded-research']],
   ['academic', [
     'sorting-algorithms', 'vaccination-records', 'wallet-transfers', 'auction-prototype',
     'encrypted-chat', 'culture-chatbot', 'laptop-recommendation', 'pet-monitor', 'flask-calendar',
@@ -114,17 +114,15 @@ const catalogInventory = [
 for (const [file, categoryLabel] of [
   ['projects.html', 'Project categories'], ['projetos.html', 'Categorias de projetos'],
 ]) {
-  test(`${file} retains 45 grouped entries and native details without additional runtime`, () => {
+  test(`${file} retains 45 grouped entries, visible categories and shared galleries`, () => {
     const source = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-    const indexes = [...source.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)]
+    const indexes = [...source.matchAll(/<nav\b([^>]*)>([\s\S]*?)<\/nav>/g)]
       .filter(([, attrs]) => /\bclass="collection-index wrap"/.test(attrs));
-    assert.equal(indexes.length, 1, 'one native category disclosure');
+    assert.equal(indexes.length, 1, 'one always-visible category navigation');
     assert.equal([...source.matchAll(/\bclass="collection-index wrap"/g)].length, 1, 'one index wrapper');
-    assert.doesNotMatch(indexes[0][1], /\bopen(?:\s|=|$)/i, 'closed by default at every viewport');
-    const navigation = indexes[0][2].match(new RegExp(
-      `^\\s*<summary>${categoryLabel}</summary>\\s*<nav aria-label="${categoryLabel}">([\\s\\S]*?)</nav>\\s*$`));
-    assert.ok(navigation, 'localized native summary followed by a labeled navigation landmark');
-    assert.deepEqual([...navigation[1].matchAll(/<a href="#([^"]+)">[^<]+<\/a>/g)]
+    assert.match(indexes[0][1], new RegExp(`aria-label="${categoryLabel}"`));
+    assert.doesNotMatch(indexes[0][1], /\bhidden\b|aria-hidden="true"/i);
+    assert.deepEqual([...indexes[0][2].matchAll(/<a href="#([^"]+)">[^<]+<\/a>/g)]
       .map(([, target]) => target), catalogInventory.map(([id]) => id));
     const groups = [...source.matchAll(/<section class="collection-category wrap" id="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)]
       .map(([, id, section]) => [id, [...section.matchAll(/<article class="project-row" id="([^"]+)"/g)]
@@ -142,13 +140,28 @@ for (const [file, categoryLabel] of [
     const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
     assert.equal(new Set(ids).size, ids.length, 'all IDs must be unique');
     for (const [, target] of source.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(target), target);
-    assert.deepEqual([...source.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/g)]
-      .map(([script]) => script), ['<script src="assets/site.js" defer></script>']);
-    assert.doesNotMatch(source, /class="(?:project-gallery|gallery-trigger)"/);
+    assert.deepEqual([...source.matchAll(/<script\b[^>]*\bsrc="([^"]+)"[^>]*>/g)]
+      .map(([, src]) => src), ['assets/site.js?v=20261015', 'assets/gallery.js?v=20261014']);
+    assert.equal([...source.matchAll(/<dialog\b/g)].length, 1, 'one shared preview dialog');
+    assert.match(source, /id="gallery-close"/);
     for (const href of [
       'https://wa.me/5592988023281', 'https://doi.org/10.5753/sbie.2024.244662',
       'https://sol.sbc.org.br/index.php/sbie/article/view/31461', 'https://github.com/nickolaslivero/PAIC',
     ]) assert.equal(source.split(`href="${href}"`).length - 1, 1, `one approved link: ${href}`);
+  });
+
+  test(`${file} classifies Android QA and CI/CD as professional internship work`, () => {
+    const source = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+    const sections = new Map([...source.matchAll(/<section class="collection-category wrap" id="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)]
+      .map(([, id, body]) => [id, body]));
+    assert.match(sections.get('professional'), /<article class="project-row" id="android-qa">/);
+    assert.doesNotMatch(sections.get('research'), /id="android-qa"/);
+    const qa = catalogEntry(source, 'android-qa');
+    for (const term of [/INDT/, /Internship|Est&aacute;gio/, /Python/, /Jenkins/, /CI\/CD/, /2023-2025/]) assert.match(qa, term);
+    const research = sections.get('research');
+    assert.match(research, /id="bert-qa"/);
+    assert.match(catalogEntry(source, 'bert-qa'), /INDT/);
+    assert.match(catalogEntry(source, 'bert-qa'), /Internship R&amp;D|P&amp;D em est&aacute;gio/);
   });
 }
 
@@ -161,9 +174,91 @@ for (const missing of ['projects.html', 'projetos.html']) {
   });
 }
 
+function timelineEntry(source, title) {
+  const timeline = source.match(/<ol class="timeline">([\s\S]*?)<\/ol>/)?.[1];
+  assert.ok(timeline, 'experience timeline');
+  const entry = [...timeline.matchAll(/<li>([\s\S]*?)<\/li>/g)]
+    .find(([, body]) => body.includes(`<h3>${title}</h3>`))?.[1];
+  assert.ok(entry, `${title}: timeline entry`);
+  return entry;
+}
+
+function catalogEntry(source, id) {
+  const entry = [...source.matchAll(/<article class="project-row" id="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g)]
+    .find(([, project]) => project === id)?.[2];
+  assert.ok(entry, `${id}: collection entry`);
+  return entry;
+}
+
+function projectGalleries(source) {
+  return [...source.matchAll(/<(?:div|figure) class="project-gallery" data-gallery-title="([^"]+)">([\s\S]*?)<\/ul>/g)]
+    .map(([, title, body]) => ({
+      title, body,
+      images: [...body.matchAll(/href="assets\/previews\/([^"]+)"/g)].map(([, filename]) => filename),
+    }));
+}
+
+function researchHighlight(source) {
+  const opening = /<div class="research-highlight"[^>]*>/.exec(source);
+  assert.ok(opening, 'research highlight');
+  const start = opening.index + opening[0].length;
+  let depth = 1;
+  for (const tag of source.slice(start).matchAll(/<\/?div\b[^>]*>/g)) {
+    depth += tag[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) return source.slice(start, start + tag.index);
+  }
+  assert.fail('research highlight must close around its nested content');
+}
+
 for (const [homepage, catalog] of [
   ['index.html', 'projects.html'], ['pt-br.html', 'projetos.html'],
 ]) {
+  test(`${homepage} and ${catalog} keep the same brand, header labels and navigation targets`, () => {
+    const language = homepage === 'index.html' ? 'en' : 'pt';
+    const expectedLabels = language === 'en'
+      ? ['Work', 'Projects', 'Experience', 'Contact']
+      : ['Trabalhos', 'Projetos', 'Experiência', 'Contato'];
+    const expectedTargets = [`${homepage}#work`, catalog, `${homepage}#experience`, `${homepage}#contact`]
+      .map((target) => new URL(target, `${origin}/`).href);
+    for (const file of [homepage, catalog]) {
+      const source = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+      const header = source.match(/<header class="site-header wrap">([\s\S]*?)<\/header>/)?.[1];
+      assert.ok(header);
+      assert.match(header, />N Livero<span>\.<\/span><\/a>/);
+      const nav = header.match(/<nav\b[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+      const links = [...nav.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
+      assert.deepEqual(links.map(([, , label]) => label.replaceAll('&ecirc;', 'ê')), expectedLabels);
+      assert.deepEqual(links.map(([, href]) => new URL(href, `${origin}/${file}`).href), expectedTargets);
+    }
+  });
+
+  test(`${catalog} reuses every reviewed preview with an in-page closeable gallery`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const homeGalleries = projectGalleries(home).map(({ title, images }) => ({ title, images }));
+    const collectionGalleries = projectGalleries(collection).map(({ title, images }) => ({ title, images }));
+    assert.deepEqual(collectionGalleries, homeGalleries, 'same ten galleries, images, limits and reviewed order');
+    for (const source of [home, collection]) {
+      for (const { body } of projectGalleries(source)) {
+        const accessibleName = body.match(/aria-label="([^"]+)"/)?.[1];
+        const visibleLabel = body.match(/<span>([^<]+)<\/span>/)?.[1];
+        assert.ok(accessibleName.includes(visibleLabel), 'preview accessible name contains its visible label');
+      }
+    }
+    for (const [, , entry] of collection.matchAll(/<article class="project-row" id="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g)) {
+      const details = entry.match(/<details>([\s\S]*?)<\/details>/)?.[1];
+      assert.doesNotMatch(details, /class="project-gallery"|href="assets\/previews\//, 'preview is visible without expanding contribution details');
+    }
+  });
+
+  test(`${homepage} uses consistent icon buttons for WhatsApp, email and resume download`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const intro = home.match(/<div class="intro-actions">([\s\S]*?)<\/div>/)?.[1];
+    assert.match(intro, /<a class="button"[^>]*href="https:\/\/wa\.me\/5592988023281"[^>]*><img class="button-icon" src="assets\/icons\/whatsapp\.svg" width="18" height="18" alt="">WhatsApp<\/a>/);
+    assert.match(intro, /<a class="button"[^>]*href="mailto:nickolasjl\.work@gmail\.com"[^>]*><img class="button-icon" src="assets\/icons\/mail\.svg" width="18" height="18" alt="">(?:Email|E-mail)<\/a>/);
+    assert.match(intro, /<a class="button"[^>]*href="cv-(?:en|pt)\.pdf"[^>]*\bdownload\b[^>]*><img class="button-icon" src="assets\/icons\/download\.svg" width="18" height="18" alt="">(?:Resume|Currículo)<\/a>/);
+  });
+
   test(`${homepage} leads with client value and keeps independent work attributed`, () => {
     const source = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
     const intro = source.match(/<section class="intro"[\s\S]*?<\/section>/)[0];
@@ -172,36 +267,205 @@ for (const [homepage, catalog] of [
     const timeline = source.match(/<ol class="timeline">([\s\S]*?)<\/ol>/)[1];
     const titles = [...timeline.matchAll(/<h3>([^<]+)<\/h3>/g)].map(([, title]) => title);
     assert.deepEqual(titles, homepage === 'index.html'
-      ? ['NLivero', 'IPena Consultoria (commercial brand)', 'Freelance projects', 'INDT', 'LUDUS / UEA']
-      : ['NLivero', 'IPena Consultoria (marca comercial)', 'Projetos freelance', 'INDT', 'LUDUS / UEA']);
-    const freelance = [...timeline.matchAll(/<li>([\s\S]*?)<\/li>/g)][2][1];
-    assert.match(freelance, /2024/);
-    assert.doesNotMatch(freelance, /<time\b/);
+      ? ['NLivero', 'IPena Consultoria (commercial brand)', 'Freelance projects', 'INDT', 'Callidus Project / Universidade do Estado do Amazonas']
+      : ['NLivero', 'IPena Consultoria (marca comercial)', 'Projetos freelance', 'INDT', 'Projeto Callidus / Universidade do Estado do Amazonas']);
     assert.match(source, /non-fiscal payroll|folha não fiscal/);
   });
 
-  test(`${homepage} and ${catalog} retain reviewed payroll and handheld evidence`, () => {
+  test(`${homepage} dates freelance work without moving the separate 2024 AI contribution`, () => {
     const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
     const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
-    const galleries = [...home.matchAll(/<div class="project-gallery" data-gallery-title="([^"]+)">([\s\S]*?)<\/ul>/g)];
+    const freelance = timelineEntry(home, homepage === 'index.html' ? 'Freelance projects' : 'Projetos freelance');
+    const periods = [...freelance.matchAll(/<time\b[^>]*datetime="([^"]+)"[^>]*>([\s\S]*?)<\/time>/g)];
+    assert.ok(periods.some(([, date]) => date === '2025-05'), 'machine-readable freelance start');
+    const label = periods.map(([, , text]) => text).join(' ').replace(/<[^>]+>/g, ' ');
+    assert.match(label, homepage === 'index.html' ? /\bMay\s+2025\b/ : /\bMai\s+2025\b/i);
+    assert.match(label, homepage === 'index.html' ? /\bAug\s+2026\b/ : /\bAgo\s+2026\b/i);
+    assert.doesNotMatch(freelance, /\b2024\b|LangChain|LangGraph/, '2024 AI work is not part of the 2025-2026 range');
+    const assistant = catalogEntry(collection, 'whatsapp-assistants');
+    for (const term of [/\b2024\b/, /Python/, /LangChain/, /LangGraph/]) assert.match(assistant, term);
+    assert.doesNotMatch(assistant, /\b202[56]\b/, 'historical AI contribution keeps its own year');
+  });
+
+  test(`${homepage} and ${catalog} retain login-first galleries and reviewed evidence`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const galleries = projectGalleries(home);
     const expected = [
-      ['ICheck', ['payroll-dashboard.jpg', 'payroll-login.jpg']],
-      ['I-repos 2', ['android-management-handheld.png', 'android-management-pilot.jpg', 'android-management-login.jpg']],
+      ['SisTech', ['gatehouse-login.jpg', 'gatehouse-overview.jpg']],
+      ['I-repos 1', ['android-distribution-login.jpg', 'android-distribution-overview.jpg']],
+      [homepage === 'index.html' ? 'Factory app' : 'App Fábrica',
+        ['factory-app-login.png', 'factory-app-menu.png', 'factory-app-wms-menu.png']],
+      ['ICheck', ['payroll-login.jpg', 'payroll-dashboard.jpg']],
+      ['I-repos 2', ['android-management-login.jpg', 'android-management-pilot.jpg', 'android-management-handheld.png']],
     ];
     for (const [name, images] of expected) {
-      const gallery = galleries.find(([, title]) => title.startsWith(name));
-      assert.ok(gallery, `${name}: named gallery`);
-      assert.deepEqual([...gallery[2].matchAll(/href="assets\/previews\/([^"]+)"/g)]
-        .map(([, filename]) => filename), images, `${name}: reviewed image order and per-project limit`);
+      const matches = galleries.filter(({ title }) => title.startsWith(name));
+      assert.equal(matches.length, 1, `${name}: one named gallery`);
+      const gallery = matches[0];
+      assert.deepEqual(gallery.images, images, `${name}: login first, remaining images in reviewed relative order`);
+      const thumbnail = gallery.body.match(/<img\b[^>]*\bsrc="([^"]+)"/)?.[1];
+      assert.equal(thumbnail, `assets/previews/${images[0]}`, `${name}: login thumbnail matches the first slide`);
       for (const filename of images) {
         assert.equal(collection.split(`href="assets/previews/${filename}"`).length - 1, 1,
           `${name}: one matching collection link for ${filename}`);
       }
     }
-    assert.match(galleries.find(([, title]) => title.startsWith('ICheck'))[2], /data-caption="[^"]*(?:test database|Base de teste)[^"]*"/);
+    assert.match(galleries.find(({ title }) => title.startsWith('ICheck')).body, /data-caption="[^"]*(?:test database|Base de teste)[^"]*"/);
     assert.doesNotMatch(home + collection, /handheld-unlocked/i);
   });
+
+  test(`${homepage} retains ten galleries and twenty captures with at most three per project`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const galleries = projectGalleries(home);
+    assert.equal(galleries.length, 10);
+    assert.equal(galleries.reduce((total, { images }) => total + images.length, 0), 20);
+    for (const { title, images } of galleries) {
+      assert.ok(images.length >= 1 && images.length <= 3, `${title}: one to three images`);
+    }
+    assert.deepEqual(galleries.filter(({ images }) => images.length === 1).map(({ images }) => images[0]).sort(),
+      ['logistics-dashboard.jpg', 'sbie-paper-first-page.jpg', 'self-hosted-btop.png'].sort(),
+      'existing single-image projects are preserved alongside the paper and server');
+  });
+
+  test(`${homepage} and ${catalog} show the real btop capture only as personal infrastructure evidence`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    for (const source of [home, collection]) {
+      const galleries = projectGalleries(source).filter(({ title }) => title.startsWith('Self-hosted'));
+      assert.equal(galleries.length, 1);
+      assert.deepEqual(galleries[0].images, ['self-hosted-btop.png']);
+      assert.match(galleries[0].body, /src="assets\/previews\/self-hosted-btop\.png" width="1680" height="1329" loading="lazy"/);
+      assert.match(galleries[0].body, /data-caption="(?:Real btop capture|Captura real do btop)/);
+      assert.match(galleries[0].body, /Personal development\/preproduction|Servidor pessoal de desenvolvimento/);
+      assert.match(galleries[0].body, /sensitive text blurred|textos sens(?:í|&iacute;)veis borrados/);
+      assert.match(galleries[0].body, /aria-label="(?:Server preview|Pr(?:é|&eacute;)via do servidor):/);
+      assert.match(galleries[0].body, /<span>(?:Server preview|Pr(?:é|&eacute;)via do servidor)<\/span>/);
+      assert.doesNotMatch(galleries[0].body, /SLA|real-time|tempo real|live monitoring/i);
+    }
+    assert.match(catalogEntry(collection, 'self-hosted'), /self-hosted-btop\.png/);
+  });
+
+  test(`${homepage} keeps the single-image paper preview inside the research highlight`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const research = researchHighlight(home);
+    const galleries = projectGalleries(research);
+    assert.equal(galleries.length, 1, 'one research gallery');
+    assert.deepEqual(galleries[0].images, ['sbie-paper-first-page.jpg']);
+    assert.match(galleries[0].body, /<img\b[^>]*\bsrc="assets\/previews\/sbie-paper-first-page\.jpg"/);
+    assert.match(research, /href="https:\/\/sol\.sbc\.org\.br\/index\.php\/sbie\/article\/view\/31461"/);
+    assert.match(galleries[0].body, /aria-label="(?:Paper preview:|Prévia do artigo:)/);
+  });
+
+  test(`${homepage} and ${catalog} retain implementation attribution and the discontinued research status`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const research = researchHighlight(home);
+    const paper = catalogEntry(collection, 'voice-assistant');
+    for (const entry of [research, paper]) {
+      const contribution = [...entry.matchAll(/<p\b([^>]*)>([\s\S]*?)<\/p>/g)]
+        .filter(([, attrs, body]) => !/class="(?:publication-meta|research-meta)"/.test(attrs) && !/<cite\b/.test(body))
+        .map(([, , body]) => body).join(' ');
+      assert.match(contribution, /implement|develop|desenvolv/i, 'implementation contribution');
+      assert.match(contribution, /guidance|supervis|orienta/i, 'implementation under academic guidance');
+      assert.match(entry, /discontinued|descontinuad[oa]/i, 'prototype is not an active product');
+      assert.match(entry, /LM Studio/);
+      assert.match(entry, /PostgreSQL/);
+      assert.match(entry, /href="https:\/\/sol\.sbc\.org\.br\/index\.php\/sbie\/article\/view\/31461"/);
+    }
+    assert.match(paper, /href="https:\/\/doi\.org\/10\.5753\/sbie\.2024\.244662"/);
+    assert.match(paper, /<cite\b[^>]*class="publication-title"[^>]*>[^<]+<\/cite>/);
+    const citation = paper.match(/<p class="publication-meta">([\s\S]*?)<\/p>/)?.[1];
+    assert.ok(citation, 'official publication metadata');
+    assert.match(citation, /Nickolas J\. S\. Livero/);
+    assert.match(citation, /Fabio S\. Silva/);
+    assert.match(paper, /<time datetime="2024-11-04">/);
+  });
+
+  test(`${homepage} and ${catalog} retain INDT QA tooling and dataset-based BERT research`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const indt = timelineEntry(home, 'INDT');
+    const qa = [/\bPython\b/, /\bpytest\b/i, /\bUI Automator\b/, /\bXML\b/, /\bSSH\b/, /\bJenkins\b/, /\bCI\/CD\b/];
+    const ml = [/\bPython\b/, /\bPyTorch\b/, /\bscikit-learn\b/, /\bTransformers\b/, /\bBERT\b/,
+      /\bdatasets?\b|conjuntos? de dados/i, /normali[sz]/i];
+    for (const [entry, terms] of [
+      [indt, [...qa, ...ml]], [catalogEntry(collection, 'android-qa'), qa], [catalogEntry(collection, 'bert-qa'), ml],
+    ]) {
+      for (const term of terms) assert.match(entry, term);
+    }
+  });
+
+  test(`${homepage} and ${catalog} retain the LUDUS migration and computer-vision stack`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const heading = homepage === 'index.html'
+      ? 'Callidus Project / Universidade do Estado do Amazonas'
+      : 'Projeto Callidus / Universidade do Estado do Amazonas';
+    for (const entry of [timelineEntry(home, heading), catalogEntry(collection, 'embedded-research')]) {
+      assert.match(entry, /Callidus/);
+      assert.match(entry, /LUDUS/);
+      assert.match(entry, /Information Systems|Sistemas de Informa(?:ção|&ccedil;&atilde;o)/);
+      for (const term of [/\bJava\b/, /\bFlutter\b/, /\bPython\b/, /\bReact\b/, /\bOpenCV\b/,
+        /computer[- ]vision|vis(?:ão|&atilde;o) computacional/i, /\bdatasets?\b|conjuntos? de dados/i]) {
+        assert.match(entry, term);
+      }
+    }
+  });
+
+  test(`${homepage} uses end-to-end positioning and Nina without losing historical projects`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    assert.match(home, /<h2 class="role">(?:Software Engineer · End-to-End Delivery|Engenheiro de Software · Entrega de Ponta a Ponta)<\/h2>/);
+    const secondary = home.match(/<div class="work-grid">([\s\S]*?)<\/div>\s*<\/div>\s*<div class="research-highlight"/)?.[1];
+    assert.ok(secondary, 'secondary selected work section');
+    assert.equal([...secondary.matchAll(/<article\b/g)].length, 2);
+    assert.match(secondary, /Nina IA/);
+    assert.doesNotMatch(secondary, /<h4>(?:Project management|Gestão de projetos|AI-assisted workflows|Fluxos assistidos por IA)<\/h4>/);
+    for (const entry of [secondary, catalogEntry(collection, 'erp-assistance')]) {
+      for (const term of [/Nina IA/, /FastMCP/, /Next\.js/, /Python/, /Protheus/,
+        /(?:basic local document search|busca textual b[aá]sica|basic local text search|busca textual b&aacute;sica)/]) assert.match(entry, term);
+    }
+    assert.ok(catalogEntry(collection, 'project-management'));
+    assert.ok(catalogEntry(collection, 'whatsapp-assistants'));
+    const pilot = catalogEntry(collection, 'irepos-2');
+    assert.match(pilot, /class="project-state">(?:Pilot|Piloto)<\/p>/);
+    assert.match(pilot, /awaiting client clearance|aguardando libera&ccedil;&atilde;o do cliente/i);
+    assert.doesNotMatch(pilot, /Non-production pilot|Piloto fora de produ/);
+    const nina = projectGalleries(home).find(({ title }) => title.startsWith('Nina IA'));
+    assert.deepEqual(nina.images, ['nina-technical-console.jpg', 'nina-mobile-console.jpg']);
+    assert.match(nina.body, /Archived|arquivada/);
+    const captions = [...nina.body.matchAll(/data-caption="([^"]+)"/g)].map(([, caption]) => caption);
+    assert.equal(captions.length, 2);
+    for (const caption of captions) assert.match(caption, /not evidence of tool execution|não comprova execução de ferramentas/);
+    assert.match(catalogEntry(collection, 'erp-assistance'), /separate FastMCP server|servidor FastMCP separado/);
+    assert.doesNotMatch(secondary, /\bRAG\b|production AI|IA em produção/);
+  });
+
+  test(`${homepage} and ${catalog} show the institutional hero before the two other public views`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const gallery = projectGalleries(home).find(({ title }) => title.startsWith('IPena'));
+    const images = ['ipena-website-hero.jpg', 'ipena-website-services.jpg', 'ipena-website-about.jpg'];
+    assert.deepEqual(gallery.images, images);
+    assert.match(gallery.body, /src="assets\/previews\/ipena-website-hero\.jpg" width="1905" height="1072"/);
+    const links = [...catalogEntry(collection, 'ipena-site').matchAll(/href="assets\/previews\/([^"]+)"/g)].map(([, name]) => name);
+    assert.deepEqual(links, images);
+  });
 }
+
+test('the btop preview is a full-resolution local PNG rather than a text placeholder', () => {
+  const preview = readFileSync(new URL('../assets/previews/self-hosted-btop.png', import.meta.url));
+  assert.deepEqual([...preview.subarray(0, 8)], [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a], 'PNG signature');
+  assert.equal(preview.readUInt32BE(16), 1680, 'original width');
+  assert.equal(preview.readUInt32BE(20), 1329, 'original height');
+});
+
+test('the paper preview exists as a local JPEG rather than a text placeholder', () => {
+  const preview = readFileSync(new URL('../assets/previews/sbie-paper-first-page.jpg', import.meta.url));
+  assert.deepEqual([...preview.subarray(0, 3)], [0xff, 0xd8, 0xff], 'JPEG signature');
+  assert.deepEqual([...preview.subarray(-2)], [0xff, 0xd9], 'JPEG end marker');
+});
 
 for (const [name, file, from, to, rule] of [
   ['language', 'projetos.html', 'lang="pt-BR"', 'lang="en"', 'lang'],
@@ -266,10 +530,11 @@ test('four fallback images in a single project gallery are rejected', (t) => {
   reject(t, (root) => addGalleries(root, [4]), 'gallery');
 });
 
-test('six galleries per page accept one to three images each, not a global limit', (t) => {
+test('eight galleries per page accept fifteen images with a per-project limit', (t) => {
   const root = fixture(t);
-  addGalleries(root, [1, 2, 3, 1, 2, 3]);
-  addGalleries(root, [3, 3, 3, 3, 3, 3], 'pt-br.html');
+  const counts = [2, 2, 3, 1, 2, 1, 3, 1];
+  addGalleries(root, counts);
+  addGalleries(root, counts, 'pt-br.html');
   edit(root, 'pt-br.html', 'data-gallery-title="Project 1"', "data-gallery-title='Projeto &amp; imagens'");
   edit(root, 'pt-br.html', 'data-caption="Preview 1-1"', "data-caption='Pr&#233;via localizada'");
   assert.deepEqual(validateSite(root).errors, []);

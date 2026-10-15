@@ -20,6 +20,13 @@ test('gallery grid and image minimums keep intrinsic image size within the stage
   assert.match(image, /object-fit:\s*contain\s*;/);
 });
 
+test('mobile gallery uses content height with a bounded image rather than a tall empty stage', () => {
+  const css = readFileSync(new URL('../assets/site.css', import.meta.url), 'utf8');
+  const mobile = css.slice(css.indexOf('@media (max-width: 540px)'));
+  assert.match(mobile, /\.gallery-stage\s*\{[^}]*height:\s*auto\s*;[^}]*min-height:\s*160px/);
+  assert.match(mobile, /#gallery-image\s*\{[^}]*height:\s*auto\s*;[^}]*max-height:\s*min\(55dvh,\s*480px\)/);
+});
+
 // Only the DOM surface used by the gallery; no browser, network or filesystem writes.
 function fixture({ projects = [3], supported = true, missing, readyState = 'complete', original = false, status = false } = {}) {
   const document = { readyState, activeElement: null };

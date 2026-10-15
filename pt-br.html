@@ -23,23 +23,24 @@
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="assets/site.css">
-  <script src="assets/site.js" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=20261015">
+  <script src="assets/site.js?v=20261015" defer></script>
   <script src="assets/gallery.js?v=20261014" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nickolas J. S. Livero","url":"https://nickolaslivero.github.io/","jobTitle":"Software Engineer","image":"https://nickolaslivero.github.io/assets/nickolas-livero-linkedin.jpeg","sameAs":["https://github.com/nickolaslivero","https://www.linkedin.com/in/nickolaslivero/"]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
   <header class="site-header wrap">
-    <a class="brand" href="pt-br.html" aria-label="Nickolas Livero">NL<span>.</span></a>
+    <a class="brand" href="pt-br.html" aria-label="Nickolas Livero">N Livero<span>.</span></a>
     <nav aria-label="Navegação principal">
-      <a href="#work">Projetos</a>
+      <a href="#work">Trabalhos</a>
+      <a href="projetos.html">Projetos</a>
       <a href="#experience">Experiência</a>
       <a href="#contact">Contato</a>
     </nav>
     <div class="header-tools">
-      <a class="language" href="index.html" lang="en">English</a>
-      <label class="theme-control" hidden><input id="theme-toggle" type="checkbox" role="switch"><span>Tema escuro</span></label>
+      <a class="language" href="index.html" lang="en" aria-label="EN-US: Read in English" title="Read in English"><img class="icon" src="assets/icons/languages.svg" width="18" height="18" alt="">EN-US</a>
+      <button id="theme-toggle" class="icon-button theme-control" type="button" hidden aria-label="Tema escuro" aria-pressed="false" data-dark-label="Ativar tema escuro" data-light-label="Ativar tema claro" title="Ativar tema escuro"><img class="icon theme-moon" src="assets/icons/moon.svg" width="18" height="18" alt=""><img class="icon theme-sun" src="assets/icons/sun.svg" width="18" height="18" alt=""></button>
     </div>
   </header>
   <main id="main" tabindex="-1">
@@ -50,13 +51,14 @@
             <img class="portrait" src="assets/nickolas-livero-linkedin.jpeg" width="88" height="88" alt="Nickolas Livero">
             <div><p class="eyebrow">Software · Manaus, Brasil</p><h1 id="name">Nickolas Livero</h1></div>
           </div>
-          <h2 class="role">Engenheiro de Software · Full Stack · AWS</h2>
+          <h2 class="role">Engenheiro de Software · Entrega de Ponta a Ponta</h2>
           <p class="lead">Desenvolvo sistemas web e Android sob medida para indústrias e empresas.</p>
           <p class="intro-detail">Requisitos com o cliente, APIs, cloud e suporte em produção.</p>
           <div class="intro-actions">
             <a class="button primary" href="#work">Ver projetos selecionados</a>
-            <a class="button" href="https://wa.me/5592988023281" target="_blank" rel="noopener noreferrer" aria-label="Conversar com Nickolas no WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="cv-pt.pdf" download aria-label="Baixar currículo em português">Currículo <span aria-hidden="true">↓</span></a>
+            <a class="button" href="https://wa.me/5592988023281" target="_blank" rel="noopener noreferrer" aria-label="Conversar com Nickolas no WhatsApp"><img class="button-icon" src="assets/icons/whatsapp.svg" width="18" height="18" alt="">WhatsApp</a>
+            <a class="button" href="mailto:nickolasjl.work@gmail.com" aria-label="Enviar e-mail para Nickolas"><img class="button-icon" src="assets/icons/mail.svg" width="18" height="18" alt="">E-mail</a>
+            <a class="button" href="cv-pt.pdf" download aria-label="Baixar currículo em português"><img class="button-icon" src="assets/icons/download.svg" width="18" height="18" alt="">Currículo</a>
             <p class="availability"><span aria-hidden="true"></span>Aberto a vagas remotas internacionais e projetos B2B</p>
           </div>
         </div>
@@ -77,12 +79,12 @@
           <p class="case-stack">Next.js / React · ASP.NET Core · PostgreSQL · TOTVS Protheus</p>
           <div class="project-gallery" data-gallery-title="SisTech · Portaria e manutenção">
             <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do SisTech" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
-              <img class="project-preview-image" src="assets/previews/gatehouse-overview.jpg" width="2095" height="1082" loading="lazy" alt="Visão geral da portaria SisTech com atalhos de operação, sem registros pessoais">
+              <img class="project-preview-image" src="assets/previews/gatehouse-login.jpg" width="2304" height="1250" loading="lazy" alt="Login do SisTech em homologação pessoal">
               <span>2 telas</span>
             </button>
             <ul class="gallery-links">
-              <li><a href="assets/previews/gatehouse-overview.jpg" data-caption="Visão geral da portaria · Homologação pessoal (HML), não são métricas de produção">Visão geral da portaria (HML)</a></li>
               <li><a href="assets/previews/gatehouse-login.jpg" data-caption="Login do SisTech · Homologação pessoal (HML), não são métricas de produção">Login do SisTech (HML)</a></li>
+              <li><a href="assets/previews/gatehouse-overview.jpg" data-caption="Visão geral da portaria · Homologação pessoal (HML), não são métricas de produção">Visão geral da portaria (HML)</a></li>
             </ul>
           </div>
         </div>
@@ -100,12 +102,12 @@
           <p class="case-stack">NestJS · Prisma · Next.js · Flutter · Azure DevOps</p>
           <div class="project-gallery" data-gallery-title="I-repos 1 · Distribuição Android">
             <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do I-repos 1" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
-              <img class="project-preview-image" src="assets/previews/android-distribution-overview.jpg" width="2280" height="490" loading="lazy" alt="Visão geral de aplicações e status do I-repos 1, sem identificadores de dispositivos">
+              <img class="project-preview-image" src="assets/previews/android-distribution-login.jpg" width="2304" height="1250" loading="lazy" alt="Login do I-repos 1 em homologação pessoal">
               <span>2 telas</span>
             </button>
             <ul class="gallery-links">
-              <li><a href="assets/previews/android-distribution-overview.jpg" data-caption="Visão geral da distribuição · Homologação pessoal (HML), não são métricas de produção">Visão geral da distribuição (HML)</a></li>
               <li><a href="assets/previews/android-distribution-login.jpg" data-caption="Login do I-repos 1 · Homologação pessoal (HML), não são métricas de produção">Login do I-repos 1 (HML)</a></li>
+              <li><a href="assets/previews/android-distribution-overview.jpg" data-caption="Visão geral da distribuição · Homologação pessoal (HML), não são métricas de produção">Visão geral da distribuição (HML)</a></li>
             </ul>
           </div>
         </div>
@@ -123,13 +125,13 @@
           <p class="case-stack">Flutter / Dart · Android · APIs Protheus</p>
           <div class="project-gallery" data-gallery-title="App Fábrica · Android">
             <button type="button" class="gallery-trigger" hidden aria-label="Ver 3 telas do App Fábrica" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
-              <img class="project-preview-image" src="assets/previews/factory-app-menu.png" width="1920" height="792" loading="lazy" alt="Menu de rotinas do App Fábrica no emulador Android, com cabeçalho da conta recortado">
+              <img class="project-preview-image" src="assets/previews/factory-app-login.png" width="1920" height="1200" loading="lazy" alt="Login da candidata do App Fábrica no emulador Android">
               <span>3 telas</span>
             </button>
             <ul class="gallery-links">
+              <li><a href="assets/previews/factory-app-login.png" data-caption="Login do App Fábrica · Candidata 2.4.2 no emulador">Login do aplicativo (candidata, emulador)</a></li>
               <li><a href="assets/previews/factory-app-menu.png" data-caption="Candidata 2.4.2 · Menu no emulador, cabeçalho da conta recortado; sem aceite de produção">Menu de rotinas (candidata, emulador)</a></li>
               <li><a href="assets/previews/factory-app-wms-menu.png" data-caption="Candidata 2.4.2 · Menu WMS no emulador, cabeçalho da conta recortado; sem executar transações no ERP">Menu WMS (candidata, emulador)</a></li>
-              <li><a href="assets/previews/factory-app-login.png" data-caption="Login do App Fábrica · Candidata 2.4.2 no emulador">Login do aplicativo (candidata, emulador)</a></li>
             </ul>
           </div>
         </div>
@@ -169,12 +171,12 @@
           <p class="case-stack">Flutter Web · TypeScript / Express · PostgreSQL · AWS Lightsail / S3 / CloudFront</p>
           <div class="project-gallery" data-gallery-title="ICheck · Administração de folha">
             <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do ICheck" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
-              <img class="project-preview-image" src="assets/previews/payroll-dashboard.jpg" width="2304" height="1250" loading="lazy" alt="Dashboard completo de administração de folha do ICheck com base de teste">
+              <img class="project-preview-image" src="assets/previews/payroll-login.jpg" width="2304" height="1250" loading="lazy" alt="Login do ICheck em homologação com campos de credenciais vazios">
               <span>2 telas</span>
             </button>
             <ul class="gallery-links">
-              <li><a href="assets/previews/payroll-dashboard.jpg" data-caption="Dashboard ICheck · Base de teste em HML">Dashboard de folha (dados de teste)</a></li>
               <li><a href="assets/previews/payroll-login.jpg" data-caption="Login ICheck · HML, campos de credenciais vazios">Login da folha (HML)</a></li>
+              <li><a href="assets/previews/payroll-dashboard.jpg" data-caption="Dashboard ICheck · Base de teste em HML">Dashboard de folha (dados de teste)</a></li>
             </ul>
           </div>
         </div>
@@ -191,12 +193,14 @@
         <div class="case-tools">
           <p class="case-stack">Next.js / React · TypeScript · AWS S3 / CloudFront / Route 53</p>
           <div class="project-gallery" data-gallery-title="IPena · Site institucional">
-            <button type="button" class="gallery-trigger" hidden aria-label="Ver 1 tela do site IPena" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
-              <img class="project-preview-image" src="assets/previews/ipena-website-services.jpg" width="1160" height="830" loading="lazy" alt="Seção de serviços e navegação principal do site da IPena Consultoria">
-              <span>1 tela</span>
+            <button type="button" class="gallery-trigger" hidden aria-label="Ver 3 telas do site IPena" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+              <img class="project-preview-image" src="assets/previews/ipena-website-hero.jpg" width="1905" height="1072" loading="lazy" alt="Página inicial pública e hero do site institucional IPena">
+              <span>3 telas</span>
             </button>
             <ul class="gallery-links">
-              <li><a href="assets/previews/ipena-website-services.jpg" data-caption="Site institucional da marca IPena · Seção pública de serviços">Site IPena (público)</a></li>
+              <li><a href="assets/previews/ipena-website-hero.jpg" data-caption="Site institucional IPena · Página inicial pública e apresentação da marca">Página inicial (pública)</a></li>
+              <li><a href="assets/previews/ipena-website-services.jpg" data-caption="Site institucional da marca IPena · Seção pública de serviços">Serviços do site (público)</a></li>
+              <li><a href="assets/previews/ipena-website-about.jpg" data-caption="Site institucional IPena · Página Sobre pública e conteúdo da marca">Sobre a IPena (público)</a></li>
             </ul>
           </div>
         </div>
@@ -212,39 +216,79 @@
         </div>
         <div class="case-tools">
           <p class="case-stack">Ubuntu Linux · Docker Compose · PostgreSQL · Tailscale · SSH</p>
+          <div class="project-gallery" data-gallery-title="Self-hosted · Monitoramento do servidor">
+            <button type="button" class="gallery-trigger" hidden aria-label="Prévia do servidor: btop no ambiente pessoal de desenvolvimento" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+              <img class="project-preview-image" src="assets/previews/self-hosted-btop.png" width="1680" height="1329" loading="lazy" alt="Captura real do btop com uso de CPU, memória e disco do servidor pessoal; textos sensíveis borrados">
+              <span>Prévia do servidor</span>
+            </button>
+            <ul class="gallery-links">
+              <li><a href="assets/previews/self-hosted-btop.png" data-caption="Captura real do btop · Servidor pessoal de desenvolvimento e homologação; textos sensíveis borrados">Monitoramento do servidor (btop)</a></li>
+            </ul>
+          </div>
         </div>
       </article>
       <div class="more-work"><h3>Outros trabalhos</h3>
         <div class="work-grid">
           <article>
-            <p class="case-kind">Piloto fora de produção</p>
+            <p class="case-kind">Piloto</p>
             <h4>I-repos 2 · Gestão de dispositivos Android</h4>
-            <p>Piloto experimental com políticas de quiosque, listas de aplicações permitidas e sessões temporárias de visualização de tela, separado do I-repos 1 em produção.</p>
+            <p>Piloto de gestão Android implementado, com políticas de quiosque, listas de aplicações permitidas e sessões temporárias de visualização de tela. Aguarda liberação do cliente; separado da plataforma de distribuição I-repos 1.</p>
             <div class="case-tools">
               <p class="case-stack">Kotlin · Android Device Owner · NestJS · Next.js</p>
               <div class="project-gallery" data-gallery-title="I-repos 2 · Piloto de gestão de dispositivos">
                 <button type="button" class="gallery-trigger" hidden aria-label="Ver 3 telas do piloto I-repos 2" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
-                  <img class="project-preview-image" src="assets/previews/android-management-handheld.png" width="480" height="800" loading="lazy" alt="Launcher do piloto I-repos 2 em coletor Android físico, mostrando a lista de aplicações permitidas">
+                  <img class="project-preview-image" src="assets/previews/android-management-login.jpg" width="2304" height="1306" loading="lazy" alt="Login do piloto de gestão de dispositivos I-repos 2 em homologação pessoal">
                   <span>3 telas</span>
                 </button>
                 <ul class="gallery-links">
-                  <li><a href="assets/previews/android-management-handheld.png" data-caption="Piloto I-repos 2 · Launcher no coletor Android físico com aplicações permitidas">Launcher no coletor físico (piloto)</a></li>
-                  <li><a href="assets/previews/android-management-pilot.jpg" data-caption="Piloto de gestão de dispositivos · Homologação pessoal (HML), não são métricas de produção">Piloto de gestão de dispositivos (HML)</a></li>
                   <li><a href="assets/previews/android-management-login.jpg" data-caption="Login do piloto I-repos 2 · Homologação pessoal (HML), não são métricas de produção">Login do piloto (HML)</a></li>
+                  <li><a href="assets/previews/android-management-pilot.jpg" data-caption="Piloto de gestão de dispositivos · Homologação pessoal (HML), não são métricas de produção">Piloto de gestão de dispositivos (HML)</a></li>
+                  <li><a href="assets/previews/android-management-handheld.png" data-caption="Piloto I-repos 2 · Launcher no coletor Android físico com aplicações permitidas">Launcher no coletor físico (piloto)</a></li>
                 </ul>
               </div>
             </div>
           </article>
-          <article><p class="case-kind">MVP de front-end entregue</p><h4>Gestão de projetos</h4><p>Desenvolvi e entreguei um MVP de front-end Next.js/React em uma contratação freelance separada.</p></article>
-          <article><p class="case-kind">Contribuição freelance</p><h4>Fluxos assistidos por IA</h4><p>Contribuí com assistentes WhatsApp contextualizados para clientes, usando Python, LangChain e LangGraph em 2024.</p></article>
+          <article>
+            <p class="case-kind">Protótipo de IA</p>
+            <h4>Nina IA · Assistente Protheus</h4>
+            <p>Criei um console Next.js com conversas técnicas e de negócio, ferramentas Python de diagnóstico e consultas de estoque somente leitura. Um servidor FastMCP separado expõe ferramentas ERP e busca textual básica em documentos locais.</p>
+            <div class="case-tools">
+              <p class="case-stack">Python · FastMCP · Next.js · TypeScript · TOTVS Protheus</p>
+              <div class="project-gallery" data-gallery-title="Nina IA · Protótipo de assistente Protheus">
+                <button type="button" class="gallery-trigger" hidden aria-label="Ver 2 telas do protótipo Nina IA" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+                  <img class="project-preview-image" src="assets/previews/nina-technical-console.jpg" width="1366" height="900" loading="lazy" alt="Interface histórica do console técnico Nina IA, sem registros de clientes">
+                  <span>2 telas</span>
+                </button>
+                <ul class="gallery-links">
+                  <li><a href="assets/previews/nina-technical-console.jpg" data-caption="Protótipo Nina IA · Interface arquivada; não comprova execução de ferramentas ou acesso à produção">Console técnico (protótipo)</a></li>
+                  <li><a href="assets/previews/nina-mobile-console.jpg" data-caption="Protótipo Nina IA · Interface mobile arquivada; não comprova execução de ferramentas ou acesso à produção">Console mobile (protótipo)</a></li>
+                </ul>
+              </div>
+            </div>
+            <a class="text-link" href="projetos.html#erp-assistance">Escopo do protótipo <span aria-hidden="true">→</span></a>
+          </article>
         </div>
       </div>
       <div class="research-highlight" aria-labelledby="research-heading">
-        <p class="case-kind">SBIE 2024 · Pesquisa publicada</p>
-        <h3 id="research-heading">Assistente por voz e LLMs para acessibilidade</h3>
-        <p>Coautor de artigo com Fabio S. Silva sobre um assistente por voz para estudantes com deficiência visual, combinando LLMs locais, LM Studio e PostgreSQL em um protótipo de pesquisa.</p>
-        <p class="research-meta">Publicado em <time datetime="2024-11-04">4 de novembro de 2024</time> · Trabalhos em Andamento · pp. 2987–2998</p>
-        <a class="text-link" href="https://sol.sbc.org.br/index.php/sbie/article/view/31461">Ler a publicação <span aria-hidden="true">↗</span></a>
+        <div>
+          <p class="case-kind">SBIE 2024 · Pesquisa publicada</p>
+          <h3 id="research-heading">Assistente por voz e LLMs para acessibilidade</h3>
+          <p>Desenvolvi um protótipo de pesquisa por voz para estudantes com deficiência visual, usando LLMs locais, LM Studio e PostgreSQL, sob orientação acadêmica. O projeto está descontinuado; o artigo publicado no SBIE 2024 continua disponível.</p>
+          <p class="research-meta">Publicado em <time datetime="2024-11-04">4 de novembro de 2024</time> · Trabalhos em Andamento · pp. 2987–2998</p>
+          <a class="text-link" href="https://sol.sbc.org.br/index.php/sbie/article/view/31461">Ler a publicação <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="case-tools">
+          <p class="case-stack">LLMs locais · LM Studio · PostgreSQL</p>
+          <div class="project-gallery" data-gallery-title="SBIE 2024 · Artigo publicado">
+            <button type="button" class="gallery-trigger" hidden aria-label="Prévia do artigo: primeira página do SBIE" aria-haspopup="dialog" aria-controls="project-gallery-dialog">
+              <img class="project-preview-image" src="assets/previews/sbie-paper-first-page.jpg" width="1133" height="1600" loading="lazy" alt="Primeira página do artigo publicado no SBIE 2024, com título e créditos originais">
+              <span>Prévia do artigo</span>
+            </button>
+            <ul class="gallery-links">
+              <li><a href="assets/previews/sbie-paper-first-page.jpg" data-caption="Artigo SBIE 2024 · Primeira página renderizada do PDF oficial, com créditos originais preservados">Primeira página do artigo</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <p class="collection-link"><a class="text-link" href="projetos.html">Todos os projetos e pesquisas <span aria-hidden="true">→</span></a></p>
       <p class="confidential">Código-fonte e dados operacionais dos clientes permanecem confidenciais.</p>
@@ -257,11 +301,11 @@
       <ol class="timeline">
         <li><time datetime="2026-08">Ago 2026 - Atual</time><div><h3>NLivero</h3><p class="position">Fundador e Engenheiro de Software Independente</p><p>Consultoria independente de software e cloud pela minha empresa, dos requisitos do cliente e implementação à implantação e suporte.</p></div></li>
         <li><time datetime="2024-03">Mar 2024 - Atual</time><div><h3>IPena Consultoria (marca comercial)</h3><p class="position">Engenheiro de Software Independente</p><p>Requisitos e entregas em contato direto com clientes pela parceria de consultoria independente: sistemas industriais para a Technos, distribuição Android, desenvolvimento de folha e operações AWS.</p></div></li>
-        <li><span class="timeline-period">Trabalhos independentes</span><div><h3>Projetos freelance</h3><p class="position">Desenvolvedor de Software</p><p>Contribuí com assistentes Python/LangChain/LangGraph em 2024. Em trabalhos separados, entreguei um frontend de gestão de projetos em Next.js/React e desenvolvi uma versão inicial de um sistema offline de recibos em Flutter Windows.</p></div></li>
-        <li><time datetime="2023-06">Jun 2023 - Mai 2025</time><div><h3>INDT</h3><p class="position">Estagiário em Automação QA e P&amp;D em IA</p><p>Desenvolvi automação QA Python/Android com UI Automator e ADB. Contribuí para treinar e avaliar classificadores BERT sobre a adequação de casos de teste à automação, além de experimentos separados de IA generativa em P&amp;D.</p></div></li>
-        <li><time datetime="2022-06">Jun 2022 - Jun 2023</time><div><h3>LUDUS / UEA</h3><p class="position">Bolsista de P&amp;D · Sistemas Embarcados</p><p>Protótipos de migração Flutter, dashboards React e visão computacional Python em pesquisa industrial.</p></div></li>
+        <li><div class="timeline-period"><time datetime="2025-05">Mai 2025</time> - <time datetime="2026-08">Ago 2026</time></div><div><h3>Projetos freelance</h3><p class="position">Desenvolvedor de Software</p><p>Trabalhos independentes entre a saída do INDT e a criação da NLivero. Entregas incluem um frontend de gestão de projetos em Next.js/React e uma versão inicial de um sistema offline de recibos em Flutter Windows, em paralelo à parceria separada com a IPena.</p></div></li>
+        <li><time datetime="2023-06">Jun 2023 - Mai 2025</time><div><h3>INDT</h3><p class="position">Estagiário em Automação QA Python e P&amp;D em IA</p><p>Desenvolvi casos de teste Android em Python com pytest e framework interno de automação, usando UI Automator, ADB, inspeção XML e análise de fluxos de navegação. Configurei fluxos CI/CD com Jenkins e acesso SSH para execução de testes.</p><p>Contribuí com normalização de datasets, treinamento, fine-tuning e avaliação de classificadores BERT com PyTorch, scikit-learn e Transformers, além de experimentos separados de IA generativa.</p></div></li>
+        <li><time datetime="2022-06">Jun 2022 - Jun 2023</time><div><h3>Projeto Callidus / Universidade do Estado do Amazonas</h3><p class="position">Bolsista de P&amp;D · LUDUS</p><p>Atuei no Callidus e em outras iniciativas de Sistemas de Informação dentro do LUDUS, núcleo de P&amp;D da UEA. Contribuí com legado Java Android, protótipos Flutter/Dart, dashboards React e visão computacional Python/OpenCV, incluindo processamento de datasets.</p></div></li>
       </ol>
-      <div class="toolkit"><h3>Tecnologias principais</h3><div><h4>Web e APIs</h4><p>TypeScript · React / Next.js · Node.js / NestJS · .NET · PostgreSQL · APIs REST</p></div><div><h4>Mobile e qualidade</h4><p>Flutter / Dart · Android · Python · ADB · UI Automator · Playwright</p></div><div><h4>Cloud e entrega</h4><p>AWS · Docker · Linux · Nginx · Azure DevOps · CI/CD · Git</p></div><div><h4>Sistemas e redes</h4><p>Ubuntu · Acesso remoto SSH · VPN · DNS · Configuração de redes · Upgrades de hardware</p></div><div><h4>IA e pesquisa</h4><p>Assistentes LangChain / LangGraph (freelance) · Classificação/fine-tuning BERT e experimentos de IA generativa (P&amp;D)</p></div></div>
+      <div class="toolkit"><h3>Tecnologias principais</h3><div><h4>Web e APIs</h4><p>TypeScript · React / Next.js · Node.js / NestJS · .NET · PostgreSQL · APIs REST</p></div><div><h4>Mobile e qualidade</h4><p>Flutter / Dart · Java · Android · Python · pytest · ADB · UI Automator · Playwright</p></div><div><h4>Cloud e entrega</h4><p>AWS · Docker · Linux · Nginx · Jenkins · Azure DevOps · CI/CD · Git</p></div><div><h4>Sistemas e redes</h4><p>Ubuntu · Acesso remoto SSH · VPN · DNS · Configuração de redes · Upgrades de hardware</p></div><div><h4>IA e pesquisa</h4><p>PyTorch · scikit-learn · Transformers / BERT · OpenCV · Preparação de datasets · Assistentes LangChain / LangGraph (freelance)</p></div></div>
       <div class="background"><div><h3>Formação</h3><p>Bacharelado em Sistemas de Informação · Universidade do Estado do Amazonas (UEA)</p><p><time datetime="2025-09">Concluído em Set 2025</time></p></div><div><h3>Idiomas</h3><p>Português: nativo · Inglês: avançado · Espanhol: intermediário</p><p class="small">Níveis de inglês e espanhol autodeclarados.</p></div></div>
     </section>
     <section class="contact-band" id="contact" aria-labelledby="contact-heading">

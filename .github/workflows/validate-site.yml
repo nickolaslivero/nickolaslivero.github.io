@@ -20,6 +20,6 @@ jobs:
           node-version: '24'
           package-manager-cache: false
       - name: Test validator and gallery with synthetic fixtures
-        run: node --test scripts/validate-site.test.mjs scripts/gallery.test.mjs
+        run: node --test scripts/validate-site.test.mjs scripts/gallery.test.mjs scripts/site.test.mjs
       - name: Validate public static files
         run: node scripts/validate-site.mjs .

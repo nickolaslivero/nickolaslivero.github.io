@@ -16,6 +16,8 @@ NLivero Software e Consultoria Ltda.
 - Development/deployment of non-fiscal payroll software, AWS migration and recovery
   checks; separate institutional website delivery with S3 and CloudFront.
 - Android QA automation, BERT classification research and bounded freelance work.
+- Callidus/UEA research and the Nina IA prototype, with a separate FastMCP tool
+  server and basic local document search rather than a production-RAG claim.
 - A self-hosted Ubuntu/Docker platform for personal development/preproduction,
   private remote administration and scoped backup/restore checks.
 
@@ -29,15 +31,17 @@ authorship claims are used.
 - `index.html`, `pt-br.html`: English/Portuguese pages.
 - `projects.html`, `projetos.html`: bilingual project collection, with category
   anchors and native details for contribution, technology and delivery context.
-- `assets/projects.css`: compact collection layout, layered over shared site styles.
+- `assets/projects.css`: category navigation and responsive project-card grid,
+  layered over shared site styles.
 - `assets/site.css`, `assets/site.js`, `assets/gallery.js`: responsive styles,
   persistent theme choice and progressively enhanced per-project galleries.
 - `assets/`: unchanged portrait, favicons and application icons; a generated office
-  background derived from the LinkedIn cover for visual identity. It does not depict
+  background derived from the LinkedIn cover for visual identity, served as WebP
+  while its original PNG is retained. It does not depict
   a client system or claim to be a photograph of an actual office.
-- `assets/previews/`: actual reviewed frontend, emulator and physical-handheld captures. Each project
+- `assets/previews/`: actual reviewed frontend, emulator, physical-handheld and terminal captures. Each project
   has at most three images; complex products remain separate galleries, including
-  production I-repos 1 and the non-production I-repos 2 pilot. Captions identify
+  production I-repos 1 and the I-repos 2 pilot awaiting client clearance. Captions identify
   personal preproduction, test data, emulator or physical-pilot views rather than
   production metrics. ICheck figures come from a test database; the handheld
   view shows the pilot launcher, not proof of kiosk enforcement. Client operational
@@ -45,7 +49,29 @@ authorship claims are used.
   still requires human review. No live client application is embedded or linked.
   Without JavaScript, the image links remain available. With native dialog support,
   thumbnails open a keyboard-operable viewer with full-size image links.
-- `assets/icons/`: four locally vendored Lucide icons and their ISC/MIT notices.
+- The SBIE 2024 paper preview is a faithful first-page rendering of the official
+  publication PDF, with original credits intact and a link to the SBC record.
+  It illustrates published academic work, not a running product; the prototype
+  is discontinued. Multi-image application galleries start with sign-in, followed
+  by the reviewed system views. Single-image previews remain separate.
+- The institutional site has three public captures: homepage hero, services and
+  About. Brand marketing statistics visible inside those images are not the
+  portfolio owner's personal delivery metrics. The Nina prototype has two
+  archived UI captures, not a live tool-execution or production-access demo.
+  The homepage currently has ten galleries and 20 images, at most three per
+  project. I-repos 2 follows sign-in, dashboard, physical handheld order.
+- The self-hosted server preview is an owner-provided real btop capture received
+  on 2026-10-15. Local blur obscures process commands, users, a network-interface
+  identifier and a backup-volume label; the original CPU, memory and disk pixels
+  remain unchanged. It is a personal development/preproduction snapshot, not
+  live monitoring, client production, a capacity benchmark or an availability SLA.
+- `assets/icons/`: locally vendored Lucide controls and a Bootstrap WhatsApp
+  icon, with their ISC/MIT notices. Hero contacts use WhatsApp/email icons and
+  the resume download uses the same button treatment.
+- The shared sticky header stays visible while scrolling. Section offsets track
+  its actual height, including narrow layouts. Language switching uses PT-BR/
+  EN-US with a Lucide language icon; the sun/moon theme button retains system
+  preference, local persistence, accessible pressed state and hover titles.
 - `cv-en.pdf`, `cv-pt.pdf`: reviewed public master resumes.
 - `resume.pdf`, `resume-pt.pdf`: compatibility aliases of the current public
   masters for previously shared links. Earlier modified files were preserved
@@ -63,6 +89,7 @@ With Node.js 24, run:
 ```powershell
 node --test scripts/validate-site.test.mjs
 node --test scripts/gallery.test.mjs
+node --test scripts/site.test.mjs
 node scripts/validate-site.mjs .
 ```
 
@@ -82,8 +109,11 @@ Each entry has a concise summary and native details. Historical studies use
 purpose-based descriptions, while status labels distinguish active tools,
 production systems, pilots and discontinued experiments.
 
-The collection uses native HTML details and only the shared theme script. Reviewed
-captures are linked directly rather than duplicated in additional galleries.
+The collection uses native HTML details, always-visible category navigation and
+the same shared theme/gallery scripts as the homepages. Its ten image galleries
+reuse the same 20 assets, reviewed captions and per-project order without copying
+the images. Primary preview controls open an in-page modal with close, keyboard
+navigation and focus return; original-image links remain an optional fallback.
 Public repository links are selective and do not imply a security audit or sole
 authorship. The accessibility paper links to its official publication record.
 
