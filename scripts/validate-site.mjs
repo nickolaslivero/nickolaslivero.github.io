@@ -175,6 +175,18 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
         for (const entry of node.attrs.srcset.split(',')) reference(page.file, entry.trim().split(/\s+/)[0], `srcset at line ${node.line}`);
       }
     }
+    const previews = elements('img').filter((node) => node.attrs.class?.split(/\s+/).includes('project-preview-image'));
+    if (previews.length > 3) fail(page.file, 'preview', 'at most three project previews per page');
+    for (const preview of previews) {
+      if (!preview.attrs.alt?.trim() || !/^[1-9]\d*$/.test(preview.attrs.width ?? '') ||
+          !/^[1-9]\d*$/.test(preview.attrs.height ?? '') || preview.attrs.loading !== 'lazy') {
+        fail(page.file, 'preview', 'preview requires alt text, positive dimensions and lazy loading');
+      }
+      if (!/^assets\/previews\/[a-z0-9-]+\.jpe?g$/i.test(preview.attrs.src ?? '')) {
+        fail(page.file, 'preview', 'preview must reference a reviewed local JPEG in assets/previews');
+      }
+      if ('srcset' in preview.attrs) fail(page.file, 'preview', 'project previews do not accept alternate srcset assets');
+    }
     for (const [asset, tag, attr] of [['assets/site.css', 'link', 'href'], ['assets/site.js', 'script', 'src']]) {
       if (!elements(tag).some((node) => {
         if (tag === 'link' && !hasRel(node, 'stylesheet')) return false;

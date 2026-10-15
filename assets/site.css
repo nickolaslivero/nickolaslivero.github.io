@@ -87,6 +87,10 @@ h4 { font-size: 1.125rem; }
 .case-body .outcome { margin-top: 12px; color: var(--muted); }
 .case-stack { font-size: 0.8125rem; color: var(--muted); padding-top: 4px; line-height: 1.9; }
 .case-body, .case-stack, .intro-detail, .availability { overflow-wrap: anywhere; }
+.case-preview { grid-column: 2 / -1; min-width: 0; margin: 24px 0 0; }
+.case-preview a { display: block; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.project-preview-image { width: 100%; height: auto; }
+.case-preview figcaption { margin-top: 10px; font-size: 0.75rem; color: var(--muted); overflow-wrap: anywhere; }
 .more-work { border-top: 1px solid var(--rule); padding-top: 26px; }
 .more-work > h3 { font-size: 1.1875rem; margin-bottom: 24px; }
 .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }

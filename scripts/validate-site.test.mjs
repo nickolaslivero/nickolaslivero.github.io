@@ -65,6 +65,42 @@ test('valid bilingual fixtures pass; CSS percentages are not public claims', (t)
   assert.equal(result.filesChecked, 4);
 });
 
+function addPreviews(root, count = 1, attributes = '') {
+  mkdirSync(join(root, 'assets/previews'));
+  writeFileSync(join(root, 'assets/previews/example.jpg'), 'synthetic JPEG placeholder');
+  const preview = `<img class="project-preview-image" src="assets/previews/example.jpg" width="800" height="400" loading="lazy" alt="Synthetic dashboard" ${attributes}>`;
+  edit(root, 'index.html', '</main>', preview.repeat(count) + '</main>');
+}
+
+test('up to three dimensioned, lazy local project previews pass', (t) => {
+  const root = fixture(t);
+  addPreviews(root, 3);
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('four project previews are rejected', (t) => {
+  reject(t, (root) => addPreviews(root, 4), 'preview');
+});
+
+test('project previews cannot override reviewed src through srcset', (t) => {
+  reject(t, (root) => addPreviews(root, 1, 'srcset="https://example.com/preview.jpg 2x"'), 'preview');
+});
+
+for (const [name, from, to] of [
+  ['missing alt text', 'alt="Synthetic dashboard"', 'alt=""'],
+  ['zero width', 'width="800"', 'width="0"'],
+  ['missing height', 'height="400"', ''],
+  ['eager loading', 'loading="lazy"', 'loading="eager"'],
+  ['remote preview', 'src="assets/previews/example.jpg"', 'src="https://example.com/preview.jpg"'],
+]) {
+  test(`project previews reject ${name}`, (t) => {
+    reject(t, (root) => {
+      addPreviews(root);
+      edit(root, 'index.html', from, to);
+    }, 'preview');
+  });
+}
+
 test('wording, case, attribute order, quotation and date variants pass', (t) => {
   const root = fixture(t);
   for (const file of ['index.html', 'pt-br.html']) {

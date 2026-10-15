@@ -16,6 +16,8 @@ NLivero Software e Consultoria Ltda.
 - Development/deployment of non-fiscal payroll software, AWS migration and recovery
   checks; separate institutional website delivery with S3 and CloudFront.
 - Android QA automation, BERT classification research and bounded freelance work.
+- A self-hosted Ubuntu/Docker platform for personal development/preproduction,
+  private remote administration and scoped backup/restore checks.
 
 Client source code, operational data and internal endpoints are not included.
 A pilot, a delivered frontend MVP and maintained production software are
@@ -29,6 +31,11 @@ authorship claims are used.
 - `assets/`: unchanged portrait, favicons and application icons; a generated office
   background derived from the LinkedIn cover for visual identity. It does not depict
   a client system or claim to be a photograph of an actual office.
+- `assets/previews/`: two actual, cropped SisTech/I-repos frontend captures from
+  personal preproduction. Account headers and device history are excluded.
+  These are interface previews, not production metrics or client acceptance.
+  A maximum of three previews is enforced; image confidentiality still requires
+  human review. No live client application is embedded or linked.
 - `cv-en.pdf`, `cv-pt.pdf`: reviewed public master resumes.
 - `resume.pdf`, `resume-pt.pdf`: compatibility aliases of the current public
   masters for previously shared links. Earlier modified files were preserved
