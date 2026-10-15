@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { dirname, extname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -7,11 +7,13 @@ const pages = [
   { file: 'index.html', lang: 'en', url: `${publicOrigin}/` },
   { file: 'pt-br.html', lang: 'pt-br', url: `${publicOrigin}/pt-br.html` },
 ];
-const alternates = new Map([
-  ['en', pages[0].url], ['pt-br', pages[1].url], ['x-default', pages[0].url],
-]);
+const catalogPages = [
+  { file: 'projects.html', lang: 'en', url: `${publicOrigin}/projects.html` },
+  { file: 'projetos.html', lang: 'pt-br', url: `${publicOrigin}/projetos.html` },
+];
 const textExtensions = new Set(['.html', '.css', '.js', '.mjs', '.json', '.webmanifest', '.xml', '.txt']);
 const voidTags = new Set('area base br col embed hr img input link meta param source track wbr'.split(' '));
+const previewPath = /^assets\/previews\/[a-z0-9-]+\.(?:jpg|png)$/;
 
 function decode(text) {
   const entities = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ', plus: '+', percnt: '%' };
@@ -53,6 +55,19 @@ function scanHtml(source) {
   }
   stack.at(-1).children.push(decode(clean.slice(cursor)));
   return { root, nodes };
+}
+
+function descendants(node) {
+  return node.children.flatMap((child) => typeof child === 'string' ? [] : [child, ...descendants(child)]);
+}
+
+function hasClass(node, name) {
+  return node.attrs?.class?.split(/\s+/).includes(name);
+}
+
+function visibleWithin(node, target) {
+  if (typeof node === 'string' || 'hidden' in (node.attrs ?? {}) || node.attrs?.['aria-hidden'] === 'true') return false;
+  return node === target || node.children.some((child) => visibleWithin(child, target));
 }
 
 function visible(node) {
@@ -136,7 +151,12 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
     }
   }
 
-  for (const page of pages) {
+  const optionalPages = catalogPages.some((page) => existsSync(resolve(root, page.file))) ? catalogPages : [];
+  for (const page of [...pages, ...optionalPages]) {
+    const siblings = pages.includes(page) ? pages : catalogPages;
+    const alternates = new Map([
+      ['en', siblings[0].url], ['pt-br', siblings[1].url], ['x-default', siblings[0].url],
+    ]);
     const source = read(page.file);
     if (source === null) continue;
     const { root: document, nodes } = scanHtml(source);
@@ -176,16 +196,58 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
       }
     }
     const previews = elements('img').filter((node) => node.attrs.class?.split(/\s+/).includes('project-preview-image'));
-    if (previews.length > 3) fail(page.file, 'preview', 'at most three project previews per page');
     for (const preview of previews) {
       if (!preview.attrs.alt?.trim() || !/^[1-9]\d*$/.test(preview.attrs.width ?? '') ||
           !/^[1-9]\d*$/.test(preview.attrs.height ?? '') || preview.attrs.loading !== 'lazy') {
         fail(page.file, 'preview', 'preview requires alt text, positive dimensions and lazy loading');
       }
-      if (!/^assets\/previews\/[a-z0-9-]+\.jpe?g$/i.test(preview.attrs.src ?? '')) {
-        fail(page.file, 'preview', 'preview must reference a reviewed local JPEG in assets/previews');
+      const src = preview.attrs.src ?? '';
+      if (!previewPath.test(src) || src !== src.trim()) {
+        fail(page.file, 'preview', 'preview must reference a reviewed local JPG or PNG in assets/previews');
       }
       if ('srcset' in preview.attrs) fail(page.file, 'preview', 'project previews do not accept alternate srcset assets');
+    }
+    for (const gallery of nodes.filter((node) => hasClass(node, 'project-gallery'))) {
+      const context = `.project-gallery at line ${gallery.line}`;
+      const children = descendants(gallery);
+      if (!gallery.attrs['data-gallery-title']?.trim()) {
+        fail(page.file, 'gallery', `${context}: expected a non-empty data-gallery-title`);
+      }
+      const triggers = children.filter((node) => hasClass(node, 'gallery-trigger'));
+      if (triggers.length !== 1 || triggers[0].tag !== 'button' || !('hidden' in triggers[0].attrs)) {
+        fail(page.file, 'gallery', `${context}: expected one initially hidden button.gallery-trigger`);
+      }
+      const lists = children.filter((node) => hasClass(node, 'gallery-links'));
+      if (lists.length !== 1 || lists[0].tag !== 'ul') {
+        fail(page.file, 'gallery', `${context}: expected one ul.gallery-links fallback`);
+        continue;
+      }
+      const list = lists[0];
+      if (!visibleWithin(document, list)) {
+        fail(page.file, 'gallery', `${context}: fallback list must be visible without JavaScript`);
+      }
+      const anchors = descendants(list).filter((node) => node.tag === 'a');
+      const slides = list.children.filter((node) => node.tag === 'li')
+        .flatMap((item) => item.children.filter((node) => node.tag === 'a'));
+      if (anchors.length !== slides.length) {
+        fail(page.file, 'gallery', `${context}: fallback links must follow ul.gallery-links > li > a`);
+      }
+      if (slides.length < 1 || slides.length > 3) {
+        fail(page.file, 'gallery', `${context}: expected 1 to 3 image links per project gallery`);
+      }
+      for (const slide of slides) {
+        const linkContext = `${context}, link at line ${slide.line}`;
+        const href = slide.attrs.href ?? '';
+        if (!previewPath.test(href) || href !== href.trim()) {
+          fail(page.file, 'gallery', `${linkContext}: expected a local assets/previews/<slug>.(jpg|png) target`);
+        }
+        if (!slide.attrs['data-caption']?.trim()) {
+          fail(page.file, 'gallery', `${linkContext}: expected a non-empty data-caption`);
+        }
+        if (!visibleWithin(document, slide)) {
+          fail(page.file, 'gallery', `${linkContext}: fallback link must be visible without JavaScript`);
+        }
+      }
     }
     for (const [asset, tag, attr] of [['assets/site.css', 'link', 'href'], ['assets/site.js', 'script', 'src']]) {
       if (!elements(tag).some((node) => {
@@ -202,6 +264,7 @@ export function validateSite(directory = fileURLToPath(new URL('../', import.met
     if (/(?:\b400\s*\+|\b(?:60|70)\s*(?:%|percent\b|por cento\b))/.test(text)) {
       fail(page.file, 'metric', 'unsupported 400+, 60%, or 70% public claim');
     }
+    if (!pages.includes(page)) continue;
     const mainText = normalized(mains[0] ? visible(mains[0]) : '');
     function visibleDates(node) {
       if (typeof node === 'string' || !visible(node)) return [];

@@ -65,11 +65,195 @@ test('valid bilingual fixtures pass; CSS percentages are not public claims', (t)
   assert.equal(result.filesChecked, 4);
 });
 
-function addPreviews(root, count = 1, attributes = '') {
+function addCatalogs(root) {
+  writeFileSync(join(root, 'assets/projects.css'), '.catalog { min-width: 0; }');
+  for (const [file, lang, heading] of [
+    ['projects.html', 'en', 'Project collection'], ['projetos.html', 'pt-BR', 'Projetos e pesquisa'],
+  ]) {
+    writeFileSync(join(root, file), `<!doctype html>
+<html lang="${lang}"><head><title>${heading}</title>
+<link rel="canonical" href="${origin}/${file}">
+<link rel="alternate" hreflang="en" href="${origin}/projects.html">
+<link rel="alternate" hreflang="pt-BR" href="${origin}/projetos.html">
+<link rel="alternate" hreflang="x-default" href="${origin}/projects.html">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/projects.css">
+<script src="assets/site.js" defer></script></head>
+<body><main><h1>${heading}</h1><section><h2>Research</h2>
+<details><summary>Research prototype</summary><p>Academic contribution, not a production service.</p></details>
+<img src="assets/photo.png" alt="Portrait"></section></main></body></html>`);
+  }
+}
+
+test('optional catalog pair passes without homepage founder, degree or client facts', (t) => {
+  const root = fixture(t);
+  addCatalogs(root);
+  const result = validateSite(root);
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.filesChecked, 7);
+});
+
+const catalogInventory = [
+  ['professional', ['sistech', 'irepos-1', 'factory-app', 'ranking', 'payroll-cloud', 'ipena-site']],
+  ['independent', ['project-management', 'whatsapp-assistants', 'offline-receipts', 'python-migration']],
+  ['infrastructure', ['career-hub', 'self-hosted']],
+  ['pilots', ['irepos-2', 'erp-assistance', 'cafe-management']],
+  ['research', ['voice-assistant', 'android-qa', 'bert-qa', 'embedded-research']],
+  ['academic', [
+    'sorting-algorithms', 'vaccination-records', 'wallet-transfers', 'auction-prototype',
+    'encrypted-chat', 'culture-chatbot', 'laptop-recommendation', 'pet-monitor', 'flask-calendar',
+    'thermal-printer', 'retrieval-assistant', 'pizza-orders', 'movie-recommendation', 'classroom-app',
+    'java-bank', 'route-optimization', 'pong-study', 'regex-study',
+  ]],
+  ['historical', [
+    'box-checking', 'offline-pdf', 'parking-demo', 'liturgical-calendar', 'substitution-cipher',
+    'protheus-study', 'macos-study', 'campaign-attribution',
+  ]],
+];
+
+for (const [file, categoryLabel] of [
+  ['projects.html', 'Project categories'], ['projetos.html', 'Categorias de projetos'],
+]) {
+  test(`${file} retains 45 grouped entries and native details without additional runtime`, () => {
+    const source = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+    const indexes = [...source.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)]
+      .filter(([, attrs]) => /\bclass="collection-index wrap"/.test(attrs));
+    assert.equal(indexes.length, 1, 'one native category disclosure');
+    assert.equal([...source.matchAll(/\bclass="collection-index wrap"/g)].length, 1, 'one index wrapper');
+    assert.doesNotMatch(indexes[0][1], /\bopen(?:\s|=|$)/i, 'closed by default at every viewport');
+    const navigation = indexes[0][2].match(new RegExp(
+      `^\\s*<summary>${categoryLabel}</summary>\\s*<nav aria-label="${categoryLabel}">([\\s\\S]*?)</nav>\\s*$`));
+    assert.ok(navigation, 'localized native summary followed by a labeled navigation landmark');
+    assert.deepEqual([...navigation[1].matchAll(/<a href="#([^"]+)">[^<]+<\/a>/g)]
+      .map(([, target]) => target), catalogInventory.map(([id]) => id));
+    const groups = [...source.matchAll(/<section class="collection-category wrap" id="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)]
+      .map(([, id, section]) => [id, [...section.matchAll(/<article class="project-row" id="([^"]+)"/g)]
+        .map(([, project]) => project)]);
+    assert.deepEqual(groups, catalogInventory);
+    const entries = [...source.matchAll(/<article class="project-row" id="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g)];
+    assert.equal(entries.length, 45);
+    for (const [, id, entry] of entries) {
+      assert.equal([...entry.matchAll(/<details>/g)].length, 1, `${id}: native details`);
+      assert.match(entry, /<details><summary>[^<]+<\/summary>/, `${id}: named disclosure`);
+      for (const name of ['project-state', 'project-context', 'project-summary']) {
+        assert.match(entry, new RegExp(`<p class="${name}">[^<]+</p>`), `${id}: ${name}`);
+      }
+    }
+    const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
+    assert.equal(new Set(ids).size, ids.length, 'all IDs must be unique');
+    for (const [, target] of source.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(target), target);
+    assert.deepEqual([...source.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/g)]
+      .map(([script]) => script), ['<script src="assets/site.js" defer></script>']);
+    assert.doesNotMatch(source, /class="(?:project-gallery|gallery-trigger)"/);
+    for (const href of [
+      'https://wa.me/5592988023281', 'https://doi.org/10.5753/sbie.2024.244662',
+      'https://sol.sbc.org.br/index.php/sbie/article/view/31461', 'https://github.com/nickolaslivero/PAIC',
+    ]) assert.equal(source.split(`href="${href}"`).length - 1, 1, `one approved link: ${href}`);
+  });
+}
+
+for (const missing of ['projects.html', 'projetos.html']) {
+  test(`an optional catalog requires its missing counterpart: ${missing}`, (t) => {
+    reject(t, (root) => {
+      addCatalogs(root);
+      rmSync(join(root, missing));
+    }, 'read');
+  });
+}
+
+for (const [homepage, catalog] of [
+  ['index.html', 'projects.html'], ['pt-br.html', 'projetos.html'],
+]) {
+  test(`${homepage} leads with client value and keeps independent work attributed`, () => {
+    const source = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const intro = source.match(/<section class="intro"[\s\S]*?<\/section>/)[0];
+    assert.match(intro, /custom web and Android software|sistemas web e Android sob medida/);
+    assert.doesNotMatch(intro, /IPena|Technos/);
+    const timeline = source.match(/<ol class="timeline">([\s\S]*?)<\/ol>/)[1];
+    const titles = [...timeline.matchAll(/<h3>([^<]+)<\/h3>/g)].map(([, title]) => title);
+    assert.deepEqual(titles, homepage === 'index.html'
+      ? ['NLivero', 'IPena Consultoria (commercial brand)', 'Freelance projects', 'INDT', 'LUDUS / UEA']
+      : ['NLivero', 'IPena Consultoria (marca comercial)', 'Projetos freelance', 'INDT', 'LUDUS / UEA']);
+    const freelance = [...timeline.matchAll(/<li>([\s\S]*?)<\/li>/g)][2][1];
+    assert.match(freelance, /2024/);
+    assert.doesNotMatch(freelance, /<time\b/);
+    assert.match(source, /non-fiscal payroll|folha não fiscal/);
+  });
+
+  test(`${homepage} and ${catalog} retain reviewed payroll and handheld evidence`, () => {
+    const home = readFileSync(new URL(`../${homepage}`, import.meta.url), 'utf8');
+    const collection = readFileSync(new URL(`../${catalog}`, import.meta.url), 'utf8');
+    const galleries = [...home.matchAll(/<div class="project-gallery" data-gallery-title="([^"]+)">([\s\S]*?)<\/ul>/g)];
+    const expected = [
+      ['ICheck', ['payroll-dashboard.jpg', 'payroll-login.jpg']],
+      ['I-repos 2', ['android-management-handheld.png', 'android-management-pilot.jpg', 'android-management-login.jpg']],
+    ];
+    for (const [name, images] of expected) {
+      const gallery = galleries.find(([, title]) => title.startsWith(name));
+      assert.ok(gallery, `${name}: named gallery`);
+      assert.deepEqual([...gallery[2].matchAll(/href="assets\/previews\/([^"]+)"/g)]
+        .map(([, filename]) => filename), images, `${name}: reviewed image order and per-project limit`);
+      for (const filename of images) {
+        assert.equal(collection.split(`href="assets/previews/${filename}"`).length - 1, 1,
+          `${name}: one matching collection link for ${filename}`);
+      }
+    }
+    assert.match(galleries.find(([, title]) => title.startsWith('ICheck'))[2], /data-caption="[^"]*(?:test database|Base de teste)[^"]*"/);
+    assert.doesNotMatch(home + collection, /handheld-unlocked/i);
+  });
+}
+
+for (const [name, file, from, to, rule] of [
+  ['language', 'projetos.html', 'lang="pt-BR"', 'lang="en"', 'lang'],
+  ['title', 'projects.html', '<title>Project collection</title>', '<title> </title>', 'title'],
+  ['main', 'projects.html', '<main>', '<div>', 'main'],
+  ['h1', 'projects.html', '<h1>Project collection</h1>', '<h2>Project collection</h2>', 'h1'],
+  ['canonical', 'projects.html', `rel="canonical" href="${origin}/projects.html"`, `rel="canonical" href="${origin}/"`, 'canonical'],
+  ['Portuguese canonical', 'projetos.html', `rel="canonical" href="${origin}/projetos.html"`, `rel="canonical" href="${origin}/pt-br.html"`, 'canonical'],
+  ['English alternate', 'projetos.html', `hreflang="en" href="${origin}/projects.html"`, `hreflang="en" href="${origin}/"`, 'alternate'],
+  ['Portuguese alternate', 'projects.html', `hreflang="pt-BR" href="${origin}/projetos.html"`, `hreflang="pt-BR" href="${origin}/pt-br.html"`, 'alternate'],
+  ['default alternate', 'projects.html', `hreflang="x-default" href="${origin}/projects.html"`, `hreflang="x-default" href="${origin}/"`, 'alternate'],
+  ['local image reference', 'projects.html', 'src="assets/photo.png"', 'src="assets/missing.png"', 'asset'],
+  ['local stylesheet reference', 'projetos.html', 'href="assets/projects.css"', 'href="assets/missing.css"', 'asset'],
+  ['shared stylesheet', 'projects.html', 'href="assets/site.css"', 'href="assets/projects.css"', 'shared-asset'],
+  ['external executable', 'projects.html', '</head>', '<script src="https://example.com/widget.js"></script></head>', 'dependency'],
+  ['base override', 'projects.html', '</head>', '<base href="/other/"></head>', 'base'],
+  ['public metric', 'projects.html', '<h1>Project collection</h1>', '<h1>Project collection 400+</h1>', 'metric'],
+  ['private path', 'projects.html', '</main>', '<p>C:\\dev\\private</p></main>', 'private-path'],
+  ['private endpoint', 'projetos.html', '</main>', '<p>https://192.168.7.23</p></main>', 'private-endpoint'],
+  ['credential', 'projects.html', '</main>', '<p>password="synthetic-not-a-real-secret"</p></main>', 'credential'],
+]) {
+  test(`catalog retains ${name} validation`, (t) => {
+    reject(t, (root) => {
+      addCatalogs(root);
+      edit(root, file, from, to);
+    }, rule);
+  });
+}
+
+function addPreviews(root, count = 1, attributes = '', extension = 'jpg') {
+  const asset = `assets/previews/example.${extension}`;
   mkdirSync(join(root, 'assets/previews'));
-  writeFileSync(join(root, 'assets/previews/example.jpg'), 'synthetic JPEG placeholder');
-  const preview = `<img class="project-preview-image" src="assets/previews/example.jpg" width="800" height="400" loading="lazy" alt="Synthetic dashboard" ${attributes}>`;
+  writeFileSync(join(root, asset), 'synthetic image placeholder');
+  const preview = `<img class="project-preview-image" src="${asset}" width="800" height="400" loading="lazy" alt="Synthetic dashboard" ${attributes}>`;
   edit(root, 'index.html', '</main>', preview.repeat(count) + '</main>');
+}
+
+function addGalleries(root, counts = [1], file = 'index.html', extension = 'jpg') {
+  const asset = `assets/previews/example.${extension}`;
+  mkdirSync(join(root, 'assets/previews'), { recursive: true });
+  writeFileSync(join(root, asset), 'synthetic image placeholder');
+  const galleries = counts.map((count, project) => {
+    const links = Array.from({ length: count }, (_, index) =>
+      `<li><a href="${asset}" data-caption="Preview ${project + 1}-${index + 1}">Preview ${index + 1}</a></li>`).join('\n');
+    return `<figure class="project-gallery" data-gallery-title="Project ${project + 1}">
+<div><button class="gallery-trigger" type="button" hidden aria-label="Open gallery">
+<img class="project-preview-image" src="${asset}" width="800" height="400" loading="lazy" alt="Synthetic dashboard">
+<span>${count}</span></button></div>
+<div class="gallery-fallback"><ul class="gallery-links">${links}</ul></div>
+</figure>`;
+  }).join('\n');
+  edit(root, file, '</main>', galleries + '</main>');
 }
 
 test('up to three dimensioned, lazy local project previews pass', (t) => {
@@ -78,8 +262,170 @@ test('up to three dimensioned, lazy local project previews pass', (t) => {
   assert.deepEqual(validateSite(root).errors, []);
 });
 
-test('four project previews are rejected', (t) => {
-  reject(t, (root) => addPreviews(root, 4), 'preview');
+test('four fallback images in a single project gallery are rejected', (t) => {
+  reject(t, (root) => addGalleries(root, [4]), 'gallery');
+});
+
+test('six galleries per page accept one to three images each, not a global limit', (t) => {
+  const root = fixture(t);
+  addGalleries(root, [1, 2, 3, 1, 2, 3]);
+  addGalleries(root, [3, 3, 3, 3, 3, 3], 'pt-br.html');
+  edit(root, 'pt-br.html', 'data-gallery-title="Project 1"', "data-gallery-title='Projeto &amp; imagens'");
+  edit(root, 'pt-br.html', 'data-caption="Preview 1-1"', "data-caption='Pr&#233;via localizada'");
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('six mixed JPG/PNG galleries per page accept eighteen local image links', (t) => {
+  const root = fixture(t);
+  addGalleries(root, [3, 3, 3, 3, 3, 3]);
+  addGalleries(root, [3, 3, 3, 3, 3, 3], 'pt-br.html', 'png');
+  edit(root, 'index.html', 'src="assets/previews/example.jpg"', 'src="assets/previews/example.png"');
+  edit(root, 'index.html', 'href="assets/previews/example.jpg"', 'href="assets/previews/example.png"');
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('standalone PNG previews retain legacy markup without a global count', (t) => {
+  const root = fixture(t);
+  addPreviews(root, 4, '', 'png');
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('legacy standalone previews need no gallery markup or global count', (t) => {
+  const root = fixture(t);
+  addPreviews(root, 4);
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+test('an empty gallery cannot borrow image links from another project', (t) => {
+  const root = fixture(t);
+  addGalleries(root, [0, 3]);
+  const errors = validateSite(root).errors;
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /index\.html \[gallery\].*line \d+.*1 to 3/);
+});
+
+test('non-gallery links do not count toward a project image limit', (t) => {
+  const root = fixture(t);
+  addGalleries(root, [3]);
+  edit(root, 'index.html', '</main>', '<a href="assets/previews/example.jpg">Separate image</a></main>');
+  assert.deepEqual(validateSite(root).errors, []);
+});
+
+for (const [name, href] of [
+  ['external', 'https://example.com/image.jpg'],
+  ['protocol-relative', '//example.com/image.jpg'],
+  ['same-origin absolute', `${origin}/assets/previews/example.jpg`],
+  ['root-relative', '/assets/previews/example.jpg'],
+  ['data URL', 'data:image/jpeg;base64,AA=='],
+  ['traversal', 'assets/previews/../example.jpg'],
+  ['encoded path', 'assets/previews/example%2ejpg'],
+  ['nested path', 'assets/previews/sub/example.jpg'],
+  ['JPEG extension other than jpg', 'assets/previews/example.jpeg'],
+  ['uppercase slug', 'assets/previews/EXAMPLE.jpg'],
+  ['query', 'assets/previews/example.jpg?size=1'],
+  ['fragment', 'assets/previews/example.jpg#image'],
+  ['leading whitespace', ' assets/previews/example.jpg'],
+  ['trailing newline', 'assets/previews/example.jpg&#10;'],
+  ['empty', ''],
+  ['SVG', 'assets/previews/example.svg'],
+  ['GIF', 'assets/previews/example.gif'],
+  ['WebP', 'assets/previews/example.webp'],
+  ['uppercase extension', 'assets/previews/example.PNG'],
+  ['external PNG', 'https://example.com/image.png'],
+  ['protocol-relative PNG', '//example.com/image.png'],
+  ['PNG data URL', 'data:image/png;base64,AA=='],
+  ['PNG traversal', 'assets/previews/../example.png'],
+  ['encoded PNG traversal', 'assets/previews/%2e%2e/example.png'],
+  ['root-relative PNG', '/assets/previews/example.png'],
+  ['PNG query', 'assets/previews/example.png?size=1'],
+  ['PNG fragment', 'assets/previews/example.png#image'],
+  ['PNG trailing newline', 'assets/previews/example.png&#10;'],
+]) {
+  test(`gallery links reject ${name} references`, (t) => {
+    reject(t, (root) => {
+      addGalleries(root);
+      edit(root, 'index.html', 'href="assets/previews/example.jpg"', `href="${href}"`);
+    }, 'gallery');
+  });
+}
+
+for (const [name, from, to] of [
+  ['missing title', ' data-gallery-title="Project 1"', ''],
+  ['empty title', 'data-gallery-title="Project 1"', 'data-gallery-title=""'],
+  ['whitespace title', 'data-gallery-title="Project 1"', 'data-gallery-title=" &#160; "'],
+  ['missing caption', ' data-caption="Preview 1-1"', ''],
+  ['empty caption', 'data-caption="Preview 1-1"', 'data-caption=""'],
+  ['whitespace caption', 'data-caption="Preview 1-1"', 'data-caption=" &#160; "'],
+  ['missing link target', ' href="assets/previews/example.jpg"', ''],
+  ['missing trigger', 'class="gallery-trigger"', 'class="other-trigger"'],
+  ['visible trigger', 'type="button" hidden', 'type="button"'],
+  ['non-button trigger', '<button class="gallery-trigger"', '<span class="gallery-trigger"'],
+  ['duplicate trigger', '</button>', '</button><button class="gallery-trigger" hidden>Duplicate</button>'],
+  ['missing fallback', 'class="gallery-links"', 'class="other-links"'],
+  ['non-list fallback', '<ul class="gallery-links"', '<div class="gallery-links"'],
+  ['duplicate fallback', '</ul>', '</ul><ul class="gallery-links"></ul>'],
+  ['hidden fallback', '<ul class="gallery-links"', '<ul hidden class="gallery-links"'],
+  ['ARIA-hidden fallback', '<ul class="gallery-links"', '<ul aria-hidden="true" class="gallery-links"'],
+  ['hidden fallback wrapper', '<div class="gallery-fallback"', '<div hidden class="gallery-fallback"'],
+  ['hidden link', '<a href="assets/previews/example.jpg"', '<a hidden href="assets/previews/example.jpg"'],
+  ['hidden list item', '<li>', '<li hidden>'],
+  ['link outside a list item', '<li><a ', '<a '],
+  ['link nested below a list item', '<li><a ', '<li><span><a '],
+]) {
+  test(`gallery contract rejects ${name}`, (t) => {
+    reject(t, (root) => {
+      addGalleries(root);
+      edit(root, 'index.html', from, to);
+    }, 'gallery');
+  });
+}
+
+test('gallery links retain local-file existence validation', (t) => {
+  reject(t, (root) => {
+    addGalleries(root, [2]);
+    edit(root, 'index.html', 'href="assets/previews/example.jpg"', 'href="assets/previews/missing.jpg"');
+  }, 'asset');
+});
+
+test('PNG gallery links retain local-file existence validation', (t) => {
+  reject(t, (root) => {
+    addGalleries(root, [2], 'index.html', 'png');
+    edit(root, 'index.html', 'href="assets/previews/example.png"', 'href="assets/previews/missing.png"');
+  }, 'asset');
+});
+
+test('gallery thumbnails retain preview alt, dimensions, lazy and srcset checks', (t) => {
+  for (const extension of ['jpg', 'png']) {
+    for (const [from, to] of [
+      ['alt="Synthetic dashboard"', 'alt=""'],
+      ['width="800"', 'width="0"'],
+      ['height="400"', ''],
+      ['loading="lazy"', 'loading="eager"'],
+      [`src="assets/previews/example.${extension}"`, `src="https://example.com/image.${extension}"`],
+      ['loading="lazy"', `loading="lazy" srcset="assets/previews/example.${extension} 2x"`],
+    ]) {
+      const root = fixture(t);
+      addGalleries(root, [1], 'index.html', extension);
+      edit(root, 'index.html', from, to);
+      assert.ok(validateSite(root).errors.some((error) => error.includes('[preview]')), `${extension}: ${from}`);
+    }
+  }
+});
+
+test('preview sources accept only strict local lowercase jpg/png paths', (t) => {
+  for (const src of [
+    'assets/previews/example.svg', 'assets/previews/example.gif', 'assets/previews/example.webp',
+    'assets/previews/example.jpeg', 'assets/previews/example.PNG', 'assets/previews/EXAMPLE.jpg',
+    'data:image/png;base64,AA==', 'https://example.com/image.png', '//example.com/image.png',
+    '/assets/previews/example.png', 'assets/previews/../example.png', 'assets/previews/%2e%2e/example.png',
+    'assets/previews/example.png?x=1', 'assets/previews/example.png#x', 'assets/previews/example.png&#10;',
+    'assets/previews/example.jpg&#10;', ' assets/previews/example.png', 'assets/previews/sub/example.png',
+  ]) {
+    const root = fixture(t);
+    addPreviews(root);
+    edit(root, 'index.html', 'src="assets/previews/example.jpg"', `src="${src}"`);
+    assert.ok(validateSite(root).errors.some((error) => error.includes('[preview]')), src);
+  }
 });
 
 test('project previews cannot override reviewed src through srcset', (t) => {
